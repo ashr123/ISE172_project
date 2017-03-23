@@ -21,7 +21,7 @@ namespace Presention
 
             if (input.Equals('1'))
             {
-                Console.WriteLine("You chose to open new request./n To buy press 1/n To sell press 2");
+                Console.WriteLine("You chose to open a new request./n To buy press 1/n To sell press 2");
                 input = Console.ReadLine();
 
                 isLegal = checkLegality(input, 2);
@@ -34,16 +34,23 @@ namespace Presention
             if (input.Equals('2'))
             {
                 Console.WriteLine("You chose to cancel a request./n");
-                
 
-
+                CollectInfoCancelRequst();
             }
 
 
-                if (input.Equals('3'))
-                    Console.WriteLine("You chose to ask a query./n To buyQuery press 1/n To sellQuery press 2/n To userQuery press 3/n To marketQuery press 2 ");
+            if (input.Equals('3'))
+            {
+                Console.WriteLine("You chose to ask a query./n To buy/sellQuery press 1/n To userQuery press 2/n To marketQuery press 3 ");
+                input = Console.ReadLine();
 
-         
+                isLegal = checkLegality(input, 3);
+                while (isLegal == false)
+                    PrintWhenIllegalkey();
+
+                CollectInfoQueryRequst(input);
+            }
+
         }
 
         private static bool checkLegality(String s, int options) {
@@ -62,7 +69,7 @@ namespace Presention
             Console.WriteLine("You entered illegal input. Please press a llegal key.");
         }
 
-        private static void CollectingInfoBUYSELL(int a)
+        private static void CollectingInfoBUYSELL(string a)
         {
             Console.WriteLine("Please enter Commodity");
             int commodity = Console.ReadKey();
@@ -95,6 +102,41 @@ namespace Presention
 
             CancelBuySellRequest cancel = new CancelBuySellRequest;
             cancel.Id = id;
+            //צריכה לקבל אישור ולהדפיס
+
+        }
+
+        private static void CollectInfoQueryRequst(string a)
+        {
+            if (a.Equals('1'))
+            {
+                Console.WriteLine("Please enter the ID request./n");
+                int id = Console.ReadKey();
+
+                QueryBuySellRequest query = new QueryBuySellRequest;
+                query.Id = id;
+
+                //להדפיס מידע על עסקה מסויימת
+            }
+
+
+            if (a.Equals('2'))
+            {
+                QueryUserRequest query = new QueryUserRequest;
+                //להדפיס מידע על משתמש
+            }
+
+            if (a.Equals('3'))
+            {
+                Console.WriteLine("Please enter the Commodity./n");
+                int commodity = Console.ReadKey();
+
+                QueryMarketRequest query = new QueryMarketRequest;
+                query.Commodity = commodity;
+
+                //להדפיס מידע על סחורה מסויימת
+
+            }
 
         }
     }
