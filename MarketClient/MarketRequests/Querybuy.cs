@@ -9,7 +9,7 @@ namespace MarketClient.MarketRequests
     class QueryBuy
     {
         int Id { get; set; }
-        String type { get; set; }
+        String Type { get; set; }
         public QueryBuy(int id)
         {
             this.Id = id;
