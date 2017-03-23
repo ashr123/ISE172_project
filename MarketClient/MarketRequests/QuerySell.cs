@@ -9,5 +9,10 @@ namespace MarketClient.Market_Requests
     class QuerySell
     {
         int Id { get; set; }
+        
+        public QuerySell(int id)
+        {
+            this.Id = id;
+        }
     }
 }

@@ -9,5 +9,10 @@ namespace MarketClient.Market_Requests
     class CancelSellRequest
     {
         int Id { get; set; }
+
+        public CancelSellRequest(int id)
+        {
+            this.Id = id;
+        }
     }
 }

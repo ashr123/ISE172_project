@@ -11,5 +11,13 @@ namespace MarketClient.Market_Requests
         int Commodity { get; set; }
         int Amount { get; set; }
         int Price { get; set; }
+
+        public SellRequest(int commodity, int amount, int price)
+        {
+            this.Commodity = commodity;
+            this.Amount = amount;
+            this.Price = price;
+        }
+
     }
 }

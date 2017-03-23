@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace MarketClient.Market_Requests
 {
-    class Querybuy
+    class QueryBuy
     {
         int Id { get; set; }
+
+        public QueryBuy(int id)
+        {
+            this.Id = id;
+        }
     }
 }

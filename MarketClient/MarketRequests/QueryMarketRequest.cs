@@ -8,6 +8,11 @@ namespace MarketClient.Market_Requests
 {
     class QueryMarketRequest
     {
-        int Commidity { get; set; }
+        int Commodity { get; set; }
+
+        public QueryMarketRequest(int commodity)
+        {
+            this.Commodity = commodity;
+        }
     }
 }
