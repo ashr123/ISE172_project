@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MarketClient.DataEntries;
 using MarketClient.Utils;
+using MarketClient.Market_Requests;
 
 namespace MarketClient
 {
@@ -15,7 +16,7 @@ namespace MarketClient
         public int SendBuyRequest(int price, int commodity, int amount)
         {
             //throw new NotImplementedException();
-            var request = new { type = "buy", price = price, commodity = commodity, amount = amount };
+             request = new { type = "buy", price = price, commodity = commodity, amount = amount };
             return Convert.ToInt32(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
         }
 
