@@ -51,8 +51,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="MarketClientClass.cs" />
     <Compile Include="MarketRequests\BuyRequest.cs" />
-    <Compile Include="MarketRequests\CancelBuyRequest.cs" />
-    <Compile Include="MarketRequests\CancelSellRequest.cs" />
+    <Compile Include="MarketRequests\CancelBuySellRequest.cs" />
     <Compile Include="MarketRequests\Querybuy.cs" />
     <Compile Include="MarketRequests\QueryMarketRequest.cs" />
     <Compile Include="MarketRequests\QuerySell.cs" />
