@@ -33,14 +33,14 @@ namespace MarketClient
 
         public IMarketItemQuery SendQueryBuySellRequest(int id)
         {
-            var request = new { type = "queryBuySell", id = id };
+            QueryBuySellRequest request = new QueryBuySellRequest(id);
             return client.SendPostRequest<object, IMarketItemQuery>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
             //throw new NotImplementedException();
         }
 
         public IMarketCommodityOffer SendQueryMarketRequest(int commodity)
         {
-            var request = new { type = "queryMarket", commodity = commodity };
+            QueryMarketRequest request = new QueryMarketRequest(commodity);
             return client.SendPostRequest<object, IMarketCommodityOffer>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
             //throw new NotImplementedException();
         }
@@ -60,7 +60,7 @@ namespace MarketClient
 
         public int SendSellRequest(int price, int commodity, int amount)
         {
-            var request = new { type = "sell", price = price, commodity = commodity, amount = amount };
+            SellRequest request = new SellRequest(commodity, amount, price);
             return Convert.ToInt32(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
             //throw new NotImplementedException();
         }
