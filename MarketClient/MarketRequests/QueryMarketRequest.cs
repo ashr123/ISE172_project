@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
 {
-    //Comment
     class QueryMarketRequest
     {
         int Commodity { get; set; }
-        String type { get; set; }
+        String Type { get; set; }
         public QueryMarketRequest(int commodity)
         {
             this.Commodity = commodity;
