@@ -78,6 +78,9 @@ namespace Presention
             Console.WriteLine("Please enter Price");
             int price = Console.ReadKey();
 
+
+            //לכתוב עוד בדיקות תקינות
+
             if (a.Equals('1')) {
                 BuyRequest buy = new BuyRequest;
                 buy.Commodity = commodity;
