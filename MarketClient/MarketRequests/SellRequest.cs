@@ -8,7 +8,7 @@ namespace MarketClient.MarketRequests
 {
     class SellRequest
     {
-        String type { get; set; }
+        String Type { get; set; }
         int Commodity { get; set; }
         int Amount { get; set; }
         int Price { get; set; }
@@ -19,6 +19,5 @@ namespace MarketClient.MarketRequests
             this.Amount = amount;
             this.Price = price;
         }
-
     }
 }
