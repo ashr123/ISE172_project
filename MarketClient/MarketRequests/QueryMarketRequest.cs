@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarketClient.Market_Requests
 {
+    //Comment
     class QueryMarketRequest
     {
         int Commodity { get; set; }
