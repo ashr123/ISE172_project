@@ -79,7 +79,7 @@ namespace Presention
             int price = Console.ReadKey();
 
 
-            //לכתוב עוד בדיקות תקינות
+            //write more legallity checks
 
             if (a.Equals('1')) {
                 BuyRequest buy = new BuyRequest;
@@ -95,7 +95,7 @@ namespace Presention
                 sell.Price = price;
             }
 
-            //צריכה לקבל אישור קנייה ולהדפיס
+            //print if well
         }
 
         private static void CollectInfoCancelRequst()
@@ -105,7 +105,7 @@ namespace Presention
 
             CancelBuySellRequest cancel = new CancelBuySellRequest;
             cancel.Id = id;
-            //צריכה לקבל אישור ולהדפיס
+            //print if well
 
         }
 
@@ -119,14 +119,14 @@ namespace Presention
                 QueryBuySellRequest query = new QueryBuySellRequest;
                 query.Id = id;
 
-                //להדפיס מידע על עסקה מסויימת
+                //print on a certain deal
             }
 
 
             if (a.Equals('2'))
             {
                 QueryUserRequest query = new QueryUserRequest;
-                //להדפיס מידע על משתמש
+                //print user inf
             }
 
             if (a.Equals('3'))
@@ -137,7 +137,7 @@ namespace Presention
                 QueryMarketRequest query = new QueryMarketRequest;
                 query.Commodity = commodity;
 
-                //להדפיס מידע על סחורה מסויימת
+                //print comm inf
 
             }
 
