@@ -11,7 +11,7 @@ namespace MarketClient.MarketRequests
         int Commodity { get; set; }
         int Amount { get; set; }
         int Price { get; set; }
-
+        String type { get; set; }
         public BuyRequest(int commodity, int amount, int price)
         {
             this.Commodity=commodity;

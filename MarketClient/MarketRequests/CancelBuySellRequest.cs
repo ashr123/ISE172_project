@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
 {
-    class CancelSellRequest
+    class CancelBuySellRequest
     {
         int Id { get; set; }
-
-        public CancelSellRequest(int id)
+        String type { get; set; }
+        public CancelBuySellRequest(int id)
         {
             this.Id = id;
         }

@@ -8,6 +8,7 @@ namespace MarketClient.MarketRequests
 {
     class SellRequest
     {
+        String type { get; set; }
         int Commodity { get; set; }
         int Amount { get; set; }
         int Price { get; set; }

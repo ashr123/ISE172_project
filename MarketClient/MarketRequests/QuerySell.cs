@@ -9,7 +9,7 @@ namespace MarketClient.MarketRequests
     class QuerySell
     {
         int Id { get; set; }
-        
+        String type { get; set; }
         public QuerySell(int id)
         {
             this.Id = id;
