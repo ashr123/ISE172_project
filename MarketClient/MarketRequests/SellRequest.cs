@@ -8,7 +8,7 @@ namespace MarketClient.MarketRequests
 {
     class SellRequest
     {
-        String Type { get; set; }
+        const string type = "sell";
         int Commodity { get; set; }
         int Amount { get; set; }
         int Price { get; set; }

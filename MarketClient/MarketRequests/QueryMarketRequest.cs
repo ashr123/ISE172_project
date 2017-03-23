@@ -9,7 +9,7 @@ namespace MarketClient.MarketRequests
     class QueryMarketRequest
     {
         int Commodity { get; set; }
-        String Type { get; set; }
+        const string type = "queryMarket";
         public QueryMarketRequest(int commodity)
         {
             this.Commodity = commodity;

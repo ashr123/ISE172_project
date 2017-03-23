@@ -52,9 +52,8 @@
     <Compile Include="MarketClientClass.cs" />
     <Compile Include="MarketRequests\BuyRequest.cs" />
     <Compile Include="MarketRequests\CancelBuySellRequest.cs" />
-    <Compile Include="MarketRequests\Querybuy.cs" />
+    <Compile Include="MarketRequests\QuerybuySellRequest.cs" />
     <Compile Include="MarketRequests\QueryMarketRequest.cs" />
-    <Compile Include="MarketRequests\QuerySell.cs" />
     <Compile Include="MarketRequests\QueryUserRequest.cs" />
     <Compile Include="MarketRequests\SellRequest.cs" />
     <Compile Include="SimpleHTTPClient.cs" />
