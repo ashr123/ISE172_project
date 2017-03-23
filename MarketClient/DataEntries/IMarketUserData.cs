@@ -8,7 +8,6 @@ namespace MarketClient.DataEntries
 {
     public class IMarketUserData
     {
-        //אהלן אחי
         Dictionary<string, int> Commodities { get; set; }
         int Funds { get; set; }
         LinkedList<int> Requests { get; set; }

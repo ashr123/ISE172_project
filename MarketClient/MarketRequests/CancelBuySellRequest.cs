@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
-{//gfjfjfjfjfjhfhhjjfh
+{
     class CancelBuySellRequest
     {
         int Id { get; set; }
