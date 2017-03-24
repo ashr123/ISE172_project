@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MarketClient.DataEntries;
-using MarketClient.Utils;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace MarketClient.DataEntries
 {

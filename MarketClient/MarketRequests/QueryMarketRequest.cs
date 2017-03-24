@@ -12,8 +12,8 @@ namespace MarketClient.MarketRequests
         public string type;
         public QueryMarketRequest(int commodity)
         {
-			Commodity=commodity;
 			type="queryMarket";
+			Commodity=commodity;
 		}
     }
 }

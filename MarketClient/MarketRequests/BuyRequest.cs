@@ -11,10 +11,11 @@ namespace MarketClient.MarketRequests
         public int Commodity { get; set; }
         public int Amount { get; set; }
         public int Price { get; set; }
-        public const String type="Buy";
+        public String type;
         public BuyRequest(int commodity, int amount, int price)
         {
-            this.Commodity=commodity;
+			type="Buy";
+			this.Commodity=commodity;
             this.Amount=amount;
             this.Price=price;
         }
