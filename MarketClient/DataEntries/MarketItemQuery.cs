@@ -1,6 +1,6 @@
 ﻿namespace MarketClient.DataEntries
 {
-    public class IMarketItemQuery
+    public class MarketItemQuery
     {
         int Price { get; set; }
         int Amount { get; set; }

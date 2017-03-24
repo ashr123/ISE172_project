@@ -31,14 +31,14 @@ namespace MarketClient
         /// <param name="id">id of the request</param>
         /// <returns>data about that request.</returns>
         /// <exception cref="MarketException">error is throw in case of invalid request or invalid parameter.</exception>
-        IMarketItemQuery SendQueryBuySellRequest(int id);
+        MarketItemQuery SendQueryBuySellRequest(int id);
 
         /// <summary>
         /// Query the server about the market state of a the login user.
         /// </summary>
         /// <returns>data about the state of the user</returns>
         /// <exception cref="MarketException">error is throw in case of invalid request or invalid parameter.</exception>
-        IMarketUserData SendQueryUserRequest();
+        MarketUserData SendQueryUserRequest();
 
         /// <summary>
         /// Query the server about an item.
@@ -46,7 +46,7 @@ namespace MarketClient
         /// <param name="commodity">id of the item</param>
         /// <returns>the highest bid and the lowest price for this item</returns>
         /// <exception cref="MarketException">error is throw in case of invalid request or invalid parameter.</exception>
-        IMarketCommodityOffer SendQueryMarketRequest(int commodity);
+        MarketCommodityOffer SendQueryMarketRequest(int commodity);
 
         /// <summary>
         /// Cancel a buy/sell request.

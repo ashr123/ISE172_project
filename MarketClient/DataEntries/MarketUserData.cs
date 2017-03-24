@@ -6,7 +6,7 @@ using MarketClient.Utils;
 
 namespace MarketClient.DataEntries
 {
-    public class IMarketUserData
+    public class MarketUserData
     {
         Dictionary<string, int> Commodities { get; set; }
         int Funds { get; set; }

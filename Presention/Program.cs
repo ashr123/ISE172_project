@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MarketClient.MarketRequests;
 
 namespace Presention
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, This is an Algo-trading market system.\n We Support the following operations: ");
             Console.WriteLine("Press 1 to open a new request (buy/sell)\n Press 2 to cancel an exist request\n Press 3 to ask a query \n");
-            String input = Console.ReadLine();
+            String input=Console.ReadLine();
 
-            bool isLegal = checkLegality(input, 3);
+            bool isLegal=CheckLegality(input, 3);
             while (isLegal == false)
                 PrintWhenIllegalkey();
 
@@ -22,10 +23,10 @@ namespace Presention
             if (input.Equals('1'))
             {
                 Console.WriteLine("You chose to open a new request./n To buy press 1/n To sell press 2");
-                input = Console.ReadLine();
+                input=Console.ReadLine();
 
-                isLegal = checkLegality(input, 2);
-                while (isLegal == false)
+                isLegal=CheckLegality(input, 2);
+                while (isLegal == false)//Not good
                     PrintWhenIllegalkey();
 
                 CollectingInfoBUYSELL(input);
@@ -42,9 +43,9 @@ namespace Presention
             if (input.Equals('3'))
             {
                 Console.WriteLine("You chose to ask a query./n To buy/sellQuery press 1/n To userQuery press 2/n To marketQuery press 3 ");
-                input = Console.ReadLine();
+                input=Console.ReadLine();
 
-                isLegal = checkLegality(input, 3);
+                isLegal=CheckLegality(input, 3);
                 while (isLegal == false)
                     PrintWhenIllegalkey();
 
@@ -53,7 +54,7 @@ namespace Presention
 
         }
 
-        private static bool checkLegality(String s, int options) {
+        private static bool CheckLegality(String s, int options) {
 
             if (s.Length != 1)
                 return false;
@@ -72,27 +73,27 @@ namespace Presention
         private static void CollectingInfoBUYSELL(string a)
         {
             Console.WriteLine("Please enter Commodity");
-            int commodity = Console.ReadKey();
+            int commodity=Console.ReadKey();
             Console.WriteLine("Please enter Amount");
-            int amount = Console.ReadKey();
+            int amount=Console.ReadKey();
             Console.WriteLine("Please enter Price");
-            int price = Console.ReadKey();
+            int price=Console.ReadKey();
 
 
             //write more legallity checks
 
             if (a.Equals('1')) {
-                BuyRequest buy = new BuyRequest;
-                buy.Commodity = commodity;
-                buy.Amount = amount;
-                buy.Price = price;
+                BuyRequest buy=new BuyRequest;
+                buy.Commodity=commodity;
+                buy.Amount=amount;
+                buy.Price=price;
             }
             else
             {
-                SellRequest sell = new SellRequest;
-                sell.Commodity = commodity;
-                sell.Amount = amount;
-                sell.Price = price;
+                SellRequest sell=new SellRequest;
+                sell.Commodity=commodity;
+                sell.Amount=amount;
+                sell.Price=price;
             }
 
             //print if well
@@ -103,8 +104,8 @@ namespace Presention
             Console.WriteLine("Please enter the ID request you wish to cancel./n");
             int id=Console.ReadKey();
 
-            CancelBuySellRequest cancel = new CancelBuySellRequest;
-            cancel.Id = id;
+            CancelBuySellRequest cancel=new CancelBuySellRequest;
+            cancel.Id=id;
             //print if well
 
         }
@@ -114,10 +115,10 @@ namespace Presention
             if (a.Equals('1'))
             {
                 Console.WriteLine("Please enter the ID request./n");
-                int id = Console.ReadKey();
+                int id=Console.ReadKey();
 
-                QueryBuySellRequest query = new QueryBuySellRequest;
-                query.Id = id;
+                QueryBuySellRequest query=new QueryBuySellRequest;
+                query.Id=id;
 
                 //print on a certain deal
             }
@@ -125,17 +126,17 @@ namespace Presention
 
             if (a.Equals('2'))
             {
-                QueryUserRequest query = new QueryUserRequest;
+                QueryUserRequest query=new QueryUserRequest;
                 //print user inf
             }
 
             if (a.Equals('3'))
             {
                 Console.WriteLine("Please enter the Commodity./n");
-                int commodity = Console.ReadKey();
+                int commodity=Console.ReadKey();
 
-                QueryMarketRequest query = new QueryMarketRequest;
-                query.Commodity = commodity;
+                QueryMarketRequest query=new QueryMarketRequest;
+                query.Commodity=commodity;
 
                 //print comm inf
 

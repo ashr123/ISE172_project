@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
 {//hfhfjfjfgjgd
-    class SellRequest
+    public class SellRequest
     {
-        const string type = "sell";
+        const string type="sell";
         int Commodity { get; set; }
         int Amount { get; set; }
         int Price { get; set; }
 
         public SellRequest(int commodity, int amount, int price)
         {
-            this.Commodity = commodity;
-            this.Amount = amount;
-            this.Price = price;
+            this.Commodity=commodity;
+            this.Amount=amount;
+            this.Price=price;
         }
     }
 }

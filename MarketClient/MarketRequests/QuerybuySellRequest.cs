@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
 {
-    class QueryBuySellRequest
+    public class QueryBuySellRequest
     {
         int Id { get; set; }
-        const string type = "queryBuySell";
+        const string type="queryBuySell";
         public QueryBuySellRequest(int id)
         {
-            this.Id = id;
+            this.Id=id;
         }
     }
 }

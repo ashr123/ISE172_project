@@ -10,8 +10,10 @@ namespace MarketClient
     {
         static void Main(string[] args)
         {
-            IMarketClient market = new MarketClientClass();
-            Console.Write(market.SendQueryMarketRequest(0));
+			Console.Write(Convert.ToInt32("f"));
+			//IMarketClient market=new MarketClientClass();
+			//Console.Write(market.SendQueryMarketRequest(0));
+			Console.ReadLine();
         }
     }
 }

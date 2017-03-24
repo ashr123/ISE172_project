@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
 {
-    class BuyRequest
+    public class BuyRequest
     {
         int Commodity { get; set; }
         int Amount { get; set; }
         int Price { get; set; }
-        const String type = "Buy";
+        const String type="Buy";
         public BuyRequest(int commodity, int amount, int price)
         {
             this.Commodity=commodity;
