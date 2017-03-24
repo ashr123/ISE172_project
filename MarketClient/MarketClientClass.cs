@@ -72,12 +72,6 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
         {
             QueryUserRequest request=new QueryUserRequest();
             return client.SendPostRequest<QueryUserRequest, MarketUserData>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
-            /*Dictionary<string, int> d=new Dictionary<string, int>();
-           d["ddd"]=5;
-            foreach (string s in d.Keys)
-            {
-                d[s];
-            }*/
             //throw new NotImplementedException();
         }
 
