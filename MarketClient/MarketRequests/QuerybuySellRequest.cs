@@ -9,10 +9,11 @@ namespace MarketClient.MarketRequests
     public class QueryBuySellRequest
     {
         int Id { get; set; }
-        const string type="queryBuySell";
+        public string type;
         public QueryBuySellRequest(int id)
         {
-            this.Id=id;
+			type="queryBuySell";
+			this.Id=id;
         }
     }
 }

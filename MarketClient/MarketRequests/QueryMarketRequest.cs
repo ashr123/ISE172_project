@@ -9,10 +9,11 @@ namespace MarketClient.MarketRequests
     public class QueryMarketRequest
     {
         int Commodity { get; set; }
-        const string type="queryMarket";
+        public string type;
         public QueryMarketRequest(int commodity)
         {
-            this.Commodity=commodity;
-        }
+			Commodity=commodity;
+			type="queryMarket";
+		}
     }
 }

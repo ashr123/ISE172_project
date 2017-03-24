@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
 {
-    public class QueryUserRequest
-    {
-        const string type="queryUser";
+	public class QueryUserRequest
+	{
+		public string type;
+		public QueryUserRequest()
+		{
+			type="queryUser";
+		}
     }
 }

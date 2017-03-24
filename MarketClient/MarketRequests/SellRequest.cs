@@ -5,17 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
-{//hfhfjfjfgjgd
+{
     public class SellRequest
     {
-        const string type="sell";
+		public string type;
         int Commodity { get; set; }
         int Amount { get; set; }
         int Price { get; set; }
 
         public SellRequest(int commodity, int amount, int price)
         {
-            this.Commodity=commodity;
+			type="sell";
+			this.Commodity=commodity;
             this.Amount=amount;
             this.Price=price;
         }
