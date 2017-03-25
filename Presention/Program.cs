@@ -24,6 +24,7 @@ namespace Presention
                 case "1":
                     Console.WriteLine("You chose to open a new request./n To buy press 1/n To sell press 2");
                     string input1 = Console.ReadLine();
+                    IsLegalCombinedLoop(input1, 2);
                     CollectingInfoBUYSELL(input1);
                     break;
 
@@ -35,18 +36,19 @@ namespace Presention
                 case "3":
                     Console.WriteLine("You chose to ask a query./n To buy/sellQuery press 1/n To userQuery press 2/n To marketQuery press 3 ");
                     string input3 = Console.ReadLine();
+                    IsLegalCombinedLoop(input3, 3);
                     CollectInfoQueryRequst(input);
                     break;
 
                 default:
-                    
+                    IsLegalCombinedLoop(input, 3);
                     break;
             }//switch
 
         }//main
 
-
-        private static void IsLegalCombinedLoop(String s, int options)
+        //this function activated when illegal key pressed
+        private static void IsLegalCombinedLoop(String s, int options) 
         {
             bool isLegal = CheckLegality(s, options);
             while (isLegal == false)
@@ -57,6 +59,8 @@ namespace Presention
             }
             return;
         }
+
+        //only helping IsLegalCombinedLoop function
         private static bool CheckLegality(String s, int options)
         {
 
@@ -69,6 +73,7 @@ namespace Presention
             return false;
         }
 
+        //only helping IsLegalCombinedLoop function
         private static void PrintWhenIllegalkey()
         {
             Console.WriteLine("You entered illegal input. Please press a legal key.");
@@ -109,7 +114,7 @@ namespace Presention
         private static void CollectInfoCancelRequst()
         {
             Console.WriteLine("Please enter the ID request you wish to cancel./n");
-            int id = Console.ReadKey();
+            int id = Convert.ToInt32(Console.ReadLine());
 
 
             MarketClientClass client = new MarketClientClass(); //create client to use it's methoods
