@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MarketClient;
+using MarketClient.DataEntries;
 
 namespace Presention
 {
@@ -148,7 +149,7 @@ namespace Presention
                     break;
 
                 case "2":
-                    MarketUserData data2 = client.SendQueryUserRequest;
+                    MarketUserData data2 = client.SendQueryUserRequest();
 
                     Console.WriteLine("User query info is:/n" + data2.ToString());
                     break;

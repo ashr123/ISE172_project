@@ -7,7 +7,7 @@ using MarketClient.MarketRequests;
 
 namespace MarketClient
 {
-    class MarketClientClass : IMarketClient
+    public class MarketClientClass : IMarketClient
     {
 		private const string Url = "http://localhost"; //"http://ise172.ise.bgu.ac.il";
 		private const string User = "user54";
