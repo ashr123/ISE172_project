@@ -8,7 +8,7 @@ namespace MarketClient.MarketRequests
 {
     public class SellRequest
     {
-		public string type;
+		public readonly string type;
 		public int commodity;
 		public int amount;
 		public int price;

@@ -9,7 +9,7 @@ namespace MarketClient.MarketRequests
     public class QueryBuySellRequest
     {
 		public int id;
-        public string type;
+        public readonly string type;
         public QueryBuySellRequest(int id)
         {
 			type="queryBuySell";

@@ -10,8 +10,8 @@ namespace MarketClient
     class MarketClientClass : IMarketClient
     {
 		private const string Url = "http://localhost"; //"http://ise172.ise.bgu.ac.il";
-        private const string User="user54";
-        private const string PrivateKey= @"-----BEGIN RSA PRIVATE KEY-----
+		private const string User = "user54";
+        private const string PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
 MIICXgIBAAKBgQC2VKy0OMXoFvuxGeP/n92VV3wIt2X/kIG2BhuY6WE+SrvUOuxR
 4hH5FT7fFWR0kVPBHJmUwwu8egJo+D7UyYF0d7A0UjVzFL1t02OsPcUnIXWs0PlO
 Nz+nbhDDB//IWyR5iJejwCrZt0fBpISPmlSxyjp+uThtdPX1JtSQVv7iHQIDAQAB
@@ -50,6 +50,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
             string ans=client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
             if (ans.Equals("Ok"))
                 return true;
+			Console.WriteLine(ans);
             return false;
             //throw new NotImplementedException();
         }

@@ -9,7 +9,7 @@ namespace MarketClient.MarketRequests
     public class CancelBuySellRequest
     {
 		public int id;
-        public string type;
+        public readonly string type;
         public CancelBuySellRequest(int id)
         {
 			type="cancelBuySell";

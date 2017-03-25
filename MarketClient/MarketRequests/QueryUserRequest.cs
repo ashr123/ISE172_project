@@ -8,7 +8,7 @@ namespace MarketClient.MarketRequests
 {
 	public class QueryUserRequest
 	{
-		public string type;
+		public readonly string type;
 		public QueryUserRequest()
 		{
 			type="queryUser";

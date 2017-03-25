@@ -11,7 +11,7 @@ namespace MarketClient.MarketRequests
 		public int commodity;
 		public int amount;
 		public int price;
-        public String type;
+        public readonly string type;
         public BuyRequest(int commodity, int amount, int price)
         {
 			type="Buy";

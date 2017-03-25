@@ -12,7 +12,7 @@ namespace MarketClient
         {
 			//Console.Write(Convert.ToInt32("f"));
 			IMarketClient market=new MarketClientClass();
-			Console.Write(market.SendCancelBuySellRequest(3));
+			Console.Write(market.SendQueryUserRequest());
 			Console.ReadLine();
         }
     }

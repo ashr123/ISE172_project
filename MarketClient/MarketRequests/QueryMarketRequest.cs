@@ -9,7 +9,7 @@ namespace MarketClient.MarketRequests
     public class QueryMarketRequest
     {
 		public int Commodity;
-        public string type;
+        public readonly string type;
         public QueryMarketRequest(int commodity)
         {
 			type="queryMarket";
