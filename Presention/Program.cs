@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MarketClient.MarketRequests;
+using MarketClient;
 
 namespace Presention
 {
@@ -26,8 +26,12 @@ namespace Presention
                 input=Console.ReadLine();
 
                 isLegal=CheckLegality(input, 2);
-                while (isLegal == false)//Not good
+                while (isLegal == false)
+                {
                     PrintWhenIllegalkey();
+                    input = Console.ReadLine();
+                    isLegal = CheckLegality(input, 2);
+                }
 
                 CollectingInfoBUYSELL(input);
             }
@@ -73,11 +77,11 @@ namespace Presention
         private static void CollectingInfoBUYSELL(string a)
         {
             Console.WriteLine("Please enter Commodity");
-            int commodity=Console.ReadKey();
+            int commodity=Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Please enter Amount");
-            int amount=Console.ReadKey();
+            int amount = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Please enter Price");
-            int price=Console.ReadKey();
+            int price = Convert.ToInt32(Console.ReadLine());
 
 
             //write more legallity checks
