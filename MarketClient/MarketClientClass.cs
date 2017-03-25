@@ -48,7 +48,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
         {
             CancelBuySellRequest request=new CancelBuySellRequest(id);
             string ans=client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
-            if (ans.Equals("OK"))
+            if (ans.Equals("Ok"))
                 return true;
             return false;
             //throw new NotImplementedException();

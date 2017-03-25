@@ -8,16 +8,16 @@ namespace MarketClient.MarketRequests
 {
     public class BuyRequest
     {
-        public int Commodity { get; set; }
-        public int Amount { get; set; }
-        public int Price { get; set; }
+		public int commodity;
+		public int amount;
+		public int price;
         public String type;
         public BuyRequest(int commodity, int amount, int price)
         {
 			type="Buy";
-			this.Commodity=commodity;
-            this.Amount=amount;
-            this.Price=price;
+			this.commodity=commodity;
+            this.amount=amount;
+            this.price=price;
         }
     }
 }

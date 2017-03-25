@@ -8,12 +8,12 @@ namespace MarketClient.MarketRequests
 {
     public class CancelBuySellRequest
     {
-        int Id { get; set; }
+		public int id;
         public string type;
         public CancelBuySellRequest(int id)
         {
 			type="cancelBuySell";
-			this.Id=id;
+			this.id=id;
         }
     }
 }
