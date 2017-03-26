@@ -14,7 +14,7 @@ namespace MarketClient.MarketRequests
         public readonly string type;
         public BuyRequest(int commodity, int amount, int price)
         {
-			type="Buy";
+			type="buy";
 			this.commodity=commodity;
             this.amount=amount;
             this.price=price;

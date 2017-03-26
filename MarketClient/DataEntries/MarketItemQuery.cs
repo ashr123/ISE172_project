@@ -2,11 +2,11 @@
 {
     public class MarketItemQuery
     {
-        int Price { get; set; }
-        int Amount { get; set; }
-        int Commodity { get; set; }
-        string Type { get; set; }
-        string User { get; set; }
+        public int Price { get; set; }
+        public int Amount { get; set; }
+        public int Commodity { get; set; }
+        public string Type { get; set; }
+        public string User { get; set; }
 
         public override string ToString()
         {

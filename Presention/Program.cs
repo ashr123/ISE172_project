@@ -18,8 +18,8 @@ namespace Presention
             String input = Console.ReadLine();
 
             bool isLegal = CheckLegality(input, 3);
-            while (isLegal == false)
-                PrintWhenIllegalkey();
+            //while (isLegal == false)
+             //   PrintWhenIllegalkey();
             switch (input)
             {
                 case "1":

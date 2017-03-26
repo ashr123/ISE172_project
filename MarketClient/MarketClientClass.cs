@@ -9,7 +9,8 @@ namespace MarketClient
 {
     public class MarketClientClass : IMarketClient
     {
-		private const string Url = "http://localhost"; //"http://ise172.ise.bgu.ac.il";
+		private const string Url = "http://localhost";
+		//private const string Url = "http://ise172.ise.bgu.ac.il";
 		private const string User = "user54";
         private const string PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
 MIICXgIBAAKBgQC2VKy0OMXoFvuxGeP/n92VV3wIt2X/kIG2BhuY6WE+SrvUOuxR
@@ -58,6 +59,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
         public MarketItemQuery SendQueryBuySellRequest(int id)
         {
             QueryBuySellRequest request=new QueryBuySellRequest(id);
+			Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
             return client.SendPostRequest<QueryBuySellRequest, MarketItemQuery>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
             //throw new NotImplementedException();
         }
@@ -72,7 +74,8 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
         public MarketUserData SendQueryUserRequest()
         {
             QueryUserRequest request=new QueryUserRequest();
-            return client.SendPostRequest<QueryUserRequest, MarketUserData>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
+			Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
+			return client.SendPostRequest<QueryUserRequest, MarketUserData>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
             //throw new NotImplementedException();
         }
 

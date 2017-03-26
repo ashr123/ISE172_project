@@ -4,16 +4,16 @@ using System.Linq;
 
 namespace MarketClient.DataEntries
 {
-    public class MarketUserData
-    {
-        public Dictionary<int, int> Commodities { get; set; }
-        public int Funds { get; set; }
-        public LinkedList<int> Requests { get; set; }
+	public class MarketUserData
+	{
+		public Dictionary<string, int> Commodities { get; set; }
+		public double Funds { get; set; }
+        public List<int> Requests { get; set; }
 
         public override string ToString()
         {
 			string output = "Commodities: [";
-			foreach (int i in Commodities.Keys)
+			foreach (string i in Commodities.Keys)
 			{
 				output+=i+": "+Commodities[i];
 				if (i!=Commodities.Keys.Last())
@@ -24,7 +24,7 @@ namespace MarketClient.DataEntries
 			foreach (int i in Requests)
 			{
 				output+=i;
-				if (i!=Requests.Last.Value)
+				if (i!=Requests[Requests.Count-1])
 					output+=", ";
 			}
 			return output+="]";

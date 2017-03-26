@@ -2,8 +2,8 @@
 {
     public class MarketCommodityOffer
     {
-        int Ask { get; set; }
-        int Bid { get; set; }
+        public int Ask { get; set; }
+        public int Bid { get; set; }
 
         public override string ToString()
         {

@@ -63,7 +63,7 @@ namespace MarketClient
                 return JsonConvert.DeserializeObject<T>(response, new JsonSerializerSettings
                 {
                     Error=delegate {
-                        throw new JsonException(response);
+                       throw new JsonException(response);
                     }
                 });
             }
