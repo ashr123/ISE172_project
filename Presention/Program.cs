@@ -49,7 +49,7 @@ namespace Presention
         }//main
 
         //this function activated when illegal key pressed
-        private static void IsLegalCombinedLoop(String s, int options) 
+        private static void IsLegalCombinedLoop(String s, int options)
         {
             bool isLegal = CheckLegality(s, options);
             while (isLegal == false)
@@ -84,48 +84,71 @@ namespace Presention
         private static void CollectingInfoBUYSELL(string a)
         {
             //write more legallity checks
-            Console.WriteLine("Please enter Commodity");
-            int Commodity = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please enter Amount");
-            int Amount = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Please enter Price");
-            int Price = Convert.ToInt32(Console.ReadLine());
+            int Commodity, Amount, Price;
+            do
+            {
+                Console.WriteLine("Please enter Commodity");
+                Commodity = myconvert(Console.ReadLine());
+                Console.WriteLine("Please enter Amount");
+                Amount = myconvert(Console.ReadLine());
+                Console.WriteLine("Please enter Price");
+                Price = myconvert(Console.ReadLine());
+            } while (Commodity == -1 | Amount == -1 | Price == -1);
 
             MarketClientClass client = new MarketClientClass(); //create client to use it's methoods
 
-            //write more legallity checks
-            int IDbuysell;
-            if (a.Equals('1'))
+            int IDbuysell = 0;
+            if (a.Equals('1')) //'1' means buy
             {
-                IDbuysell = client.SendBuyRequest(Price, Commodity, Amount);
+                try
+                {
+                    IDbuysell = client.SendBuyRequest(Price, Commodity, Amount);
+                    Console.WriteLine("The request done successfully. The ID is " + IDbuysell);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
             }
-            else
+            else      //means sell
             {
-                IDbuysell = client.SendSellRequest(Price, Commodity, Amount);
+                try
+                {
+                    IDbuysell = client.SendSellRequest(Price, Commodity, Amount);
+                    Console.WriteLine("The request done successfully. The ID is " + IDbuysell);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
 
-            Console.WriteLine("The request done successfully. The ID is " + IDbuysell);
-            //print Id if well
-
-
-            //add what if not succeed?
             return;
         }//collect info buy-sell request
 
         private static void CollectInfoCancelRequst()
         {
+            int id;
             Console.WriteLine("Please enter the ID request you wish to cancel./n");
-            int id = Convert.ToInt32(Console.ReadLine());
+            do
+                id = myconvert(Console.ReadLine());
+            while
+                (id == -1);
 
 
             MarketClientClass client = new MarketClientClass(); //create client to use it's methoods
+            try
+            {
+                bool ans = client.SendCancelBuySellRequest(id);
 
-            bool ans = client.SendCancelBuySellRequest(id);
-
-            if (ans == true)
-                Console.WriteLine("Cancellation succeed./n");
-            else
-                Console.WriteLine("Cancellation failed./n");
+                if (ans == true)
+                    Console.WriteLine("Cancellation succeed./n");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             //print answer
 
             return;
@@ -140,31 +163,71 @@ namespace Presention
             switch (a)
             {
                 case "1":
+                    int id;
                     Console.WriteLine("Please enter the ID request./n");
-                    int id = Convert.ToInt32(Console.ReadLine());
+                    do
+                        id = myconvert(Console.ReadLine());
+                    while (id == -1);
 
-                    MarketItemQuery data1 = client.SendQueryBuySellRequest(id);
-                    Console.WriteLine("Buy-Sell query info is:/n" + data1.ToString());  //print data on a certain deal
+                    try
+                    {
+                        MarketItemQuery data1 = client.SendQueryBuySellRequest(id);
+                        Console.WriteLine("Buy-Sell query info is:/n" + data1.ToString());  //print data on a certain deal
+                    }
+
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
 
                     break;
 
                 case "2":
-                    MarketUserData data2 = client.SendQueryUserRequest();
+                    try
+                    {
+                        MarketUserData data2 = client.SendQueryUserRequest();
 
-                    Console.WriteLine("User query info is:/n" + data2.ToString());
+                        Console.WriteLine("User query info is:/n" + data2.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                     break;
 
                 case "3":
+                    int commodity;
                     Console.WriteLine("Please enter the Commodity./n");
-                    int commodity = Convert.ToInt32(Console.ReadLine());
+                    do
+                        commodity = myconvert(Console.ReadLine());
+                    while (commodity == -1);
 
-                    MarketCommodityOffer data3 = client.SendQueryMarketRequest(commodity);
-                    Console.WriteLine("Market query info is:/n" + data3.ToString());
+                    try
+                    {
+                        MarketCommodityOffer data3 = client.SendQueryMarketRequest(commodity);
+                        Console.WriteLine("Market query info is:/n" + data3.ToString());
+                    }
+
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                     break;
 
             }//switch
             return;
         }//collect info query
 
+        private static int myconvert(string s)
+        {
+            try
+            {
+                return Convert.ToInt32(s);
+            }
+            catch
+            {
+                return -1;
+            }
+        }
     }//class 
 }//namespace presention
