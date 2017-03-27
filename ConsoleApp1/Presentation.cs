@@ -9,8 +9,7 @@ using MarketClient.DataEntries;
 namespace Presentation
 {
 	public class Presentation
-	{
-
+	{//fffgfgfgfgfgfggf
 		static void Main(string[] args)
 		{
 			while (true)
