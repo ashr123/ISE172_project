@@ -8,8 +8,10 @@ using MarketClient.DataEntries;
 
 namespace Presentation
 {
+ 
 	public class Presentation
 	{//fffgfgfgfgfgfggfdfdf
+		static MarketClientClass client = new MarketClientClass(); //create client to use it's methoods
 		static void Main(string[] args)
 		{
 			while (true)
@@ -102,8 +104,7 @@ namespace Presentation
 				Console.WriteLine("Please enter Price");
 				Price=Myconvert(Console.ReadLine());
 			} while (Commodity==-1|Amount==-1|Price==-1);
-
-			MarketClientClass client = new MarketClientClass(); //create client to use it's methoods
+			
 
 			int IDbuysell = 0;
 			if (a.Equals('1')) //'1' means buy
@@ -144,8 +145,7 @@ namespace Presentation
 			while
 				(id==-1);
 
-
-			MarketClientClass client = new MarketClientClass(); //create client to use it's methoods
+			
 			try
 			{
 				bool ans = client.SendCancelBuySellRequest(id);
@@ -164,8 +164,7 @@ namespace Presentation
 
 		private static void CollectInfoQueryRequst(string a)
 		{
-
-			MarketClientClass client = new MarketClientClass(); //create client to use it's methoods
+			
 
 
 			switch (a)
