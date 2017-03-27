@@ -7,7 +7,7 @@
 
         public override string ToString()
         {
-            return "Ask: "+", Bid: "+Bid;
+            return "Ask: "+Ask+", Bid: "+Bid;
         }
     }
 }

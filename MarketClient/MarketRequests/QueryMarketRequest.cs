@@ -8,12 +8,12 @@ namespace MarketClient.MarketRequests
 {
     public class QueryMarketRequest
     {
-		public int Commodity { get; set; }
+		public int commodity;
         public readonly string type;
         public QueryMarketRequest(int commodity)
         {
 			type="queryMarket";
-			Commodity=commodity;
+			this.commodity=commodity;
 		}
     }
 }
