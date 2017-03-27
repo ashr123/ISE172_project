@@ -8,7 +8,7 @@ namespace MarketClient.MarketRequests
 {
     public class QueryMarketRequest
     {
-		public int Commodity;
+		public int Commodity { get; set; }
         public readonly string type;
         public QueryMarketRequest(int commodity)
         {

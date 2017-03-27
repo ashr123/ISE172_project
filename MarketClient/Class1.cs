@@ -14,7 +14,7 @@ namespace MarketClient
         {
 			//Console.Write(Convert.ToInt32("f"));
 			Console.WriteLine(market.SendQueryUserRequest());
-			//Console.WriteLine(market.SendCancelBuySellRequest(1));
+			Console.WriteLine(market.SendQueryMarketRequest(1));
 			//Console.WriteLine(market.SendBuyRequest(20, 2, 3));
 			//Console.WriteLine(market.SendSellRequest(19, 2, 5));
 			//Console.WriteLine(market.SendQueryBuySellRequest(3));

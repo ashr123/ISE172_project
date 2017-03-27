@@ -9,8 +9,8 @@ namespace MarketClient
 {
     public class MarketClientClass : IMarketClient
     {
-		//private const string Url = "http://localhost";
-		private const string Url = "http://ise172.ise.bgu.ac.il";
+		private const string Url = "http://localhost";
+		//private const string Url = "http://ise172.ise.bgu.ac.il";
 		private const string User = "user54";
         private const string PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
 MIICXgIBAAKBgQC2VKy0OMXoFvuxGeP/n92VV3wIt2X/kIG2BhuY6WE+SrvUOuxR
