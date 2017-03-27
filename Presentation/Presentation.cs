@@ -96,11 +96,11 @@ namespace Presentation
 			do
 			{
 				Console.WriteLine("Please enter Commodity");
-				Commodity=myconvert(Console.ReadLine());
+				Commodity=Myconvert(Console.ReadLine());
 				Console.WriteLine("Please enter Amount");
-				Amount=myconvert(Console.ReadLine());
+				Amount=Myconvert(Console.ReadLine());
 				Console.WriteLine("Please enter Price");
-				Price=myconvert(Console.ReadLine());
+				Price=Myconvert(Console.ReadLine());
 			} while (Commodity==-1|Amount==-1|Price==-1);
 
 			MarketClientClass client = new MarketClientClass(); //create client to use it's methoods
@@ -140,7 +140,7 @@ namespace Presentation
 			int id;
 			Console.WriteLine("Please enter the ID request you wish to cancel\n");
 			do
-				id=myconvert(Console.ReadLine());
+				id=Myconvert(Console.ReadLine());
 			while
 				(id==-1);
 
@@ -174,7 +174,7 @@ namespace Presentation
 					int id;
 					Console.WriteLine("Please enter the ID request\n");
 					do
-						id=myconvert(Console.ReadLine());
+						id=Myconvert(Console.ReadLine());
 					while (id==-1);
 
 					try
@@ -207,7 +207,7 @@ namespace Presentation
 					int commodity;
 					Console.WriteLine("Please enter the Commodity\n");
 					do
-						commodity=myconvert(Console.ReadLine());
+						commodity=Myconvert(Console.ReadLine());
 					while (commodity==-1);
 
 					try
@@ -226,7 +226,7 @@ namespace Presentation
 			return;
 		}//collect info query
 
-		private static int myconvert(string s)
+		private static int Myconvert(string s)
 		{
 			try
 			{
