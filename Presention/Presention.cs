@@ -8,7 +8,7 @@ using MarketClient.DataEntries;
 
 namespace Presention
 {
-    public class Program
+    public class Presention
     {
 
         static void Main(string[] args)
@@ -22,25 +22,26 @@ namespace Presention
             switch (input)
             {
                 case "1":
-                    Console.WriteLine("You chose to open a new request./n To buy press 1/n To sell press 2");
+                    Console.WriteLine("You chose to open a new request.\n To buy press 1\n To sell press 2");
                     string input1 = Console.ReadLine();
                     IsLegalCombinedLoop(input1, 2);
                     CollectingInfoBUYSELL(input1);
                     break;
 
                 case "2":
-                    Console.WriteLine("You chose to cancel a request./n");
+                    Console.WriteLine("You chose to cancel a request.\n");
                     CollectInfoCancelRequst();
                     break;
 
                 case "3":
-                    Console.WriteLine("You chose to ask a query./n To buy/sellQuery press 1/n To userQuery press 2/n To marketQuery press 3 ");
+                    Console.WriteLine("You chose to ask a query.\n To buy/sellQuery press 1\n To userQuery press 2\n To marketQuery press 3 ");
                     string input3 = Console.ReadLine();
                     IsLegalCombinedLoop(input3, 3);
                     CollectInfoQueryRequst(input);
                     break;
 
                 default:
+
                     IsLegalCombinedLoop(input, 3);
                     break;
             }//switch
@@ -67,7 +68,7 @@ namespace Presention
             if (s.Length != 1)
                 return false;
             for (int i = 1; i <= options; i++)
-                if (s.Equals('i'))
+                if (s.Equals(i))
                     return true;
 
             return false;
@@ -129,7 +130,7 @@ namespace Presention
         private static void CollectInfoCancelRequst()
         {
             int id;
-            Console.WriteLine("Please enter the ID request you wish to cancel./n");
+            Console.WriteLine("Please enter the ID request you wish to cancel.\n");
             do
                 id = myconvert(Console.ReadLine());
             while
@@ -142,7 +143,7 @@ namespace Presention
                 bool ans = client.SendCancelBuySellRequest(id);
 
                 if (ans == true)
-                    Console.WriteLine("Cancellation succeed./n");
+                    Console.WriteLine("Cancellation succeed.\n");
             }
             catch (Exception ex)
             {
@@ -163,7 +164,7 @@ namespace Presention
             {
                 case "1":
                     int id;
-                    Console.WriteLine("Please enter the ID request./n");
+                    Console.WriteLine("Please enter the ID request.\n");
                     do
                         id = myconvert(Console.ReadLine());
                     while (id == -1);
@@ -171,7 +172,7 @@ namespace Presention
                     try
                     {
                         MarketItemQuery data1 = client.SendQueryBuySellRequest(id);
-                        Console.WriteLine("Buy-Sell query info is:/n" + data1.ToString());  //print data on a certain deal
+                        Console.WriteLine("Buy-Sell query info is:\n" + data1.ToString());  //print data on a certain deal
                     }
 
                     catch (Exception ex)
@@ -186,7 +187,7 @@ namespace Presention
                     {
                         MarketUserData data2 = client.SendQueryUserRequest();
 
-                        Console.WriteLine("User query info is:/n" + data2.ToString());
+                        Console.WriteLine("User query info is:\n" + data2.ToString());
                     }
                     catch (Exception ex)
                     {
@@ -196,7 +197,7 @@ namespace Presention
 
                 case "3":
                     int commodity;
-                    Console.WriteLine("Please enter the Commodity./n");
+                    Console.WriteLine("Please enter the Commodity.\n");
                     do
                         commodity = myconvert(Console.ReadLine());
                     while (commodity == -1);
