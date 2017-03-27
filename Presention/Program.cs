@@ -17,9 +17,8 @@ namespace Presention
             Console.WriteLine("Press 1 to open a new request (buy/sell)\n Press 2 to cancel an exist request\n Press 3 to ask a query \n");
             String input = Console.ReadLine();
 
-            bool isLegal = CheckLegality(input, 3);
-            //while (isLegal == false)
-             //   PrintWhenIllegalkey();
+            IsLegalCombinedLoop(input, 3);
+           
             switch (input)
             {
                 case "1":
