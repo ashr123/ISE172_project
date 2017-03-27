@@ -13,42 +13,47 @@ namespace Presention
 
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, This is an Algo-trading market system.\n We Support the following operations: ");
-            Console.WriteLine("Press 1 to open a new request (buy/sell)\n Press 2 to cancel an exist request\n Press 3 to ask a query \n");
-            String input = Console.ReadLine();
-
-            IsLegalCombinedLoop(input,3);
-           
-            switch (input)
+            while (true)  
             {
-                case "1":
-                    Console.WriteLine("You chose to open a new request.\n To buy press 1\n To sell press 2");
-                    string input1 = Console.ReadLine();
-                    IsLegalCombinedLoop(input1,2);
-                    CollectingInfoBUYSELL(input1);
-                    break;
+                Console.WriteLine("\nHello, This is an Algo-trading market system.\n We Support the following operations: ");
+                Console.WriteLine("1.To open a new request (buy/sell)\n2.To cancel an exist request\n3.To ask a query \n4.Exit");
+                String input = Console.ReadLine();
 
-                case "2":
-                    Console.WriteLine("You chose to cancel a request.\n");
-                    CollectInfoCancelRequst();
-                    break;
+                IsLegalCombinedLoop(input, 4);
 
-                case "3":
-                    Console.WriteLine("You chose to ask a query.\n To buy/sellQuery press 1\n To userQuery press 2\n To marketQuery press 3 ");
-                    string input3 = Console.ReadLine();
-                    IsLegalCombinedLoop(input3,3);
-                    CollectInfoQueryRequst(input);
-                    break;
+                switch (input)
+                {
+                    case "1":
+                        Console.WriteLine("You chose to open a new request.\n1.To buy \n2.To sell");
+                        string input1 = Console.ReadLine();
+                        IsLegalCombinedLoop(input1, 2);
+                        CollectingInfoBUYSELL(input1);
+                        break;
 
-                case "0":
-                    return;
+                    case "2":
+                        Console.WriteLine("You chose to cancel a request.\n");
+                        CollectInfoCancelRequst();
+                        break;
 
-                default:
+                    case "3":
+                        Console.WriteLine("You chose to ask a query.\n1.To buy/sellQuery\n2.To userQuery\n3.To marketQuery");
+                        string input3 = Console.ReadLine();
+                        IsLegalCombinedLoop(input3, 3);
+                        CollectInfoQueryRequst(input3);
+                        break;
 
-                    IsLegalCombinedLoop(input,3);
-                    break;
-            }//switch
+                    case "4":
+                        return;
 
+                    default:
+
+                        IsLegalCombinedLoop(input, 3);
+                        break;
+                }//switch
+
+
+
+            }
         }//main
 
         //this function activated when illegal key pressed
@@ -88,7 +93,7 @@ namespace Presention
         {
             //write more legallity checks
             int Commodity, Amount, Price;
-           
+
             do
             {
                 Console.WriteLine("Please enter Commodity");
@@ -107,7 +112,7 @@ namespace Presention
                 try
                 {
                     IDbuysell = client.SendBuyRequest(Price, Commodity, Amount);
-                    Console.WriteLine("The request done successfully. The ID is " + IDbuysell);
+                    Console.WriteLine("The request done successfully. The ID is " + IDbuysell + ".");
                 }
                 catch (Exception ex)
                 {
@@ -120,7 +125,7 @@ namespace Presention
                 try
                 {
                     IDbuysell = client.SendSellRequest(Price, Commodity, Amount);
-                    Console.WriteLine("The request done successfully. The ID is " + IDbuysell);
+                    Console.WriteLine("The request done successfully. The ID is " + IDbuysell + ".");
                 }
                 catch (Exception ex)
                 {
@@ -134,7 +139,7 @@ namespace Presention
         private static void CollectInfoCancelRequst()
         {
             int id;
-            Console.WriteLine("Please enter the ID request you wish to cancel.\n");
+            Console.WriteLine("Please enter the ID request you wish to cancel\n");
             do
                 id = myconvert(Console.ReadLine());
             while
@@ -168,7 +173,7 @@ namespace Presention
             {
                 case "1":
                     int id;
-                    Console.WriteLine("Please enter the ID request.\n");
+                    Console.WriteLine("Please enter the ID request\n");
                     do
                         id = myconvert(Console.ReadLine());
                     while (id == -1);
@@ -201,7 +206,7 @@ namespace Presention
 
                 case "3":
                     int commodity;
-                    Console.WriteLine("Please enter the Commodity.\n");
+                    Console.WriteLine("Please enter the Commodity\n");
                     do
                         commodity = myconvert(Console.ReadLine());
                     while (commodity == -1);
@@ -209,7 +214,7 @@ namespace Presention
                     try
                     {
                         MarketCommodityOffer data3 = client.SendQueryMarketRequest(commodity);
-                        Console.WriteLine("Market query info is:/n" + data3.ToString());
+                        Console.WriteLine("Market query info is:\n" + data3.ToString());
                     }
 
                     catch (Exception ex)
