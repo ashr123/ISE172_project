@@ -17,14 +17,14 @@ namespace Presention
             Console.WriteLine("Press 1 to open a new request (buy/sell)\n Press 2 to cancel an exist request\n Press 3 to ask a query \n");
             String input = Console.ReadLine();
 
-            IsLegalCombinedLoop(input, 3);
+            IsLegalCombinedLoop(input,3);
            
             switch (input)
             {
                 case "1":
                     Console.WriteLine("You chose to open a new request.\n To buy press 1\n To sell press 2");
                     string input1 = Console.ReadLine();
-                    IsLegalCombinedLoop(input1, 2);
+                    IsLegalCombinedLoop(input1,2);
                     CollectingInfoBUYSELL(input1);
                     break;
 
@@ -36,13 +36,16 @@ namespace Presention
                 case "3":
                     Console.WriteLine("You chose to ask a query.\n To buy/sellQuery press 1\n To userQuery press 2\n To marketQuery press 3 ");
                     string input3 = Console.ReadLine();
-                    IsLegalCombinedLoop(input3, 3);
+                    IsLegalCombinedLoop(input3,3);
                     CollectInfoQueryRequst(input);
                     break;
 
+                case "0":
+                    return;
+
                 default:
 
-                    IsLegalCombinedLoop(input, 3);
+                    IsLegalCombinedLoop(input,3);
                     break;
             }//switch
 
@@ -68,7 +71,7 @@ namespace Presention
             if (s.Length != 1)
                 return false;
             for (int i = 1; i <= options; i++)
-                if (s.Equals(i))
+                if (s.Equals(Convert.ToString(i)))
                     return true;
 
             return false;
@@ -85,6 +88,7 @@ namespace Presention
         {
             //write more legallity checks
             int Commodity, Amount, Price;
+           
             do
             {
                 Console.WriteLine("Please enter Commodity");
