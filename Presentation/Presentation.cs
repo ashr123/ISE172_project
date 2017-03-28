@@ -33,19 +33,22 @@ namespace Presentation
                         string input1 = Console.ReadLine();
                         input1=IsLegalCombinedLoop(input1, 2);   //if the user pressed unknown key
                         CollectingInfoBUYSELL(input1);
-                        break;
+						enteredToDefault=false;
+						break;
 
                     case "2":
                         Console.WriteLine("You chose to cancel a request.\n");
                         CollectInfoCancelRequst();
-                        break;
+						enteredToDefault=false;
+						break;
 
                     case "3":
                         Console.WriteLine("You chose to ask a query.\n1.To buy/sellQuery\n2.To userQuery\n3.To marketQuery");
                         string input3 = Console.ReadLine();
                         input3=IsLegalCombinedLoop(input3, 3);    //if the user pressed unknown key
                         CollectInfoQueryRequst(input3);
-                        break;
+						enteredToDefault=false;
+						break;
 
                     case "4":
                         return;
@@ -53,7 +56,7 @@ namespace Presentation
                     default:    //if the user pressed unknown key
 
                         input=IsLegalCombinedLoop(input, 4);
-                        enteredToDefault = false;
+                        enteredToDefault = true;
                         break;
                 }//switch
 
