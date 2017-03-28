@@ -15,13 +15,14 @@ namespace Presentation
         static void Main(string[] args)
         {
             bool enteredToDefault = false;
+            String input = "";
             while (true)
             {
                 if (!enteredToDefault)
                 {
                     Console.WriteLine("\nHello, This is an Algo-trading market system.\nWe Support the following operations: ");
                     Console.WriteLine("1.To open a new request (buy/sell)\n2.To cancel an exist request\n3.To ask a query \n4.Exit");
-                    String input = Console.ReadLine();
+                    input = Console.ReadLine();
                     enteredToDefault = false;
 
                 }
