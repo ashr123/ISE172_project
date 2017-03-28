@@ -27,7 +27,7 @@ namespace Presentation
                     case "1":
                         Console.WriteLine("You chose to open a new request.\n1.To buy \n2.To sell");
                         string input1 = Console.ReadLine();
-                        IsLegalCombinedLoop(input1, 2);   //if the user pressed unknown key
+                        input1=IsLegalCombinedLoop(input1, 2);   //if the user pressed unknown key
                         CollectingInfoBUYSELL(input1);
                         break;
 
@@ -39,7 +39,7 @@ namespace Presentation
                     case "3":
                         Console.WriteLine("You chose to ask a query.\n1.To buy/sellQuery\n2.To userQuery\n3.To marketQuery");
                         string input3 = Console.ReadLine();
-                        IsLegalCombinedLoop(input3, 3);    //if the user pressed unknown key
+                        input3=IsLegalCombinedLoop(input3, 3);    //if the user pressed unknown key
                         CollectInfoQueryRequst(input3);
                         break;
 
@@ -58,7 +58,7 @@ namespace Presentation
         }//main
 
         //this function activated when illegal key pressed and prints to the screen the command to type a llegal key
-        private static void IsLegalCombinedLoop(String s, int options)
+        private static string IsLegalCombinedLoop(String s, int options)
         {
             bool isLegal = CheckLegality(s, options);
             while (isLegal == false)
@@ -67,7 +67,7 @@ namespace Presentation
                 s = Console.ReadLine();
                 isLegal = CheckLegality(s, options);
             }
-            return;
+            return s;
         }
 
         //only helping IsLegalCombinedLoop function
