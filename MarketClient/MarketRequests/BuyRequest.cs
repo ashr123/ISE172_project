@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
 {
+    //Buy Request class
     public class BuyRequest
     {
 		public int commodity;

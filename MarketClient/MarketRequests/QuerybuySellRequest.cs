@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
 {
+    //Query about buy or sell request
     public class QueryBuySellRequest
     {
 		public int id;

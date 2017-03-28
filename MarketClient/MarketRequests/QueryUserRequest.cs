@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
 {
+    //Query about a user request
 	public class QueryUserRequest
 	{
 		public readonly string type;
