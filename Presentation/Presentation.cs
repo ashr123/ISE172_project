@@ -10,7 +10,7 @@ namespace Presentation
 {
  
 	public class Presentation
-	{//fffgfgfgfgfgfggfdfdf
+	{
 		static MarketClientClass client = new MarketClientClass(); //create client to use it's methods
 		static void Main(string[] args)
 		{
