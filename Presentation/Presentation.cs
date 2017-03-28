@@ -14,13 +14,17 @@ namespace Presentation
         static MarketClientClass client = new MarketClientClass(); //create client to use it's methods
         static void Main(string[] args)
         {
+            bool enteredToDefault = false;
             while (true)
             {
-                Console.WriteLine("\nHello, This is an Algo-trading market system.\nWe Support the following operations: ");
-                Console.WriteLine("1.To open a new request (buy/sell)\n2.To cancel an exist request\n3.To ask a query \n4.Exit");
-                String input = Console.ReadLine();
+                if (!enteredToDefault)
+                {
+                    Console.WriteLine("\nHello, This is an Algo-trading market system.\nWe Support the following operations: ");
+                    Console.WriteLine("1.To open a new request (buy/sell)\n2.To cancel an exist request\n3.To ask a query \n4.Exit");
+                    String input = Console.ReadLine();
+                    enteredToDefault = false;
 
-
+                }
                 switch (input) //there are 3 cases: buy/sell request, cancel request, ask a query
                 {
                     case "1":
@@ -48,6 +52,7 @@ namespace Presentation
                     default:    //if the user pressed unknown key
 
                         input=IsLegalCombinedLoop(input, 4);
+                        enteredToDefault = false;
                         break;
                 }//switch
 
