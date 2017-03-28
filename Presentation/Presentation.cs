@@ -20,7 +20,6 @@ namespace Presentation
                 Console.WriteLine("1.To open a new request (buy/sell)\n2.To cancel an exist request\n3.To ask a query \n4.Exit");
                 String input = Console.ReadLine();
 
-                IsLegalCombinedLoop(input, 4);
 
                 switch (input) //there are 3 cases: buy/sell request, cancel request, ask a query
                 {
@@ -48,7 +47,7 @@ namespace Presentation
 
                     default:    //if the user pressed unknown key
 
-                        IsLegalCombinedLoop(input, 3);
+                        IsLegalCombinedLoop(input, 4);
                         break;
                 }//switch
 
