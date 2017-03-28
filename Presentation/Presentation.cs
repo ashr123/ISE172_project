@@ -11,7 +11,7 @@ namespace Presentation
  
 	public class Presentation
 	{//fffgfgfgfgfgfggfdfdf
-		static MarketClientClass client = new MarketClientClass(); //create client to use it's methoods
+		static MarketClientClass client = new MarketClientClass(); //create client to use it's methods
 		static void Main(string[] args)
 		{
 			while (true)
@@ -106,13 +106,13 @@ namespace Presentation
 			} while (Commodity==-1|Amount==-1|Price==-1);
 			
 
-			int IDbuysell = 0;
+			MarketBuySell IDbuysell;
 			if (a.Equals('1')) //'1' means buy
 			{
 				try
 				{
 					IDbuysell=client.SendBuyRequest(Price, Commodity, Amount);
-					Console.WriteLine("The request done successfully. The ID is "+IDbuysell+".");
+					Console.WriteLine("The request done successfully. The ID is "+IDbuysell.ToString()+".");
 				}
 				catch (Exception ex)
 				{
@@ -125,7 +125,7 @@ namespace Presentation
 				try
 				{
 					IDbuysell=client.SendSellRequest(Price, Commodity, Amount);
-					Console.WriteLine("The request done successfully. The ID is "+IDbuysell+".");
+					Console.WriteLine("The request done successfully. The ID is "+IDbuysell.ToString()+".");
 				}
 				catch (Exception ex)
 				{
