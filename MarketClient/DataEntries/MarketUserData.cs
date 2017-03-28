@@ -9,9 +9,12 @@ namespace MarketClient.DataEntries
 		public Dictionary<string, int> Commodities { get; set; }
 		public double Funds { get; set; }
         public List<int> Requests { get; set; }
+		public string Error { get; set; }
 
         public override string ToString()
         {
+			if (Error!=null)
+				return Error;
 			string output = "Commodities: [";
 			foreach (string i in Commodities.Keys)
 			{

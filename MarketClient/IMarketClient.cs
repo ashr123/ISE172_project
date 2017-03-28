@@ -5,25 +5,25 @@ namespace MarketClient
 {
     public interface IMarketClient
     {
-        /// <summary>
-        /// Send a buy request to the market server
-        /// </summary>
-        /// <param name="price">price for the item</param>
-        /// <param name="commodity">id of the item</param>
-        /// <param name="amount">amount to buy</param>
-        /// <returns>the buy request id</returns>
-        /// <exception cref="MarketException">error is throw in case of invalid request or invalid parameter.</exception>
-        int SendBuyRequest(int price, int commodity, int amount);
+		/// <summary>
+		/// Send a buy request to the market server
+		/// </summary>
+		/// <param name="price">price for the item</param>
+		/// <param name="commodity">id of the item</param>
+		/// <param name="amount">amount to buy</param>
+		/// <returns>the buy request id</returns>
+		/// <exception cref="MarketException">error is throw in case of invalid request or invalid parameter.</exception>
+		MarketBuySell SendBuyRequest(int price, int commodity, int amount);
 
-        /// <summary>
-        /// Send a sell request to the market server
-        /// </summary>
-        /// <param name="price">price for the item</param>
-        /// <param name="commodity">id of the item</param>
-        /// <param name="amount">amount to sell</param>
-        /// <returns>the sell request id</returns>
-        /// <exception cref="MarketException">error is throw in case of invalid request or invalid parameter.</exception>
-        int SendSellRequest(int price, int commodity, int amount);
+		/// <summary>
+		/// Send a sell request to the market server
+		/// </summary>
+		/// <param name="price">price for the item</param>
+		/// <param name="commodity">id of the item</param>
+		/// <param name="amount">amount to sell</param>
+		/// <returns>the sell request id</returns>
+		/// <exception cref="MarketException">error is throw in case of invalid request or invalid parameter.</exception>
+		MarketBuySell SendSellRequest(int price, int commodity, int amount);
 
         /// <summary>
         /// Query the server about a sell/buy request.

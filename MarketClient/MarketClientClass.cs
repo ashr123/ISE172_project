@@ -9,8 +9,8 @@ namespace MarketClient
 {
     public class MarketClientClass : IMarketClient
     {
-		private const string Url = "http://localhost";
-		//private const string Url = "http://ise172.ise.bgu.ac.il";
+		//private const string Url = "http://localhost";
+		private const string Url = "http://ise172.ise.bgu.ac.il";
 		private const string User = "user54";
         private const string PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
 MIICXgIBAAKBgQC2VKy0OMXoFvuxGeP/n92VV3wIt2X/kIG2BhuY6WE+SrvUOuxR
@@ -30,19 +30,18 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 ";
         SimpleHTTPClient client=new SimpleHTTPClient();
 
-        public int SendBuyRequest(int price, int commodity, int amount)
+        public MarketBuySell SendBuyRequest(int price, int commodity, int amount)
         {
             //throw new NotImplementedException();
             BuyRequest request=new BuyRequest(commodity, amount, price);
-			string ans=client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
 			//Console.WriteLine(ans);
 			try
 			{
-				return Convert.ToInt32(ans);
+				return client.SendPostRequest<BuyRequest, MarketBuySell>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request); ;
 			}
-			catch
+			catch (Exception e)
 			{
-				throw new MarketException(ans);
+				return new MarketBuySell { Error=e.Message };
 			}
         }
 
@@ -62,7 +61,14 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
         {
             QueryBuySellRequest request=new QueryBuySellRequest(id);
 			//Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
-            return client.SendPostRequest<QueryBuySellRequest, MarketItemQuery>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
+			try
+			{
+				return client.SendPostRequest<QueryBuySellRequest, MarketItemQuery>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
+			}
+			catch (Exception e)
+			{
+				return new MarketItemQuery { Error=e.Message };
+			}
             //throw new NotImplementedException();
         }
 
@@ -70,7 +76,15 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
         {
             QueryMarketRequest request=new QueryMarketRequest(commodity);
 			//Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
-			return client.SendPostRequest<QueryMarketRequest, MarketCommodityOffer>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
+			try
+			{
+				return client.SendPostRequest<QueryMarketRequest, MarketCommodityOffer>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
+			}
+			catch (Exception e)
+			{
+				return new MarketCommodityOffer { Error=e.Message };
+			}
+			
             //throw new NotImplementedException();
         }
 
@@ -78,22 +92,27 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
         {
             QueryUserRequest request=new QueryUserRequest();
 			//Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
-			return client.SendPostRequest<QueryUserRequest, MarketUserData>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
+			try
+			{
+				return client.SendPostRequest<QueryUserRequest, MarketUserData>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
+			}
+			catch(Exception e)
+			{
+				return new MarketUserData { Error=e.Message};
+			}
             //throw new NotImplementedException();
         }
 
-        public int SendSellRequest(int price, int commodity, int amount)
+        public MarketBuySell SendSellRequest(int price, int commodity, int amount)
         {
             SellRequest request=new SellRequest(commodity, amount, price);
-			string ans=client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
-			//Console.WriteLine(ans);
 			try
 			{
-				return Convert.ToInt32(ans);
+				return client.SendPostRequest<SellRequest, MarketBuySell>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request); ;
 			}
-			catch
+			catch (Exception e)
 			{
-				throw new MarketException(ans);
+				return new MarketBuySell { Error=e.Message };
 			}
 			//throw new NotImplementedException();
 		}
