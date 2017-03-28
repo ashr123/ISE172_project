@@ -16,7 +16,7 @@ namespace Presentation
 		{
 			while (true)
 			{
-				Console.WriteLine("\nHello, This is an Algo-trading market system.\n We Support the following operations: ");
+				Console.WriteLine("\nHello, This is an Algo-trading market system.\nWe Support the following operations: ");
 				Console.WriteLine("1.To open a new request (buy/sell)\n2.To cancel an exist request\n3.To ask a query \n4.Exit");
 				String input = Console.ReadLine();
 
