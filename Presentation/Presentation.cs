@@ -22,7 +22,7 @@ namespace Presentation
 
 				IsLegalCombinedLoop(input, 4);
 
-				switch (input)
+				switch (input) //there are 3 cases: buy/sell request, cancel request, ask a query
 				{
 					case "1":
 						Console.WriteLine("You chose to open a new request.\n1.To buy \n2.To sell");
@@ -46,7 +46,7 @@ namespace Presentation
 					case "4":
 						return;
 
-					default:
+					default:    //if the user pressed unknown key
 
 						IsLegalCombinedLoop(input, 3);
 						break;
@@ -57,7 +57,7 @@ namespace Presentation
 			}
 		}//main
 
-		//this function activated when illegal key pressed
+		//this function activated when illegal key pressed and prints to the screen the command to type a llegal key
 		private static void IsLegalCombinedLoop(String s, int options)
 		{
 			bool isLegal = CheckLegality(s, options);
@@ -90,6 +90,8 @@ namespace Presentation
 			return;
 		}
 
+
+        //this function activate - buy/sell request. it collect info from user - send it to Logic layer and prints an answer
 		private static void CollectingInfoBUYSELL(string a)
 		{
 			//write more legallity checks
@@ -121,18 +123,20 @@ namespace Presentation
 			return;
 		}//collect info buy-sell request
 
-		private static void CollectInfoCancelRequst()
+
+        //this function activate - cancel request. it collect info from user - send it to Logic layer and prints an answer
+        private static void CollectInfoCancelRequst()
 		{
 			int id;
 			Console.WriteLine("Please enter the ID request you wish to cancel\n");
 			do
-				id=Myconvert(Console.ReadLine());
+				id=Myconvert(Console.ReadLine());  //force the user to give legal id (only nums)
 			while
 				(id==-1);
 
-				bool ans = client.SendCancelBuySellRequest(id);
+				bool ans = client.SendCancelBuySellRequest(id);  //call to Logic layer func
 
-				if (ans==true)
+               if (ans==true)
 					Console.WriteLine("Cancellation succeed.\n");
                 else
                      Console.WriteLine("Cancellation failed.\n");
@@ -148,32 +152,32 @@ namespace Presentation
 			
 			switch (a)
 			{
-				case "1":
+				case "1":    //buysellquery
 					int id;
 					Console.WriteLine("Please enter the ID request\n");
 					do
-						id=Myconvert(Console.ReadLine());
-					while (id==-1);
+						id=Myconvert(Console.ReadLine());    //force the user to give legal id (only nums)
+                    while (id==-1);
 
-						MarketItemQuery data1 = client.SendQueryBuySellRequest(id);
+						MarketItemQuery data1 = client.SendQueryBuySellRequest(id);  //call to Logic layer func
 						Console.WriteLine(data1.ToString());  //print data on a certain deal
 					
 					break;
 
-				case "2":
+				case "2":   //user query
 						MarketUserData data2 = client.SendQueryUserRequest();
 						Console.WriteLine(data2.ToString());
 					break;
 
-				case "3":
+				case "3":   //market query
 					int commodity;
 					Console.WriteLine("Please enter the Commodity\n");
 					do
-						commodity=Myconvert(Console.ReadLine());
-					while (commodity==-1);
+						commodity=Myconvert(Console.ReadLine());   //force the user to give legal commidity (only nums)
+                    while (commodity==-1);
                     
-						MarketCommodityOffer data3 = client.SendQueryMarketRequest(commodity);
-						Console.WriteLine(data3.ToString());
+						MarketCommodityOffer data3 = client.SendQueryMarketRequest(commodity);   //call to Logic layer func
+                        Console.WriteLine(data3.ToString());
 					
 					break;
 
