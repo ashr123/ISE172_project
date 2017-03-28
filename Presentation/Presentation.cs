@@ -47,7 +47,7 @@ namespace Presentation
 
                     default:    //if the user pressed unknown key
 
-                        IsLegalCombinedLoop(input, 4);
+                        input=IsLegalCombinedLoop(input, 4);
                         break;
                 }//switch
 
