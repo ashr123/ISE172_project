@@ -10,7 +10,7 @@ namespace Presentation
 {
  
 	public class Presentation
-	{//fffgfgfgfgfgfggfdfdf
+	{
 		static MarketClientClass client = new MarketClientClass(); //create client to use it's methods
 		static void Main(string[] args)
 		{
@@ -109,28 +109,13 @@ namespace Presentation
 			MarketBuySell IDbuysell;
 			if (a.Equals('1')) //'1' means buy
 			{
-				try
-				{
 					IDbuysell=client.SendBuyRequest(Price, Commodity, Amount);
-					Console.WriteLine("The request done successfully. The ID is "+IDbuysell.ToString()+".");
-				}
-				catch (Exception ex)
-				{
-					Console.WriteLine(ex.Message);
-				}
-
+					Console.WriteLine(IDbuysell.ToString());
 			}
 			else      //means sell
 			{
-				try
-				{
 					IDbuysell=client.SendSellRequest(Price, Commodity, Amount);
-					Console.WriteLine("The request done successfully. The ID is "+IDbuysell.ToString()+".");
-				}
-				catch (Exception ex)
-				{
-					Console.WriteLine(ex.Message);
-				}
+					Console.WriteLine(IDbuysell.ToString());
 			}
 
 			return;
@@ -145,28 +130,22 @@ namespace Presentation
 			while
 				(id==-1);
 
-			
-			try
-			{
 				bool ans = client.SendCancelBuySellRequest(id);
 
 				if (ans==true)
 					Console.WriteLine("Cancellation succeed.\n");
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex.Message);
-			}
-			//print answer
+                else
+                     Console.WriteLine("Cancellation failed.\n");
 
-			return;
+
+            //print answer
+
+            return;
 		}//collect info cancel request
 
 		private static void CollectInfoQueryRequst(string a)
 		{
 			
-
-
 			switch (a)
 			{
 				case "1":
@@ -176,30 +155,14 @@ namespace Presentation
 						id=Myconvert(Console.ReadLine());
 					while (id==-1);
 
-					try
-					{
 						MarketItemQuery data1 = client.SendQueryBuySellRequest(id);
-						Console.WriteLine("Buy-Sell query info is:\n"+data1.ToString());  //print data on a certain deal
-					}
-
-					catch (Exception ex)
-					{
-						Console.WriteLine(ex.Message);
-					}
-
+						Console.WriteLine(data1.ToString());  //print data on a certain deal
+					
 					break;
 
 				case "2":
-					try
-					{
 						MarketUserData data2 = client.SendQueryUserRequest();
-
-						Console.WriteLine("User query info is:\n"+data2.ToString());
-					}
-					catch (Exception ex)
-					{
-						Console.WriteLine(ex.Message);
-					}
+						Console.WriteLine(data2.ToString());
 					break;
 
 				case "3":
@@ -208,17 +171,10 @@ namespace Presentation
 					do
 						commodity=Myconvert(Console.ReadLine());
 					while (commodity==-1);
-
-					try
-					{
+                    
 						MarketCommodityOffer data3 = client.SendQueryMarketRequest(commodity);
-						Console.WriteLine("Market query info is:\n"+data3.ToString());
-					}
-
-					catch (Exception ex)
-					{
-						Console.WriteLine(ex.Message);
-					}
+						Console.WriteLine(data3.ToString());
+					
 					break;
 
 			}//switch
