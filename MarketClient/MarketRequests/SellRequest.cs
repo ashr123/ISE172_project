@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MarketClient.MarketRequests
 {
+    //Sell Request class
     public class SellRequest
     {
 		public readonly string type;
