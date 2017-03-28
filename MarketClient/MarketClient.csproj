@@ -51,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DataEntries\MarketBuySell.cs" />
     <Compile Include="MarketClientClass.cs" />
     <Compile Include="MarketRequests\BuyRequest.cs" />
