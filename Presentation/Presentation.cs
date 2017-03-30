@@ -117,7 +117,7 @@ namespace Presentation
 
 
             MarketBuySell IDbuysell;
-            if (a.Equals('1')) //'1' means buy
+            if (a.Equals("1")) //'1' means buy
             {
                 IDbuysell = client.SendBuyRequest(Price, Commodity, Amount);  //call to Logic layer func
                 Console.WriteLine(IDbuysell.ToString());
