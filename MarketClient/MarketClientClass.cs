@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MarketClient.DataEntries;
-using MarketClient.Utils;
-using MarketClient.MarketRequests;
+using DataTier.DataEntries;
+using DataTier.Utils;
+using DataTier.MarketRequests;
 
-namespace MarketClient
+namespace DataTier
 {
     public class MarketClientClass : IMarketClient
     {

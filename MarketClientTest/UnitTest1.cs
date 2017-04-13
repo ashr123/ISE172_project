@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MarketClient;
-using MarketClient.Utils;
+using DataTier;
+using DataTier.Utils;
 
-namespace MarketClientTest
+namespace DataTierTest
 {
     [TestClass]
     public class UnitTest1

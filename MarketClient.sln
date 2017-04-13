@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26403.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketClient", "MarketClient\MarketClient.csproj", "{371E8EA8-CE7A-4AB2-85E5-EAC135DF4A26}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTier", "MarketClient\DataTier.csproj", "{371E8EA8-CE7A-4AB2-85E5-EAC135DF4A26}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketClientTest", "MarketClientTest\MarketClientTest.csproj", "{A8C39E49-DE50-4EFD-A248-FE168DD031A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{AC976392-02C7-4755-BBEE-499CDDA9A613}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationTier", "Presentation\PresentationTier.csproj", "{AC976392-02C7-4755-BBEE-499CDDA9A613}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

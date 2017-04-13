@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MarketClient.MarketRequests
+namespace DataTier.MarketRequests
 {
     //Buy Request class
     public class BuyRequest

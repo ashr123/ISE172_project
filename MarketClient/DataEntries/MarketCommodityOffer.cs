@@ -1,4 +1,4 @@
-﻿namespace MarketClient.DataEntries
+﻿namespace DataTier.DataEntries
 {
     public class MarketCommodityOffer
     {

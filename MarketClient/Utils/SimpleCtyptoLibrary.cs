@@ -6,7 +6,7 @@ using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Parameters;
 using Org.BouncyCastle.OpenSsl;
 
-namespace MarketClient.Utils
+namespace DataTier.Utils
 {
     public static class SimpleCtyptoLibrary
     {

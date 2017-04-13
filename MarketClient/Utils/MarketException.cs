@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MarketClient.Utils
+namespace DataTier.Utils
 {
     public class MarketException : Exception
     {

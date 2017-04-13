@@ -1,7 +1,7 @@
-﻿using MarketClient.DataEntries;
-using MarketClient.Utils;
+﻿using DataTier.DataEntries;
+using DataTier.Utils;
 
-namespace MarketClient
+namespace DataTier
 {
     public interface IMarketClient
     {

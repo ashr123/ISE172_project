@@ -1,9 +1,9 @@
 ﻿using System.Net.Http;
-using MarketClient.Utils;
+using DataTier.Utils;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace MarketClient
+namespace DataTier
 {
     public class SimpleHTTPClient
     {
