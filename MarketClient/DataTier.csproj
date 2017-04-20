@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataEntries\MarketBuySell.cs" />
+    <Compile Include="Loggers\Logger.cs" />
     <Compile Include="MarketClientClass.cs" />
     <Compile Include="MarketRequests\BuyRequest.cs" />
     <Compile Include="MarketRequests\CancelBuySellRequest.cs" />

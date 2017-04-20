@@ -41,7 +41,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				return new MarketBuySell { Error=e.Message };
+				return new MarketBuySell { Error=e };
 			}
         }
 
@@ -67,7 +67,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				return new MarketItemQuery { Error=e.Message };
+				return new MarketItemQuery { Error=e };
 			}
             //throw new NotImplementedException();
         }
@@ -82,7 +82,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				return new MarketCommodityOffer { Error=e.Message };
+				return new MarketCommodityOffer { Error=e };
 			}
 			
             //throw new NotImplementedException();
@@ -98,7 +98,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch(Exception e)
 			{
-				return new MarketUserData { Error=e.Message};
+				return new MarketUserData { Error=e};
 			}
             //throw new NotImplementedException();
         }
@@ -112,7 +112,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				return new MarketBuySell { Error=e.Message };
+				return new MarketBuySell { Error=e };
 			}
 			//throw new NotImplementedException();
 		}

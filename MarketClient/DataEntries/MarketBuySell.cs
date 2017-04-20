@@ -8,7 +8,7 @@ namespace DataTier.DataEntries
 {
 	public class MarketBuySell
 	{
-		public string Error { get; set; }
+		public Exception Error { get; set; }
 		public int Id { get; set; }
 
 		/// <summary>
@@ -19,7 +19,7 @@ namespace DataTier.DataEntries
 		public override string ToString()
 		{
 			if (Error!=null)
-				return Error;
+				return Error.ToString();
 			return Convert.ToString(Id);
 		}
 	}
