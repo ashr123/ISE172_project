@@ -16,7 +16,7 @@ namespace DataTier.DataEntries
 		public override string ToString()
         {
 			if (Error!=null)
-				return Error.ToString();
+				return Error.Message;
             return "Ask: "+Ask+", Bid: "+Bid;
         }
     }

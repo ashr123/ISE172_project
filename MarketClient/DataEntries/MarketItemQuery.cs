@@ -19,7 +19,7 @@ namespace DataTier.DataEntries
 		public override string ToString()
         {
 			if (Error!=null)
-				return Error.ToString();
+				return Error.Message;
             return "Price: "+Price+", Amount: "+Amount+", Commidity: "+Commodity+", Type: "+Type+", User: "+User;
         }
     }

@@ -19,7 +19,7 @@ namespace DataTier.DataEntries
 		public override string ToString()
         {
 			if (Error!=null)
-				return Error.ToString();
+				return Error.Message;
 			string output = "Commodities: [";
 			foreach (string i in Commodities.Keys)
 			{
