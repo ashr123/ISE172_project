@@ -30,14 +30,39 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 ";
         SimpleHTTPClient client=new SimpleHTTPClient();
 
-        public MarketBuySell SendBuyRequest(int price, int commodity, int amount)
+		public AllMarketRequest QueryAllMarketRequest()
+		{
+			QueryAllMarketRequest request = new QueryAllMarketRequest();
+			try
+			{
+				return client.SendPostRequest<QueryAllMarketRequest, AllMarketRequest>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
+			}
+			catch (Exception e)
+			{
+				return new AllMarketRequest { Error=e };
+			}
+		}
+
+		public MarketUserRequests QueryUserRequests()
+		{
+			QueryUserRequests request = new QueryUserRequests();
+			try
+			{
+				return client.SendPostRequest<QueryUserRequests, MarketUserRequests>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
+			}
+			catch(Exception e)
+			{
+				return new MarketUserRequests { Error=e };
+			}
+		}
+
+		public MarketBuySell SendBuyRequest(int price, int commodity, int amount)
         {
-            //throw new NotImplementedException();
             BuyRequest request=new BuyRequest(commodity, amount, price);
 			//Console.WriteLine(ans);
 			try
 			{
-				return client.SendPostRequest<BuyRequest, MarketBuySell>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request); ;
+				return client.SendPostRequest<BuyRequest, MarketBuySell>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
 			}
 			catch (Exception e)
 			{
@@ -54,7 +79,6 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
                 return true;
 			Console.WriteLine(ans);
             return false;
-            //throw new NotImplementedException();
         }
 
         public MarketItemQuery SendQueryBuySellRequest(int id)
@@ -69,7 +93,6 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			{
 				return new MarketItemQuery { Error=e };
 			}
-            //throw new NotImplementedException();
         }
 
         public MarketCommodityOffer SendQueryMarketRequest(int commodity)
@@ -84,8 +107,6 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			{
 				return new MarketCommodityOffer { Error=e };
 			}
-			
-            //throw new NotImplementedException();
         }
 
         public MarketUserData SendQueryUserRequest()
@@ -100,7 +121,6 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			{
 				return new MarketUserData { Error=e};
 			}
-            //throw new NotImplementedException();
         }
 
         public MarketBuySell SendSellRequest(int price, int commodity, int amount)
@@ -114,7 +134,6 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			{
 				return new MarketBuySell { Error=e };
 			}
-			//throw new NotImplementedException();
 		}
     }
 }

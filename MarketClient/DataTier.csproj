@@ -54,14 +54,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataEntries\AllDataRequest.cs" />
+    <Compile Include="DataEntries\AllMarketRequest.cs" />
+    <Compile Include="DataEntries\ItemAskBid.cs" />
+    <Compile Include="DataEntries\MarketUserRequests.cs" />
     <Compile Include="DataEntries\MarketBuySell.cs" />
     <Compile Include="Loggers\Logger.cs" />
     <Compile Include="MarketClientClass.cs" />
     <Compile Include="MarketRequests\BuyRequest.cs" />
     <Compile Include="MarketRequests\CancelBuySellRequest.cs" />
+    <Compile Include="MarketRequests\QueryAllMarketRequest.cs" />
     <Compile Include="MarketRequests\QuerybuySellRequest.cs" />
     <Compile Include="MarketRequests\QueryMarketRequest.cs" />
     <Compile Include="MarketRequests\QueryUserRequest.cs" />
+    <Compile Include="MarketRequests\QueryUserRequests.cs" />
     <Compile Include="MarketRequests\SellRequest.cs" />
     <Compile Include="SimpleHTTPClient.cs" />
     <Compile Include="Utils\MarketException.cs" />
