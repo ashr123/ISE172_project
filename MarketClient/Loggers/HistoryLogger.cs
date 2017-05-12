@@ -8,7 +8,7 @@ using log4net;
 
 namespace DataTier.Loggers
 {
-	class HistoryLogger
+	public class HistoryLogger
 	{
 		//static ILog myLogger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 		private static readonly ILog myLogger = LogManager.GetLogger("History");
@@ -18,9 +18,15 @@ namespace DataTier.Loggers
 			myLogger.Info(contents);
 		}
 
-		public static string[] ReadHistory()
+		public static string[][] ReadHistory()
 		{
-			return File.ReadAllLines(@"..\..\..\Log\history.txt");
+			string[] history=File.ReadAllLines(@"..\..\..\Log\history.txt");
+			string[][] output=new string[history.Length][];
+			for (int i = 0; i<history.Length; i++)
+			{
+				output[i]=history[i].Split(',');
+			}
+			return output;
 		}
 	}
 }
