@@ -10,8 +10,8 @@ namespace DataTier.Loggers
 {
 	public class HistoryLogger
 	{
-		//static ILog myLogger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-		private static readonly ILog myLogger = LogManager.GetLogger("History");
+		static ILog myLogger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+		//private static readonly ILog myLogger = LogManager.GetLogger("History");
 		public static void WriteHistory(string contents)
 		{
 			//File.AppendAllText(@"..\..\..\Log\history.txt", DateTime.Now+","+contents+"\n");

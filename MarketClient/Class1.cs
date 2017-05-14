@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace DataTier
 {
@@ -13,7 +14,10 @@ namespace DataTier
 		public static ILog myLogger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 		static void Main(string[] args)
         {
-			HistoryLogger.WriteHistory("fffffffffffffffff");
+			IMarketClient market = new MarketClientClass();
+			Console.WriteLine(market.QueryUserRequests());
+			Trace.WriteLine(market.QueryAllMarketRequest());
+			//HistoryLogger.WriteHistory(market.SendQueryUserRequest().ToString());
 			//myLogger.Debug("asdasdasdasdasd");
 			Console.ReadLine();
         }
