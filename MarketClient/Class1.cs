@@ -15,7 +15,7 @@ namespace DataTier
 		static void Main(string[] args)
         {
 			IMarketClient market = new MarketClientClass();
-			Console.WriteLine(market.SendBuyRequest(2,9,2));
+			Console.WriteLine(market.QueryUserRequests());
 			Trace.WriteLine(market.QueryAllMarketRequest());
 			//HistoryLogger.WriteHistory(market.SendQueryUserRequest().ToString());
 			//myLogger.Debug("asdasdasdasdasd");

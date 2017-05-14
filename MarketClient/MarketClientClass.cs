@@ -69,14 +69,13 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			//Console.WriteLine(ans);
 			try
 			{
-				int a = 5666632;
-				BuyRequest request = new BuyRequest(commodity, amount, price);
-				Console.WriteLine(SimpleHTTPClient.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
-				return SimpleHTTPClient.SendPostRequest<BuyRequest, MarketBuySell>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
+				return new MarketBuySell()
+				{
+					Id=Int32.Parse(SimpleHTTPClient.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new BuyRequest(commodity, amount, price)))
+				};
 			}
 			catch (Exception e)
 			{
-				Console.WriteLine(e);
 				myLogger.Debug("Exeption: "+e.Message+error+", Price: "+price+", Commodity: "+commodity+", Amount: "+amount);
 				return new MarketBuySell { Error=e };
 			}
@@ -147,7 +146,10 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 		{
 			try
 			{
-				return SimpleHTTPClient.SendPostRequest<SellRequest, MarketBuySell>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new SellRequest(commodity, amount, price));
+				return new MarketBuySell
+				{
+					Id=Int32.Parse(SimpleHTTPClient.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new SellRequest(commodity, amount, price)))
+				};
 			}
 			catch (Exception e)
 			{
