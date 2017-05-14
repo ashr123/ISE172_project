@@ -14,6 +14,14 @@ namespace LogicTier
     {
         static void Main(string[] args)
         {
+
+
+            //here we'll call AMA with commoodity ect. can use an algorithem to choose what to buy
+
+
+
+            //note: AMA calling the server few times- maybe need another timer? so won't call to fast
+
             System.Timers.Timer myTimer = new System.Timers.Timer();
 
             myTimer.Interval = 2000;
@@ -67,13 +75,3 @@ namespace LogicTier
 }
 
 
-public timer()
-{
-
-    TIMER(2000){
-            public ama;
-        }
-//לעשות כפתור להפסקת טיימר
-//
-    }
-}
