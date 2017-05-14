@@ -25,48 +25,52 @@ namespace LogicTier
             myTimer.Tick += new EventHandler(TimerEventProcessor);
 
             myTimer.
-            private static void myTimer_Tick(object sender, EventArgs e) {
+            private static void myTimer_Tick(object sender, EventArgs e)
+        {
 
-            }
         }
+    }
 
-        public static void AMA (int commodity, int desiredPrice, int amount ){
-            MarketClientClass client = new MarketClientClass();
-            AllMarketRequest all = client.QueryAllMarketRequest();
+    public static void AMA(int commodity, int desiredPrice, int amount)
+    {
+        MarketClientClass client = new MarketClientClass();
+        AllMarketRequest all = client.QueryAllMarketRequest();
 
 
         foreach (ItemAskBid item in all.MarketInfo)
-            if (item.Id == commodity && item.Info.Ask <= desiredPrice) {   //if item is the right commodity & right price
-                
-                    MarketUserData userData = client.SendQueryUserRequest();
-                    while (userData.Funds < (item.Info.Ask * amount))
-                    {
-                        List<int> l = userData.Requests;
+            if (item.Id == commodity && item.Info.Ask <= desiredPrice)
+            {   //if item is the right commodity & right price
 
-                                      //maybe use new methood?
-                        // List<int> listOfUserRequests = ((MarketUserRequests) client.QueryUserRequests()).Requests;
+                MarketUserData userData = client.SendQueryUserRequest();
+                while (userData.Funds < (item.Info.Ask * amount))
+                {
+                    List<int> l = userData.Requests;
 
-                        if (l == null)          //notSure. what if theres no more requests?
-                            break;
+                    //maybe use new methood?
+                    // List<int> listOfUserRequests = ((MarketUserRequests) client.QueryUserRequests()).Requests;
 
-                        client.SendCancelBuySellRequest(l[0]);
-                        userData = client.SendQueryUserRequest();     //refresh data
-                    }
+                    if (l == null)          //notSure. what if theres no more requests?
+                        break;
 
-                    if (userData.Funds >= item.Info.Ask * amount)
-                        client.SendBuyRequest(item.Info.Ask, commodity, amount);
+                    client.SendCancelBuySellRequest(l[0]);
+                    userData = client.SendQueryUserRequest();     //refresh data
+                }
 
-                }//bigIf
+                if (userData.Funds >= item.Info.Ask * amount)
+                    client.SendBuyRequest(item.Info.Ask, commodity, amount);
 
-          }//AMA
-            
-    }
-    
+            }//bigIf
 
-    public timer()
-    {
+        return;
+    }//AMA
 
-        TIMER(2000){
+}
+
+
+public timer()
+{
+
+    TIMER(2000){
             public ama;
         }
 //לעשות כפתור להפסקת טיימר
