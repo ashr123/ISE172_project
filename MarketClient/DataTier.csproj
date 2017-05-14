@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{371E8EA8-CE7A-4AB2-85E5-EAC135DF4A26}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>MarketClient</RootNamespace>
     <AssemblyName>MarketClient</AssemblyName>
@@ -37,6 +37,9 @@
     <Reference Include="BouncyCastle.Crypto">
       <HintPath>.\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\Newtonsoft.Json.dll</HintPath>
@@ -51,13 +54,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="DataEntries\AllDataRequest.cs" />
+    <Compile Include="DataEntries\AllMarketRequest.cs" />
+    <Compile Include="DataEntries\ItemAskBid.cs" />
+    <Compile Include="DataEntries\MarketUserRequests.cs" />
     <Compile Include="DataEntries\MarketBuySell.cs" />
+    <Compile Include="Loggers\Debugger.cs" />
+    <Compile Include="Loggers\HistoryLogger.cs" />
     <Compile Include="MarketClientClass.cs" />
     <Compile Include="MarketRequests\BuyRequest.cs" />
     <Compile Include="MarketRequests\CancelBuySellRequest.cs" />
+    <Compile Include="MarketRequests\QueryAllMarketRequest.cs" />
     <Compile Include="MarketRequests\QuerybuySellRequest.cs" />
     <Compile Include="MarketRequests\QueryMarketRequest.cs" />
     <Compile Include="MarketRequests\QueryUserRequest.cs" />
+    <Compile Include="MarketRequests\QueryUserRequests.cs" />
     <Compile Include="MarketRequests\SellRequest.cs" />
     <Compile Include="SimpleHTTPClient.cs" />
     <Compile Include="Utils\MarketException.cs" />
@@ -71,6 +83,13 @@
   <ItemGroup>
     <Content Include="BouncyCastle.Crypto.dll" />
     <Content Include="Newtonsoft.Json.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Presentation\App.config">
+      <Link>App.config</Link>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

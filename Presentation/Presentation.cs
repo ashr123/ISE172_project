@@ -8,7 +8,6 @@ using DataTier.DataEntries;
 
 namespace PresentationTier
 {
-
     public class Presentation
     {
         static MarketClientClass client = new MarketClientClass(); //create client to use it's methods

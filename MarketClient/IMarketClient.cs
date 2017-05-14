@@ -56,5 +56,8 @@ namespace DataTier
         /// <exception cref="MarketException">error is throw in case of invalid request or invalid parameter.</exception>
         bool SendCancelBuySellRequest(int id);
 
-    }
+		MarketUserRequests QueryUserRequests();
+
+		AllMarketRequest QueryAllMarketRequest();
+	}
 }

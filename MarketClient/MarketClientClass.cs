@@ -4,15 +4,19 @@ using System.Linq;
 using DataTier.DataEntries;
 using DataTier.Utils;
 using DataTier.MarketRequests;
+using log4net;
 
 namespace DataTier
 {
-    public class MarketClientClass : IMarketClient
-    {
+	public class MarketClientClass : IMarketClient
+	{
+		private static readonly ILog myLogger = LogManager.GetLogger("Debug");
 		//private const string Url = "http://localhost";
 		private const string Url = "http://ise172.ise.bgu.ac.il";
+		//private const string Url = "http://ise172.ise.bgu.ac.il:8008";
 		private const string User = "user54";
-        private const string PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
+		private const string error = ", Url: "+Url+", User: "+User;
+		private const string PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
 MIICXgIBAAKBgQC2VKy0OMXoFvuxGeP/n92VV3wIt2X/kIG2BhuY6WE+SrvUOuxR
 4hH5FT7fFWR0kVPBHJmUwwu8egJo+D7UyYF0d7A0UjVzFL1t02OsPcUnIXWs0PlO
 Nz+nbhDDB//IWyR5iJejwCrZt0fBpISPmlSxyjp+uThtdPX1JtSQVv7iHQIDAQAB
@@ -28,93 +32,124 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 1e7E1sB495nH617WpM1fFEqAuZUgdhb33VGkty1xFsqyxQ==
 -----END RSA PRIVATE KEY-----
 ";
-        SimpleHTTPClient client=new SimpleHTTPClient();
-
-        public MarketBuySell SendBuyRequest(int price, int commodity, int amount)
-        {
-            //throw new NotImplementedException();
-            BuyRequest request=new BuyRequest(commodity, amount, price);
-			//Console.WriteLine(ans);
+		public AllMarketRequest QueryAllMarketRequest()
+		{
 			try
 			{
-				return client.SendPostRequest<BuyRequest, MarketBuySell>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request); ;
+				return new AllMarketRequest()
+				{
+					MarketInfo=SimpleHTTPClient.SendPostRequest<QueryAllMarketRequest, List<ItemAskBid>>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new QueryAllMarketRequest())
+				};
 			}
 			catch (Exception e)
 			{
-				return new MarketBuySell { Error=e.Message };
+				myLogger.Debug("Exeption: "+e.Message+error);
+				return new AllMarketRequest { Error=e };
 			}
-        }
+		}
 
-        public bool SendCancelBuySellRequest(int id)
-        {
-            CancelBuySellRequest request=new CancelBuySellRequest(id);
-            string ans=client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
+		public MarketUserRequests QueryUserRequests()
+		{
+			try
+			{
+				return new MarketUserRequests()
+				{
+					Requests=SimpleHTTPClient.SendPostRequest<QueryUserRequests, List<AllDataRequest>>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new QueryUserRequests())
+				};
+			}
+			catch (Exception e)
+			{
+				myLogger.Debug("Exeption: "+e.Message+error);
+				return new MarketUserRequests { Error=e };
+			}
+		}
+
+		public MarketBuySell SendBuyRequest(int price, int commodity, int amount)
+		{
+			//Console.WriteLine(ans);
+			try
+			{
+				return SimpleHTTPClient.SendPostRequest<BuyRequest, MarketBuySell>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new BuyRequest(commodity, amount, price));
+			}
+			catch (Exception e)
+			{
+				myLogger.Debug("Exeption: "+e.Message+error+", Price: "+price+", Commodity: "+commodity+", Amount: "+amount);
+				return new MarketBuySell { Error=e };
+			}
+		}
+
+		public bool SendCancelBuySellRequest(int id)
+		{
+			string ans = "";
+			try
+			{
+				ans=SimpleHTTPClient.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new CancelBuySellRequest(id));
+			}
+			catch (Exception e)
+			{
+				myLogger.Debug("Exeption: "+e.Message+error+", ID: "+id);
+				return false;
+			}
 			//Console.WriteLine(ans);
 			if (ans.Equals("Ok"))
-                return true;
-			Console.WriteLine(ans);
-            return false;
-            //throw new NotImplementedException();
-        }
-
-        public MarketItemQuery SendQueryBuySellRequest(int id)
-        {
-            QueryBuySellRequest request=new QueryBuySellRequest(id);
-			//Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
-			try
-			{
-				return client.SendPostRequest<QueryBuySellRequest, MarketItemQuery>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
-			}
-			catch (Exception e)
-			{
-				return new MarketItemQuery { Error=e.Message };
-			}
-            //throw new NotImplementedException();
-        }
-
-        public MarketCommodityOffer SendQueryMarketRequest(int commodity)
-        {
-            QueryMarketRequest request=new QueryMarketRequest(commodity);
-			//Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
-			try
-			{
-				return client.SendPostRequest<QueryMarketRequest, MarketCommodityOffer>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
-			}
-			catch (Exception e)
-			{
-				return new MarketCommodityOffer { Error=e.Message };
-			}
-			
-            //throw new NotImplementedException();
-        }
-
-        public MarketUserData SendQueryUserRequest()
-        {
-            QueryUserRequest request=new QueryUserRequest();
-			Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
-			try
-			{
-				return client.SendPostRequest<QueryUserRequest, MarketUserData>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request);
-			}
-			catch(Exception e)
-			{
-				return new MarketUserData { Error=e.Message};
-			}
-            //throw new NotImplementedException();
-        }
-
-        public MarketBuySell SendSellRequest(int price, int commodity, int amount)
-        {
-            SellRequest request=new SellRequest(commodity, amount, price);
-			try
-			{
-				return client.SendPostRequest<SellRequest, MarketBuySell>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request); ;
-			}
-			catch (Exception e)
-			{
-				return new MarketBuySell { Error=e.Message };
-			}
-			//throw new NotImplementedException();
+				return true;
+			myLogger.Debug("Exeption: "+ans+", ID: "+id);
+			return false;
 		}
-    }
+
+		public MarketItemQuery SendQueryBuySellRequest(int id)
+		{
+			//Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
+			try
+			{
+				return SimpleHTTPClient.SendPostRequest<QueryBuySellRequest, MarketItemQuery>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new QueryBuySellRequest(id));
+			}
+			catch (Exception e)
+			{
+				myLogger.Debug("Exeption: "+e.Message+error+", ID: "+id);
+				return new MarketItemQuery { Error=e };
+			}
+		}
+
+		public MarketCommodityOffer SendQueryMarketRequest(int commodity)
+		{
+			//Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
+			try
+			{
+				return SimpleHTTPClient.SendPostRequest<QueryMarketRequest, MarketCommodityOffer>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new QueryMarketRequest(commodity));
+			}
+			catch (Exception e)
+			{
+				myLogger.Debug("Exeption: "+e.Message+error+", Commodity: "+commodity);
+				return new MarketCommodityOffer { Error=e };
+			}
+		}
+
+		public MarketUserData SendQueryUserRequest()
+		{
+			//Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
+			try
+			{
+				return SimpleHTTPClient.SendPostRequest<QueryUserRequest, MarketUserData>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new QueryUserRequest());
+			}
+			catch (Exception e)
+			{
+				myLogger.Debug("Exeption: "+e.Message+error);
+				return new MarketUserData { Error=e };
+			}
+		}
+
+		public MarketBuySell SendSellRequest(int price, int commodity, int amount)
+		{
+			try
+			{
+				return SimpleHTTPClient.SendPostRequest<SellRequest, MarketBuySell>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new SellRequest(commodity, amount, price));
+			}
+			catch (Exception e)
+			{
+				myLogger.Debug("Exeption: "+e.Message+error+", Price: "+price+", Commodity: "+commodity+", Amount: "+amount);
+				return new MarketBuySell { Error=e };
+			}
+		}
+	}
 }

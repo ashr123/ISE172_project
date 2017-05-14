@@ -1,6 +1,7 @@
 ﻿using DataTier.DataEntries;
 using System;
 using DataTier;
+using DataTier.Loggers;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,6 +50,9 @@ namespace WPF_App
                 {
                     MessageBox.Show("Sucsess!! Your Buy request has been placed. your id is: " + marketBuySell.Id);
                     market.SendCancelBuySellRequest(marketBuySell.Id);
+                    String output = Price+","+Commodity+","+Amount+","+"buy" ;
+                    HistoryLogger.WriteHistory(output);
+                    
                 }
                 else
                 {
