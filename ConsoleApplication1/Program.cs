@@ -33,7 +33,7 @@ namespace LogicTier
         {
             Random rnd = new Random();
             int num = rnd.Next(0, 10);
-            AMA_Buy(num, 2, 8);
+            AMA_Buy(num, 10, 5);
 
 
             //ama sell
@@ -96,8 +96,8 @@ namespace LogicTier
 
                     if (userData.Funds >= item.Info.Ask * amount)
                     {
-                        client.SendBuyRequest(item.Info.Ask, commodity, amount);
-                        HistoryLogger.WriteHistory(item.Info.Ask+   ","+ commodity    +","   + amount+  ","  + "Buy Request");
+                        client.SendBuyRequest(item.Info.Ask+1, commodity, amount);
+                        HistoryLogger.WriteHistory(item.Info.Ask+   ","+ commodity    +","   + amount+  ","  + "new Buy Request");
                         counter++;
                     }
 
