@@ -23,6 +23,7 @@ namespace WPF_App
         public HistoryPage()
         {
             InitializeComponent();
+			DataContext=this;
         }
-    }
+	}
 }

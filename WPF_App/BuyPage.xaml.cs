@@ -31,15 +31,12 @@ namespace WPF_App
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int Commodity;
-            int Price;
-            int Amount;
 
-            if (!(Int32.TryParse(CommodityField.Text, out Commodity)))
-                MessageBox.Show("Invalid Commodity", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-            if (!(Int32.TryParse(PriceField.Text, out Price)))
+			if (!(Int32.TryParse(CommodityField.Text, out int Commodity)))
+				MessageBox.Show("Invalid Commodity", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+			if (!(Int32.TryParse(PriceField.Text, out int Price)))
                 MessageBox.Show("Invalid Price", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-            if (!(Int32.TryParse(AmountField.Text, out Amount)))
+            if (!(Int32.TryParse(AmountField.Text, out int Amount)))
                 MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
             if (Commodity > 0 || Price > 0 || Amount > 0)
             {
