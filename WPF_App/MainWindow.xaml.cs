@@ -36,5 +36,11 @@ namespace WPF_App
             Page myPage = new SellPage();
             this.Content = myPage;
         }
+
+        private void hisrtoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            Page myPage = new HistoryPage();
+            this.Content = myPage;
+        }
     }
 }

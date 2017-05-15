@@ -58,10 +58,17 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BuySellObject.cs" />
+    <Compile Include="HistoryPage.xaml.cs">
+      <DependentUpon>HistoryPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SellPage.xaml.cs">
       <DependentUpon>SellPage.xaml</DependentUpon>
     </Compile>
     <Page Include="BuyPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HistoryPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
