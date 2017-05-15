@@ -8,9 +8,9 @@
         Title="MainWindow" Height="350" Width="525" Background="AliceBlue">
     <Grid>
         <Button Content="Start AMA" HorizontalAlignment="Left" Margin="26,60,0,0" VerticalAlignment="Top" Width="128" Name="amaButton" Height="20"/>
-        <Button Content="Buy/Sell History" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top" Width="128" Name="hisrtoryButton" Height="19" Click="hisrtoryButton_Click"/>
-        <Button Content="Buy" HorizontalAlignment="Left" Margin="26,131,0,0" VerticalAlignment="Top" Width="128" Height="20" Name="buyButton" Click="buyButton_Click"/>
-        <Button Content="Sell" HorizontalAlignment="Left" Margin="26,167,0,0" VerticalAlignment="Top" Width="128" Name="sellButton" Click="sellButton_Click"/>
+        <Button Content="Buy/Sell History" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top" Width="128" x:Name="HisrtoryButton" Height="19" Click="HisrtoryButton_Click"/>
+        <Button Content="Buy" HorizontalAlignment="Left" Margin="26,131,0,0" VerticalAlignment="Top" Width="128" Height="20" x:Name="BuyButton" Click="BuyButton_Click"/>
+        <Button Content="Sell" HorizontalAlignment="Left" Margin="26,167,0,0" VerticalAlignment="Top" Width="128" x:Name="SellButton" Click="SellButton_Click"/>
         <Label Content="Welcome Back User!" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top" Name="labelTextView"/>
     </Grid>
 </Window>

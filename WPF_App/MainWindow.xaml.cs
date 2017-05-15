@@ -25,19 +25,19 @@ namespace WPF_App
             InitializeComponent();
         }
 
-        private void buyButton_Click(object sender, RoutedEventArgs e)
+        private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
             Page myPage = new BuyPage();
             this.Content = myPage;
         }
 
-        private void sellButton_Click(object sender, RoutedEventArgs e)
+        private void SellButton_Click(object sender, RoutedEventArgs e)
         {
             Page myPage = new SellPage();
             this.Content = myPage;
         }
 
-        private void hisrtoryButton_Click(object sender, RoutedEventArgs e)
+        private void HisrtoryButton_Click(object sender, RoutedEventArgs e)
         {
             Page myPage = new HistoryPage();
             this.Content = myPage;
