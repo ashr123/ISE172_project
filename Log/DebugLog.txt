@@ -1,0 +1,6 @@
+13.05.2017,17:33:48,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 118,SUCCES,exeption
+13.05.2017,17:33:50,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 123,Bad user, Url: http://localhost, user: user540,exeption
+13.05.2017,17:57:45,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 133,Exeption: Bad user, Url: http://localhost, user: user540
+14.05.2017,17:06:48,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 45,Exeption: אירעה שגיאה אחת או יותר., Url: http://ise172.ise.bgu.ac.il:8008, User: user54
+15.05.2017,00:16:21,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 140,Exeption: אירעה שגיאה אחת או יותר., Url: http://localhost, User: user54
+15.05.2017,00:16:23,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 46,Exeption: אירעה שגיאה אחת או יותר., Url: http://localhost, User: user54
