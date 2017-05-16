@@ -20,11 +20,11 @@ namespace DataTier.Loggers
 
 		public static List<Record> ReadHistory()
 		{
-			string[] history=File.ReadAllLines(@"..\..\..\Log\history.txt");
-			List<Record> output=new List<Record>();
+			string[] history = File.ReadAllLines(@"..\..\..\Log\history.txt");
+			List<Record> output = new List<Record>();
 			foreach (string line in history)
 			{
-				string[] temp=line.Split(',');
+				string[] temp = line.Split(',');
 				output.Add(new Record()
 				{
 					Time=Convert.ToDateTime(temp[0]),
