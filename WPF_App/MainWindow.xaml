@@ -5,12 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800" Background="AliceBlue" >
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="650" Width="900" Background="AliceBlue" >
     <Grid>
-        <Button FontSize="16" Content="Start AMA" HorizontalAlignment="Left" Margin="26,79,0,0" VerticalAlignment="Top" Width="162" Name="amaButton" Height="62"/>
-        <Button FontSize="16" Content="Buy/Sell History" HorizontalAlignment="Left" Margin="26,168,0,0" VerticalAlignment="Top" Width="162" x:Name="HisrtoryButton" Height="62" Click="HisrtoryButton_Click"/>
-        <Button FontSize="16" Content="Buy" HorizontalAlignment="Left" Margin="26,258,0,0" VerticalAlignment="Top" Width="162" Height="62" x:Name="BuyButton" Click="BuyButton_Click"/>
-        <Button FontSize="16" Content="Sell" HorizontalAlignment="Left" Margin="26,348,0,0" VerticalAlignment="Top" Width="162" x:Name="SellButton" Click="SellButton_Click" Height="62"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="44,401,0,0" TextWrapping="Wrap" Text="Commodity" FontSize="20" VerticalAlignment="Top"  TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="179,401,0,0" TextWrapping="Wrap" Text="Amount" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="292,401,0,0" TextWrapping="Wrap" Text="Price" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="-0.178,0.48" TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBox x:Name="SellCommodityField" HorizontalAlignment="Left" Height="36" Margin="44,445,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="SellPriceField" HorizontalAlignment="Left" Height="36" Margin="292,445,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="SellAmountField" HorizontalAlignment="Left" Height="36" Margin="172,445,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.192,3.705"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="44,498,0,0" TextWrapping="Wrap" Text="Commodity" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="179,498,0,0" TextWrapping="Wrap" Text="Amount" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="292,498,0,0" TextWrapping="Wrap" Text="Price" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="-0.178,0.48" TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBox x:Name="BuyCommodityField" HorizontalAlignment="Left" Height="36" Margin="44,541,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="BuyPriceField" HorizontalAlignment="Left" Height="36" Margin="292,541,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.409,0.541"/>
+        <TextBox x:Name="BuyAmountField" HorizontalAlignment="Left" Height="36" Margin="172,541,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
+        <Button FontSize="20" Content="Start AMA" HorizontalAlignment="Left" Margin="44,108,0,0" VerticalAlignment="Top" Width="120" Name="amaButton" Height="52"/>
+        <Button FontSize="20" Content="Refresh History" HorizontalAlignment="Left" Margin="648,539,0,0" VerticalAlignment="Top" Width="179" x:Name="HisrtoryButton" Height="38" Click="HisrtoryButton_Click"/>
+        <Button FontSize="20" Content="Buy" HorizontalAlignment="Left" Margin="410,539,0,0" VerticalAlignment="Top" Width="107" Height="38" x:Name="BuyButton" Click="BuyButton_Click"/>
+        <Button FontSize="20" Content="Sell" HorizontalAlignment="Left" Margin="410,442,0,0" VerticalAlignment="Top" Width="107" x:Name="SellButton" Click="SellButton_Click" Height="39"/>
         <Label Foreground="Wheat" Content="Welcome Back User!" HorizontalAlignment="Left" Margin="292,21,0,0" VerticalAlignment="Top" Name="labelTextView" FontSize="24"/>
         <Label x:Name="UserDataLabel" Content="{Binding UserData}" HorizontalAlignment="Left" Margin="278,108,0,0" VerticalAlignment="Top" Background="#FFDFCBCB" RenderTransformOrigin="14.35,9.15"/>
         <Grid.Background>
