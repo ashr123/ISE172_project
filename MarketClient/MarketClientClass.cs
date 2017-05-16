@@ -11,8 +11,8 @@ namespace DataTier
 	public class MarketClientClass : IMarketClient
 	{
 		private static readonly ILog myLogger = LogManager.GetLogger("Debug");
-		//private const string Url = "http://localhost";
-		private const string Url = "http://ise172.ise.bgu.ac.il";
+		private const string Url = "http://localhost";
+		//private const string Url = "http://ise172.ise.bgu.ac.il";
 		//private const string Url = "http://ise172.ise.bgu.ac.il:8008";
 		private const string User = "user54";
 		private const string error = ", Url: "+Url+", User: "+User;

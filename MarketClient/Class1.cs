@@ -15,12 +15,10 @@ namespace DataTier
 		static void Main(string[] args)
         {
 			IMarketClient market = new MarketClientClass();
-			HistoryLogger.WriteHistory(123456, "Buy", 1, 1, 2);
-			HistoryLogger.WriteHistory(123456, "Cancel", 1, 1, 2);
-			HistoryLogger.WriteHistory(123457, "Buy", 2, 1, 2);
-			HistoryLogger.WriteHistory(123458, "Sell", 3, 1, 2);
-			//Console.WriteLine(market.QueryUserRequests());
-			Trace.WriteLine(market.QueryAllMarketRequest());
+
+			Console.WriteLine(market.QueryUserRequests());
+			Console.WriteLine(market.QueryAllMarketRequest());
+			//Console.WriteLine(market.SendBuyRequest(1, 7, 1));
 			//HistoryLogger.WriteHistory(market.SendQueryUserRequest().ToString());
 			//myLogger.Debug("asdasdasdasdasd");
 			Console.ReadLine();

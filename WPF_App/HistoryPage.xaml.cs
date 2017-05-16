@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DataTier.Loggers;
+using DataTier.DataEntries;
+using DataTier;
 
 namespace WPF_App
 {
@@ -22,11 +24,13 @@ namespace WPF_App
 	public partial class HistoryPage : Page
 	{
 		public List<Record> History { get; set; }
-        public HistoryPage()
+		public List<int> UserActiveRequests { get; set; }
+		public HistoryPage()
         {
-            InitializeComponent();
+			InitializeComponent();
 			History=HistoryLogger.ReadHistory();
-			DataContext=this;
+			UserActiveRequests=new MarketClientClass().SendQueryUserRequest().Requests;
+			DataContext =this;
         }
 	}
 }

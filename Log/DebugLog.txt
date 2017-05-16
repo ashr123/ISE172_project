@@ -2,3 +2,8 @@
 13.05.2017,17:33:50,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 123,Bad user, Url: http://localhost, user: user540,exeption
 13.05.2017,17:57:45,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 133,Exeption: Bad user, Url: http://localhost, user: user540
 14.05.2017,17:06:48,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 45,Exeption: אירעה שגיאה אחת או יותר., Url: http://ise172.ise.bgu.ac.il:8008, User: user54
+16.05.2017,21:45:46,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 79,Exeption: מחרוזת קלט לא היתה בתבנית הנכונה., Url: http://ise172.ise.bgu.ac.il, User: user54, Price: 999, Commodity: 9, Amount: 1
+16.05.2017,21:49:01,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 79,Exeption: מחרוזת קלט לא היתה בתבנית הנכונה., Url: http://ise172.ise.bgu.ac.il, User: user54, Price: 999, Commodity: 9, Amount: 1
+16.05.2017,23:39:41,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 140,Exeption: אירעה שגיאה אחת או יותר., Url: http://localhost, User: user54
+16.05.2017,23:39:53,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 140,Exeption: אירעה שגיאה אחת או יותר., Url: http://localhost, User: user54
+16.05.2017,23:39:53,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 140,Exeption: אירעה שגיאה אחת או יותר., Url: http://localhost, User: user54
