@@ -10,23 +10,42 @@ namespace DataTier.Loggers
 {
 	public class HistoryLogger
 	{
-		static ILog myLogger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-		//private static readonly ILog myLogger = LogManager.GetLogger("History");
-		public static void WriteHistory(string contents)
+		//static ILog myLogger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+		private static readonly ILog myLogger = LogManager.GetLogger("History");
+		public static void WriteHistory(int requestId, string action, int commodity, int price, int amount)
 		{
 			//File.AppendAllText(@"..\..\..\Log\history.txt", DateTime.Now+","+contents+"\n");
-			myLogger.Info(contents);
+			myLogger.Info(requestId+","+action+','+commodity+','+price+','+amount);
 		}
 
-		public static string[][] ReadHistory()
+		public static List<Record> ReadHistory()
 		{
 			string[] history=File.ReadAllLines(@"..\..\..\Log\history.txt");
-			string[][] output=new string[history.Length][];
-			for (int i = 0; i<history.Length; i++)
+			List<Record> output=new List<Record>();
+			foreach (string line in history)
 			{
-				output[i]=history[i].Split(',');
+				string[] temp=line.Split(',');
+				output.Add(new Record()
+				{
+					Time=Convert.ToDateTime(temp[0]),
+					RequestId=Int32.Parse(temp[1]),
+					Action=temp[2],
+					Commodity=Int32.Parse(temp[3]),
+					Price=Int32.Parse(temp[4]),
+					Amount=Int32.Parse(temp[5])
+				});
 			}
 			return output;
 		}
+	}
+
+	public class Record
+	{
+		public int RequestId { get; set; }
+		public DateTime Time { get; set; }
+		public string Action { get; set; }
+		public int Commodity { get; set; }
+		public int Price { get; set; }
+		public int Amount { get; set; }
 	}
 }

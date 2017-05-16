@@ -23,24 +23,25 @@ namespace WPF_App
     /// </summary>
     public partial class MainWindow : Window
     {
-		private readonly IMarketClient market = new MarketClientClass();
-		MarketUserData UserData { get; set; }
+		private static readonly IMarketClient market = new MarketClientClass();
+		public static string UserData { get; set; }
+
 		private static void OnTimedEvent(Object source, ElapsedEventArgs e)
 		{
-			Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
+			UserData=market.SendQueryUserRequest().ToString();
 		}
 
 		public MainWindow()
         {
 			InitializeComponent();
-			UserData=market.SendQueryUserRequest();
+			DataContext=this;
+			UserData=market.SendQueryUserRequest().ToString();
 			Timer UserDataUpdater = new Timer(10000)
 			{
 				AutoReset=true,
 				Enabled=true
 			};
 			UserDataUpdater.Elapsed+=OnTimedEvent;
-			DataContext=this;
         }
 
         private void BuyButton_Click(object sender, RoutedEventArgs e)

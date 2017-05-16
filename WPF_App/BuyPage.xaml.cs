@@ -46,9 +46,9 @@ namespace WPF_App
                 if (marketBuySell.Error == null)
                 {
                     MessageBox.Show("Sucsess!! Your Buy request has been placed. your id is: " + marketBuySell.Id);
-                    market.SendCancelBuySellRequest(marketBuySell.Id);
-                    String output = Price+","+Commodity+","+Amount+","+"buy" ;
-                    HistoryLogger.WriteHistory(output);
+                    //market.SendCancelBuySellRequest(marketBuySell.Id);
+                    //String output = Price+","+Commodity+","+Amount+","+"buy" ;
+                    HistoryLogger.WriteHistory(marketBuySell.Id, "Buy", Commodity, Price, Amount);
                     
                 }
                 else

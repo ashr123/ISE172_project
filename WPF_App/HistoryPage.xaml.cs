@@ -21,7 +21,7 @@ namespace WPF_App
 	/// </summary>
 	public partial class HistoryPage : Page
 	{
-		public string[][] History { get; set; }
+		public List<Record> History { get; set; }
         public HistoryPage()
         {
             InitializeComponent();

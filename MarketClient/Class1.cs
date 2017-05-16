@@ -11,11 +11,15 @@ namespace DataTier
 {
     class Class1
     {
-		public static ILog myLogger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+		//public static ILog myLogger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 		static void Main(string[] args)
         {
 			IMarketClient market = new MarketClientClass();
-			Console.WriteLine(market.QueryUserRequests());
+			HistoryLogger.WriteHistory(123456, "Buy", 1, 1, 2);
+			HistoryLogger.WriteHistory(123456, "Cancel", 1, 1, 2);
+			HistoryLogger.WriteHistory(123457, "Buy", 2, 1, 2);
+			HistoryLogger.WriteHistory(123458, "Sell", 3, 1, 2);
+			//Console.WriteLine(market.QueryUserRequests());
 			Trace.WriteLine(market.QueryAllMarketRequest());
 			//HistoryLogger.WriteHistory(market.SendQueryUserRequest().ToString());
 			//myLogger.Debug("asdasdasdasdasd");
