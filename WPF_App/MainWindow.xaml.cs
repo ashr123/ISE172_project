@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DataTier;
+using DataTier.DataEntries;
+using System.Timers;
 
 namespace WPF_App
 {
@@ -20,9 +23,24 @@ namespace WPF_App
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+		private readonly IMarketClient market = new MarketClientClass();
+		MarketUserData UserData { get; set; }
+		private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+		{
+			Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
+		}
+
+		public MainWindow()
         {
-            InitializeComponent();
+			InitializeComponent();
+			UserData=market.SendQueryUserRequest();
+			Timer UserDataUpdater = new Timer(10000)
+			{
+				AutoReset=true,
+				Enabled=true
+			};
+			UserDataUpdater.Elapsed+=OnTimedEvent;
+			DataContext=this;
         }
 
         private void BuyButton_Click(object sender, RoutedEventArgs e)

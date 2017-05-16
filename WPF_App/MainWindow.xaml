@@ -12,5 +12,6 @@
         <Button Content="Buy" HorizontalAlignment="Left" Margin="26,131,0,0" VerticalAlignment="Top" Width="128" Height="20" x:Name="BuyButton" Click="BuyButton_Click"/>
         <Button Content="Sell" HorizontalAlignment="Left" Margin="26,167,0,0" VerticalAlignment="Top" Width="128" x:Name="SellButton" Click="SellButton_Click"/>
         <Label Content="Welcome Back User!" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top" Name="labelTextView"/>
-    </Grid>
+		<Label x:Name="UserDataLabel" Content="{Binding UserData}" HorizontalAlignment="Left" Height="127" Margin="243,60,0,0" VerticalAlignment="Top" Width="222"/>
+	</Grid>
 </Window>
