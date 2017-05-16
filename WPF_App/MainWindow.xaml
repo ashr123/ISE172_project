@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_App"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Background="AliceBlue">
+        Title="MainWindow" Height="500" Width="800" Background="AliceBlue" >
     <Grid>
-        <Button Content="Start AMA" HorizontalAlignment="Left" Margin="26,60,0,0" VerticalAlignment="Top" Width="128" Name="amaButton" Height="20"/>
-        <Button Content="Buy/Sell History" HorizontalAlignment="Left" Margin="26,95,0,0" VerticalAlignment="Top" Width="128" x:Name="HisrtoryButton" Height="19" Click="HisrtoryButton_Click"/>
-        <Button Content="Buy" HorizontalAlignment="Left" Margin="26,131,0,0" VerticalAlignment="Top" Width="128" Height="20" x:Name="BuyButton" Click="BuyButton_Click"/>
-        <Button Content="Sell" HorizontalAlignment="Left" Margin="26,167,0,0" VerticalAlignment="Top" Width="128" x:Name="SellButton" Click="SellButton_Click"/>
-        <Label Content="Welcome Back User!" HorizontalAlignment="Left" Margin="200,10,0,0" VerticalAlignment="Top" Name="labelTextView"/>
-		<Label x:Name="UserDataLabel" Content="{Binding UserData}" HorizontalAlignment="Left" Height="127" Margin="243,60,0,0" VerticalAlignment="Top" Width="222"/>
-	</Grid>
+        <Button FontSize="16" Content="Start AMA" HorizontalAlignment="Left" Margin="26,79,0,0" VerticalAlignment="Top" Width="162" Name="amaButton" Height="62"/>
+        <Button FontSize="16" Content="Buy/Sell History" HorizontalAlignment="Left" Margin="26,168,0,0" VerticalAlignment="Top" Width="162" x:Name="HisrtoryButton" Height="62" Click="HisrtoryButton_Click"/>
+        <Button FontSize="16" Content="Buy" HorizontalAlignment="Left" Margin="26,258,0,0" VerticalAlignment="Top" Width="162" Height="62" x:Name="BuyButton" Click="BuyButton_Click"/>
+        <Button FontSize="16" Content="Sell" HorizontalAlignment="Left" Margin="26,348,0,0" VerticalAlignment="Top" Width="162" x:Name="SellButton" Click="SellButton_Click" Height="62"/>
+        <Label Foreground="Wheat" Content="Welcome Back User!" HorizontalAlignment="Left" Margin="292,21,0,0" VerticalAlignment="Top" Name="labelTextView" FontSize="24"/>
+        <Label x:Name="UserDataLabel" Content="{Binding UserData}" HorizontalAlignment="Left" Height="127" Margin="243,60,0,0" VerticalAlignment="Top" Width="222"/>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images/bg.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+    </Grid>
 </Window>
