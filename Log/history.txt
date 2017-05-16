@@ -1,4 +1,3 @@
-13.05.2017,16:30:30,DataTier.Loggers.HistoryLogger.WriteHistory,fffffffffffffffff
 13.05.2017,16:30:43,fffffffffffffffff
 13.05.2017,16:31:41,fffffffffffffffff
 13.05.2017,16:33:00,fffffffffffffffff
