@@ -23,9 +23,7 @@ namespace DataTier.Loggers
 			string[] history=File.ReadAllLines(@"..\..\..\Log\history.txt");
 			string[][] output=new string[history.Length][];
 			for (int i = 0; i<history.Length; i++)
-			{
 				output[i]=history[i].Split(',');
-			}
 			return output;
 		}
 	}
