@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_App"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="650" Width="900" Background="AliceBlue" >
+        Title="AlgoTrading" Height="650" Width="900" Background="AliceBlue" >
     <Grid>
         <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="44,401,0,0" TextWrapping="Wrap" Text="Commodity" FontSize="20" VerticalAlignment="Top"  TextDecorations="Underline" FontWeight="Bold"/>
         <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="179,401,0,0" TextWrapping="Wrap" Text="Amount" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
