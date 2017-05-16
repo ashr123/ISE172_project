@@ -7,17 +7,28 @@ using DataTier;
 using DataTier.DataEntries;
 using System.Timers;
 using DataTier.Loggers;
+using System.Threading;
 
 namespace LogicTier
 
 {
-    class Program
+    public class Program
     {
-        
+        private static  System.Timers.Timer myTimer;
+        private static int counter = 0;
+        private static bool FLAG_isRunning = false;
+
+
         public static void TimerOfAMA(bool b)
         {
-            Timer myTimer = new Timer(2000);
-            myTimer.Elapsed += new ElapsedEventHandler(onTimedEvent);
+           
+
+            if (myTimer == null)
+            {
+                myTimer = new System.Timers.Timer(2000);
+                myTimer.Elapsed += new ElapsedEventHandler(onTimedEvent);
+                myTimer.AutoReset = true;
+            }
 
             if (b)
                 myTimer.Start();
@@ -31,27 +42,26 @@ namespace LogicTier
 
             private static void onTimedEvent(object sender, EventArgs e)
         {
-            Random rnd = new Random();
-            int num = rnd.Next(0, 10);
-            AMA_Buy(num, 10, 5);
+            if (!FLAG_isRunning)                     //for not creating lot of AMA functions running in parallel
+            {
+                //ama buy
+                Random rnd = new Random();
+                int num = rnd.Next(0, 10);
+                AMA_Buy(num, 10, 5);
 
 
-            //ama sell
+                //ama sell
+            }
+
+
         }
 
-        private static void wasteTime(object sender, EventArgs e)
-        {
-
-                      //nothing
-            return;
-
-        }
 
 
 
         public static void AMA_Buy(int commodity, int desiredPrice, int amount)
         {
-            int counter = 0;
+            FLAG_isRunning = true;
             MarketClientClass client = new MarketClientClass();
             AllMarketRequest all = client.QueryAllMarketRequest();
             counter++;
@@ -63,18 +73,13 @@ namespace LogicTier
 
                     MarketUserData userData = client.SendQueryUserRequest();
                     counter++;
-
-                    Timer timeWaster = new Timer(10000);
-                    timeWaster.Elapsed += new ElapsedEventHandler(wasteTime);
-
-
+                    
                     while (userData.Funds < (item.Info.Ask * amount))
                     {
 
-                        if (counter == 19)                   //have to waste time, not overload the server
+                        if (counter >= 16)                   //have to waste time, not overload the server
                         {
-                            timeWaster.Start();
-                            timeWaster.Stop();   //??? 
+                            Thread.Sleep(10000);
                             counter = 0;
                         }
                          
@@ -103,6 +108,7 @@ namespace LogicTier
 
                 }//bigIf
 
+            FLAG_isRunning = false;
             return;
         }//AMA
     }
