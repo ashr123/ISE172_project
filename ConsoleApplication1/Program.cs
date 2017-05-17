@@ -14,32 +14,35 @@ namespace LogicTier
 {
     public class Program
     {
-        private static System.Timers.Timer myTimer;
+        private static System.Timers.Timer amaAutoTimer;
+        private static System.Timers.Timer userAutoTimer;
         private static int counter = 0;
         private static bool FLAG_isRunning = false;
+        private static List<UserAsksLink> userCommands;
 
 
         public static void TimerOfAMA(bool b)
         {
-
-
-            if (myTimer == null)
+            
+            if (amaAutoTimer == null)
             {
-                myTimer = new System.Timers.Timer(2000);
-                myTimer.Elapsed += new ElapsedEventHandler(onTimedEvent);
-                myTimer.AutoReset = true;
+                amaAutoTimer = new System.Timers.Timer(2000);
+                amaAutoTimer.Elapsed += new ElapsedEventHandler(onTimedEvent);
+                amaAutoTimer.AutoReset = true;
             }
 
             if (b)
-                myTimer.Start();
-
+            {
+                userAutoTimer.Stop();            //not possible AMA auto & user requests
+                amaAutoTimer.Start();  
+            }
 
             else
-                myTimer.Stop();
+                amaAutoTimer.Stop();
 
         }
 
-
+        
         private static void onTimedEvent(object sender, EventArgs e)
         {
             if (!FLAG_isRunning)                     //for not creating lot of AMA functions running in parallel
@@ -57,10 +60,46 @@ namespace LogicTier
 
             }
 
+        }
 
+        public static void TimerOfUserAsks(List<UserAsksLink> userListCommands)
+        {
+            TimerOfAMA(false);
+            userCommands = userListCommands;
+
+            if (userAutoTimer == null)
+            {
+                userAutoTimer = new System.Timers.Timer(4000);
+                userAutoTimer.Elapsed += new ElapsedEventHandler(onUSEREvent);
+                userAutoTimer.AutoReset = true;
+            }
+            
+                userAutoTimer.Start();
+            
         }
 
 
+        private static void onUSEREvent(object sender, EventArgs e)
+        {
+            if (!FLAG_isRunning)                     //for not creating lot of AMA functions running in parallel
+            {
+                foreach (UserAsksLink ask in userCommands)
+                {
+                    if (ask.buyORsell == true)   //user wants to buy
+                        AMA_Buy(ask.commodity, ask.desiredPrice, ask.amount);
+
+
+                    else             //user wants to sell
+                        AMA_Sell(ask.commodity, ask.desiredPrice, ask.amount);
+
+
+                    Thread.Sleep(500);      //so all commands will run in the list.
+
+                }
+
+            }// IF isRunning
+
+        }
 
 
         public static void AMA_Buy(int commodity, int desiredPrice, int amount)
