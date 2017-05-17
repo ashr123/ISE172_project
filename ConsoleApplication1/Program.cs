@@ -14,14 +14,14 @@ namespace LogicTier
 {
     public class Program
     {
-        private static  System.Timers.Timer myTimer;
+        private static System.Timers.Timer myTimer;
         private static int counter = 0;
         private static bool FLAG_isRunning = false;
 
 
         public static void TimerOfAMA(bool b)
         {
-           
+
 
             if (myTimer == null)
             {
@@ -32,15 +32,15 @@ namespace LogicTier
 
             if (b)
                 myTimer.Start();
-            
+
 
             else
                 myTimer.Stop();
 
         }
-        
 
-            private static void onTimedEvent(object sender, EventArgs e)
+
+        private static void onTimedEvent(object sender, EventArgs e)
         {
             if (!FLAG_isRunning)                     //for not creating lot of AMA functions running in parallel
             {
@@ -73,7 +73,7 @@ namespace LogicTier
 
                     MarketUserData userData = client.SendQueryUserRequest();
                     counter++;
-                    
+
                     while (userData.Funds < (item.Info.Ask * amount))
                     {
 
@@ -82,9 +82,9 @@ namespace LogicTier
                             Thread.Sleep(10000);
                             counter = 0;
                         }
-                         
 
-                            List<int> l = userData.Requests;
+
+                        List<int> l = userData.Requests;
 
                         // List<int> listOfUserRequests = ((MarketUserRequests) client.QueryUserRequests()).Requests;
 
@@ -92,7 +92,7 @@ namespace LogicTier
                             break;
 
                         client.SendCancelBuySellRequest(l[0]);
-                        HistoryLogger.WriteHistory( l[0] + "," + "Canceled");
+                        HistoryLogger.WriteHistory(l[0] + "," + "Canceled");
                         counter++;
                         userData = client.SendQueryUserRequest();     //refresh data
                         counter++;
@@ -101,8 +101,8 @@ namespace LogicTier
 
                     if (userData.Funds >= item.Info.Ask * amount)
                     {
-                        client.SendBuyRequest(item.Info.Ask+1, commodity, amount);
-                        HistoryLogger.WriteHistory(item.Info.Ask+   ","+ commodity    +","   + amount+  ","  + "new Buy Request");
+                        client.SendBuyRequest(item.Info.Ask + 1, commodity, amount);
+                        HistoryLogger.WriteHistory(item.Info.Ask + "," + commodity + "," + amount + "," + "new Buy Request");
                         counter++;
                     }
 
@@ -113,13 +113,13 @@ namespace LogicTier
         }//AMA
     }
 }
-   
-
-    
 
 
 
 
-    
+
+
+
+
 
 

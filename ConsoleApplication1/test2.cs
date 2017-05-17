@@ -10,9 +10,9 @@ namespace LogicTier
     {
         public static void Main (string[] args)
         {
-            Program.TimerOfAMA(true);
+          //  Program.TimerOfAMA(true);
 
-            //Program.AMA_Buy(6, 100, 3);
+           // Program.AMA_Buy(6, 100, 3);
 
         }
     }
