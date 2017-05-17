@@ -16,15 +16,15 @@ namespace LogicTier
     {
         private static System.Timers.Timer amaAutoTimer;
         private static System.Timers.Timer userAutoTimer;
-        private static int counter = 0;
-        private static bool FLAG_isRunning = false;
-        private static List<UserAsksLink> userCommands;
+        private static int counter = 0;                           //counts server calls
+        private static bool FLAG_isRunning = false;               //prevent creating lots of AMA running parallel
+        private static List<UserAsksLink> userCommands;           //holds the user wanted actions
 
 
         public static void TimerOfAMA(bool b)
         {
-            
-            if (amaAutoTimer == null)
+
+            if (amaAutoTimer == null)     //creates only one instance
             {
                 amaAutoTimer = new System.Timers.Timer(2000);
                 amaAutoTimer.Elapsed += new ElapsedEventHandler(onTimedEvent);
@@ -34,7 +34,7 @@ namespace LogicTier
             if (b)
             {
                 userAutoTimer.Stop();            //not possible AMA auto & user requests
-                amaAutoTimer.Start();  
+                amaAutoTimer.Start();
             }
 
             else
@@ -42,19 +42,22 @@ namespace LogicTier
 
         }
 
-        
+
         private static void onTimedEvent(object sender, EventArgs e)
         {
             if (!FLAG_isRunning)                     //for not creating lot of AMA functions running in parallel
             {
                 Random rnd = new Random();
-                int num = rnd.Next(0, 10);
                 int buyORsell = rnd.Next(0, 2);
+                int num = rnd.Next(0, 10);
 
-                if (buyORsell == 1) //ama buy
+                //choose randomly to buy or to sell. and choose randomly commodity
+
+
+                if (buyORsell == 1)      //ama buy
                     AMA_Buy(num, 15, 4);
 
-                else                    //ama sell
+                else                     //ama sell
                     AMA_Sell(num, 23, -1);                             //-1 means all
 
 
@@ -65,17 +68,20 @@ namespace LogicTier
         public static void TimerOfUserAsks(List<UserAsksLink> userListCommands)
         {
             TimerOfAMA(false);
-            userCommands = userListCommands;
 
-            if (userAutoTimer == null)
+            userCommands = userListCommands;         //refreshing the user commands 
+
+            //Note: tell saar to always keep old list as a field
+
+            if (userAutoTimer == null)         //one instance
             {
                 userAutoTimer = new System.Timers.Timer(4000);
                 userAutoTimer.Elapsed += new ElapsedEventHandler(onUSEREvent);
                 userAutoTimer.AutoReset = true;
             }
-            
-                userAutoTimer.Start();
-            
+
+            userAutoTimer.Start();
+
         }
 
 
@@ -93,7 +99,7 @@ namespace LogicTier
                         AMA_Sell(ask.commodity, ask.desiredPrice, ask.amount);
 
 
-                    Thread.Sleep(500);      //so all commands will run in the list.
+                    Thread.Sleep(500);      //so all commands will run in the list without prevent each other
 
                 }
 
@@ -105,6 +111,7 @@ namespace LogicTier
         public static void AMA_Buy(int commodity, int desiredPrice, int amount)
         {
             FLAG_isRunning = true;
+            notOverLoadServer();
             MarketClientClass client = new MarketClientClass();
             AllMarketRequest all = client.QueryAllMarketRequest();
             counter++;
@@ -117,55 +124,54 @@ namespace LogicTier
                     MarketUserData userData = client.SendQueryUserRequest();
                     counter++;
 
-                    while (userData.Funds < (item.Info.Ask * amount))
-                    {
-
-                        if (counter >= 16)                   //have to waste time, not overload the server
-                        {
-                            Thread.Sleep(10000);
-                            counter = 0;
-                        }
-
+                   
+                   
 
                         List<int> l = userData.Requests;
 
-                        // List<int> listOfUserRequests = ((MarketUserRequests) client.QueryUserRequests()).Requests;
+                        if (l.Count != 0) {                //there are open requests in server
 
-                        if (l.Count == 0)          //there are no more open requests
-                            break;
+                        //if USER dont have enough money, we'll cancel his open buy requests- hoping after that he'll have enough
+                        for (int i = l.Count; i >= 0 & userData.Funds < (item.Info.Ask * amount); i--)   //going from end so in delete won't change index of l
+                            {
+                                notOverLoadServer();
+                                
+                                int reqID = l[i];    //saving the ID just for simplicity
 
-                        client.SendCancelBuySellRequest(l[0]);
-                        HistoryLogger.WriteHistory(l[0] + "," + "Canceled");
-                        counter++;
-                        userData = client.SendQueryUserRequest();     //refresh data
-                        counter++;
+                                MarketItemQuery request = client.SendQueryBuySellRequest(l[i]);
+                                counter++;
+                            if (request.Type.Equals("buy"))    //Note: check with roey
+                            {
 
-                    }
+                                client.SendCancelBuySellRequest(reqID);
+                                HistoryLogger.WriteHistory("Cancel," + request.Commodity + "," + request.Price + "," + request.Amount + "," + reqID);
+                                counter++;
 
-                    if (userData.Funds >= item.Info.Ask * amount)
-                    {
-                        int ID = client.SendBuyRequest(item.Info.Ask + 1, commodity, amount).Id;
-                        HistoryLogger.WriteHistory("Buy," + commodity + "," + (item.Info.Ask + 1) + "," + amount + "," + ID);
-                        counter++;
-                    }
+                            }
 
-                }//bigIf
+                        }
+                }
 
-            FLAG_isRunning = false;
+            if (userData.Funds >= item.Info.Ask * amount)
+            {
+                int ID = client.SendBuyRequest(item.Info.Ask + 1, commodity, amount).Id;
+                HistoryLogger.WriteHistory("Buy," + commodity + "," + (item.Info.Ask + 1) + "," + amount + "," + ID);
+                counter++;
+            }
+
+        }//bigIf
+
+        FLAG_isRunning = false;
             return;
         }//AMAbuy
+
 
 
 
         public static void AMA_Sell(int commodity, int desiredPrice, int amount)
         {
             FLAG_isRunning = true;
-
-            if (counter >= 16)                   //have to waste time, not overload the server
-            {
-                Thread.Sleep(10000);
-                counter = 0;
-            }
+            notOverLoadServer();
 
             
             MarketClientClass client = new MarketClientClass();
@@ -180,13 +186,13 @@ namespace LogicTier
                 {
                     //passing on commodities list, until arriving the wished one
                     foreach (ItemAskBid item in all.MarketInfo)
-                        if (item.Id == commodity && item.Info.Ask >= desiredPrice)
+                        if (item.Id == commodity && item.Info.Bid >= desiredPrice)
                         {                        //if item is the right commodity & right price
 
                             if (amount > cmdty.Tkey | amount ==-1)                //we cant sell more than we have OR -1 is our sign to sell ALL
                                 amount = cmdty.Tkey;
 
-
+                            //Note: ask roey about error
                             int ID = client.SendSellRequest(item.Info.Bid - 1, commodity, amount).Id;
                             HistoryLogger.WriteHistory("Sell," + commodity + "," + (item.Info.Bid - 1) + "," + amount + "," + ID);
                             counter++;
@@ -197,6 +203,19 @@ namespace LogicTier
             FLAG_isRunning = false;
             return;
         }//AMAsell
+
+
+        private static void notOverLoadServer()    //have to waste time, not overload the server
+        {
+            if (counter >= 16)
+            {
+                Thread.Sleep(10000);
+                counter = 0;
+            }
+
+        }
+
+
 
     }
     }
