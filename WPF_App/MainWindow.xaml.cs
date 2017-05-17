@@ -102,14 +102,14 @@ namespace WPF_App
 				MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void amaButton_Click(object sender, RoutedEventArgs e)
+        private void AmaButton_Click(object sender, RoutedEventArgs e)
         {
                 Program.TimerOfAMA(true);
         }
 
-        private void UserAMAButton_Click(object sender, RoutedEventArgs e)
-        {
+        //private void UserAMAButton_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
     }
 }
