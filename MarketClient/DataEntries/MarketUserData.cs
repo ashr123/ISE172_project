@@ -6,7 +6,7 @@ namespace DataTier.DataEntries
 {
 	public class MarketUserData
 	{
-		public Dictionary<string, int> Commodities { get; set; }
+		public Dictionary<int, int> Commodities { get; set; }
 		public double Funds { get; set; }
         public List<int> Requests { get; set; }
 		public Exception Error { get; set; }
@@ -21,7 +21,7 @@ namespace DataTier.DataEntries
 			if (Error!=null)
 				return Error.Message;
 			string output = "Commodities: [";
-			foreach (string i in Commodities.Keys)
+			foreach (int i in Commodities.Keys)
 			{
 				output+=i+": "+Commodities[i];
 				if (i!=Commodities.Keys.Last())
