@@ -20,7 +20,7 @@ namespace DataTier.Loggers
 
 		public static List<Record> ReadHistory()
 		{
-			List<int> UserActiveRequests=new MarketClientClass().SendQueryUserRequest().Requests;
+			//List<int> UserActiveRequests=new MarketClientClass().SendQueryUserRequest().Requests;
 			string[] history = File.ReadAllLines(@"..\..\..\Log\history.txt");
 			List<Record> output = new List<Record>();
 			foreach (string line in history)
@@ -30,7 +30,7 @@ namespace DataTier.Loggers
 				{
 					Time=Convert.ToDateTime(temp[0]),
 					RequestId=Int32.Parse(temp[1]),
-					IsExecuted=!UserActiveRequests.Contains(Int32.Parse(temp[1])),
+					//IsExecuted=!UserActiveRequests.Contains(Int32.Parse(temp[1])),
 					Action=temp[2],
 					Commodity=Int32.Parse(temp[3]),
 					Price=Int32.Parse(temp[4]),

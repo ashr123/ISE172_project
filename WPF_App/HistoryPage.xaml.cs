@@ -24,12 +24,12 @@ namespace WPF_App
 	public partial class HistoryPage : Page
 	{
 		public List<Record> History { get; set; }
-		public List<int> UserActiveRequests { get; set; }
+		//public List<int> UserActiveRequests { get; set; }
 		public HistoryPage()
         {
 			InitializeComponent();
 			History=HistoryLogger.ReadHistory();
-			UserActiveRequests=new MarketClientClass().SendQueryUserRequest().Requests;
+			//UserActiveRequests=new MarketClientClass().SendQueryUserRequest().Requests;
 			DataContext =this;
         }
 	}

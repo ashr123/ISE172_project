@@ -7,6 +7,6 @@
       mc:Ignorable="d" 
       Height="350" Width="525" Background="AliceBlue" 
       Title="HistoryPage">
-	<DataGrid x:Name="HistoryDataGrid" HorizontalAlignment="Left" Height="330" Margin="10,10,0,0" VerticalAlignment="Top" Width="505" ItemsSource="{Binding History}" IsReadOnly="True"/>
+	<DataGrid x:Name="HistoryDataGrid" HorizontalAlignment="Left" Height="151" Margin="114,189,0,0" VerticalAlignment="Top" Width="158" ItemsSource="{Binding History}" IsReadOnly="True"/>
 
 </Page>

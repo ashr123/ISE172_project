@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using DataTier;
 using DataTier.DataEntries;
 using System.Timers;
+using DataTier.Loggers;
 
 namespace WPF_App
 {
@@ -24,18 +25,28 @@ namespace WPF_App
     public partial class MainWindow : Window
     {
 		private static readonly IMarketClient market = new MarketClientClass();
-		public static string UserData { get; set; }
+		public static MarketUserData UserData { get; set; }
+		public static List<Record> History { get; set; }
+
+		private static void Updater()
+		{
+			UserData=market.SendQueryUserRequest();
+			History=HistoryLogger.ReadHistory();
+			foreach (Record rec in History)
+				rec.IsExecuted=!UserData.Requests.Contains(rec.RequestId);
+		}
+
 
 		private static void OnTimedEvent(Object source, ElapsedEventArgs e)
 		{
-			UserData=market.SendQueryUserRequest().ToString();
+			Updater();
 		}
 
 		public MainWindow()
         {
 			InitializeComponent();
 			DataContext=this;
-			UserData=market.SendQueryUserRequest().ToString();
+			Updater();
 			Timer UserDataUpdater = new Timer(10000)
 			{
 				AutoReset=true,
