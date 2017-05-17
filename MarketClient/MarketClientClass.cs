@@ -11,8 +11,8 @@ namespace DataTier
 	public class MarketClientClass : IMarketClient
 	{
 		private static readonly ILog myLogger = LogManager.GetLogger("Debug");
-		private const string Url = "http://localhost";
-		//private const string Url = "http://ise172.ise.bgu.ac.il";
+		//private const string Url = "http://localhost";
+		private const string Url = "http://ise172.ise.bgu.ac.il";
 		//private const string Url = "http://ise172.ise.bgu.ac.il:8008";
 		private const string User = "user54";
 		private const string error = ", Url: "+Url+", User: "+User;
@@ -43,7 +43,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				myLogger.Debug("Exeption: "+e.Message+error);
+				myLogger.Error("Exeption: "+e.Message+error);
 				return new AllMarketRequest { Error=e };
 			}
 		}
@@ -59,7 +59,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				myLogger.Debug("Exeption: "+e.Message+error);
+				myLogger.Error("Exeption: "+e.Message+error);
 				return new MarketUserRequests { Error=e };
 			}
 		}
@@ -76,7 +76,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				myLogger.Debug("Exeption: "+e.Message+error+", Price: "+price+", Commodity: "+commodity+", Amount: "+amount);
+				myLogger.Error("Exeption: "+e.Message+error+", Price: "+price+", Commodity: "+commodity+", Amount: "+amount);
 				return new MarketBuySell { Error=e };
 			}
 		}
@@ -90,7 +90,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				myLogger.Debug("Exeption: "+e.Message+error+", ID: "+id);
+				myLogger.Error("Exeption: "+e.Message+error+", ID: "+id);
 				return false;
 			}
 			//Console.WriteLine(ans);
@@ -109,7 +109,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				myLogger.Debug("Exeption: "+e.Message+error+", ID: "+id);
+				myLogger.Error("Exeption: "+e.Message+error+", ID: "+id);
 				return new MarketItemQuery { Error=e };
 			}
 		}
@@ -123,7 +123,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				myLogger.Debug("Exeption: "+e.Message+error+", Commodity: "+commodity);
+				myLogger.Error("Exeption: "+e.Message+error+", Commodity: "+commodity);
 				return new MarketCommodityOffer { Error=e };
 			}
 		}
@@ -137,7 +137,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				myLogger.Debug("Exeption: "+e.Message+error);
+				myLogger.Error("Exeption: "+e.Message+error);
 				return new MarketUserData { Error=e };
 			}
 		}
@@ -153,7 +153,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			}
 			catch (Exception e)
 			{
-				myLogger.Debug("Exeption: "+e.Message+error+", Price: "+price+", Commodity: "+commodity+", Amount: "+amount);
+				myLogger.Error("Exeption: "+e.Message+error+", Price: "+price+", Commodity: "+commodity+", Amount: "+amount);
 				return new MarketBuySell { Error=e };
 			}
 		}
