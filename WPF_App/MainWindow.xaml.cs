@@ -107,9 +107,14 @@ namespace WPF_App
                 Program.TimerOfAMA(true);
         }
 
-        //private void UserAMAButton_Click(object sender, RoutedEventArgs e)
-        //{
+		private void amaButton_Click_1(object sender, RoutedEventArgs e)
+		{
 
-        //}
-    }
+		}
+
+		//private void UserAMAButton_Click(object sender, RoutedEventArgs e)
+		//{
+
+		//}
+	}
 }
