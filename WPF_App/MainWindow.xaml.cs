@@ -106,10 +106,5 @@ namespace WPF_App
         {
                 Program.TimerOfAMA(true);
         }
-
-		//private void UserAMAButton_Click(object sender, RoutedEventArgs e)
-		//{
-
-		//}
 	}
 }

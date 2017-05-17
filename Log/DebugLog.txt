@@ -5,3 +5,5 @@
 15.05.2017,00:16:21,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 140,Exeption: אירעה שגיאה אחת או יותר., Url: http://localhost, User: user54
 15.05.2017,00:16:23,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 46,Exeption: אירעה שגיאה אחת או יותר., Url: http://localhost, User: user54
 15.05.2017,22:44:41,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 99,Exeption: Id not found, ID: 5772569
+18.05.2017,02:09:36,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 140,Exeption: אירעה שגיאה אחת או יותר., Url: http://ise172.ise.bgu.ac.il, User: user54
+18.05.2017,02:11:17,C:\Users\Roy\Documents\Visual Studio 2017\Projects\ISE17_project\MarketClient\MarketClientClass.cs,Line: 140,Exeption: אירעה שגיאה אחת או יותר., Url: http://ise172.ise.bgu.ac.il, User: user54
