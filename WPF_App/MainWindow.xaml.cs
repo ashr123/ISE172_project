@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using DataTier;
 using DataTier.DataEntries;
 using System.Timers;
@@ -57,20 +46,71 @@ namespace WPF_App
 
         private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
-            Page myPage = new BuyPage();
-            this.Content = myPage;
+            if (!(Int32.TryParse(BuyCommodityField.Text, out int Commodity)))
+                MessageBox.Show("Invalid Commodity", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (!(Int32.TryParse(BuyPriceField.Text, out int Price)))
+                MessageBox.Show("Invalid Price", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (!(Int32.TryParse(BuyAmountField.Text, out int Amount)))
+                MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (Commodity > 0 || Price > 0 || Amount > 0)
+            {
+                //BuySellObject myObject = new BuySellObject(Operation.Buy, Commodity, Price, Amount);
+                IMarketClient market = new MarketClientClass();
+                MarketBuySell marketBuySell = market.SendBuyRequest(Price, Commodity, Amount);
+                if (marketBuySell.Error == null)
+                {
+                    MessageBox.Show("Sucsess!! Your Buy request has been placed. your id is: " + marketBuySell.Id);
+                    //market.SendCancelBuySellRequest(marketBuySell.Id);
+                    //String output = Price+","+Commodity+","+Amount+","+"buy" ;
+                    HistoryLogger.WriteHistory(marketBuySell.Id, "Buy", Commodity, Price, Amount);
+
+                }
+                else
+                {
+                    MessageBox.Show(marketBuySell.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void SellButton_Click(object sender, RoutedEventArgs e)
         {
-            Page myPage = new SellPage();
-            this.Content = myPage;
+            if (!(Int32.TryParse(SellCommodityField.Text, out int Commodity)))
+                MessageBox.Show("Invalid Commodity", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (!(Int32.TryParse(SellPriceField.Text, out int Price)))
+                MessageBox.Show("Invalid Price", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (!(Int32.TryParse(SellAmountField.Text, out int Amount)))
+                MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+            if (Commodity > 0 || Price > 0 || Amount > 0)
+            {
+                //BuySellObject myObject = new BuySellObject(Operation.Buy, Commodity, Price, Amount);
+                IMarketClient market = new MarketClientClass();
+                MarketBuySell marketBuySell = market.SendSellRequest(Price, Commodity, Amount);
+                if (marketBuySell.Error == null)
+                {
+                    MessageBox.Show("Sucsess!! Your Buy request has been placed. your id is: " + marketBuySell.Id);
+                    //market.SendCancelBuySellRequest(marketBuySell.Id);
+                    //String output = Price+","+Commodity+","+Amount+","+"buy" ;
+                    HistoryLogger.WriteHistory(marketBuySell.Id, "Sell", Commodity, Price, Amount);
+
+                }
+                else
+                {
+                    MessageBox.Show(marketBuySell.ToString());
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void HisrtoryButton_Click(object sender, RoutedEventArgs e)
         {
-            Page myPage = new HistoryPage();
-            this.Content = myPage;
+           
         }
     }
 }
