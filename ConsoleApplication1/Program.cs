@@ -14,12 +14,19 @@ namespace LogicTier
 {
     public class Program
     {
+        //Note: tell Saar turn on both timers while gui is running
         private static System.Timers.Timer amaAutoTimer;
         private static System.Timers.Timer userAutoTimer;
         private static int counter = 0;                           //counts server calls
         private static bool FLAG_isRunning = false;               //prevent creating lots of AMA running parallel
         private static List<UserAsksLink> userCommands;           //holds the user wanted actions
 
+
+        public static void turnOffBothTimers()
+        {
+            amaAutoTimer.Stop();
+            userAutoTimer.Stop();
+        }
 
         public static void TimerOfAMA(bool b)
         {
@@ -123,10 +130,7 @@ namespace LogicTier
 
                     MarketUserData userData = client.SendQueryUserRequest();
                     counter++;
-
-                   
-                   
-
+                    
                         List<int> l = userData.Requests;
 
                         if (l.Count != 0) {                //there are open requests in server
