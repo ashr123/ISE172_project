@@ -9,28 +9,26 @@
 		WindowState="Maximized"
         Title="MainWindow" Height="800" Width="1100" Background="AliceBlue" >
     <Grid>
-        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="44,550,0,0" TextWrapping="Wrap" Text="Commodity" FontSize="20" VerticalAlignment="Top"  TextDecorations="Underline" FontWeight="Bold"/>
-        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="178,550,0,0" TextWrapping="Wrap" Text="Amount" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
-        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="292,550,0,0" TextWrapping="Wrap" Text="Price" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="-0.178,0.48" TextDecorations="Underline" FontWeight="Bold"/>
-        <TextBox x:Name="SellCommodityField" HorizontalAlignment="Left" Height="36" Margin="44,600,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
-        <TextBox x:Name="SellPriceField" HorizontalAlignment="Left" Height="36" Margin="292,600,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="0.532,2.187"/>
-        <TextBox x:Name="SellAmountField" HorizontalAlignment="Left" Height="36" Margin="168,600,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.192,3.705"/>
-        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="44,655,0,0" TextWrapping="Wrap" Text="Commodity" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
-        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="178,655,0,0" TextWrapping="Wrap" Text="Amount" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
-        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="292,655,0,0" TextWrapping="Wrap" Text="Price" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="-0.178,0.48" TextDecorations="Underline" FontWeight="Bold"/>
-        <TextBox x:Name="BuyCommodityField" HorizontalAlignment="Left" Height="36" Margin="44,700,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
-        <TextBox x:Name="BuyPriceField" HorizontalAlignment="Left" Height="36" Margin="292,700,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.409,0.541"/>
-        <TextBox x:Name="BuyAmountField" HorizontalAlignment="Left" Height="36" Margin="167,700,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
-        <Button FontSize="20" Content="Start AMA" HorizontalAlignment="Left" Margin="44,108,0,0" VerticalAlignment="Top" Width="120" Name="amaButton" Height="52" Click="amaButton_Click"/>
-        <Button FontSize="20" Content="Refresh History" HorizontalAlignment="Left" Margin="648,539,0,0" VerticalAlignment="Top" Width="179" x:Name="HisrtoryButton" Height="38" Click="HisrtoryButton_Click"/>
-        <Button FontSize="20" Content="Buy" HorizontalAlignment="Left" Margin="410,698,0,0" VerticalAlignment="Top" Width="107" Height="38" x:Name="BuyButton" Click="BuyButton_Click"/>
-        <Button FontSize="20" Content="Sell" HorizontalAlignment="Left" Margin="410,597,0,0" VerticalAlignment="Top" Width="107" x:Name="SellButton" Click="SellButton_Click" Height="39"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="44,401,0,0" TextWrapping="Wrap" Text="Commodity" FontSize="20" VerticalAlignment="Top"  TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="179,401,0,0" TextWrapping="Wrap" Text="Amount" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="292,401,0,0" TextWrapping="Wrap" Text="Price" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="-0.178,0.48" TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBox x:Name="SellCommodityField" HorizontalAlignment="Left" Height="36" Margin="44,445,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="SellPriceField" HorizontalAlignment="Left" Height="36" Margin="292,445,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="SellAmountField" HorizontalAlignment="Left" Height="36" Margin="172,445,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.192,3.705"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="44,498,0,0" TextWrapping="Wrap" Text="Commodity" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="179,498,0,0" TextWrapping="Wrap" Text="Amount" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="292,498,0,0" TextWrapping="Wrap" Text="Price" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="-0.178,0.48" TextDecorations="Underline" FontWeight="Bold"/>
+        <TextBox x:Name="BuyCommodityField" HorizontalAlignment="Left" Height="36" Margin="44,541,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="BuyPriceField" HorizontalAlignment="Left" Height="36" Margin="292,541,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.409,0.541"/>
+        <TextBox x:Name="BuyAmountField" HorizontalAlignment="Left" Height="36" Margin="172,541,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
+		<Button FontSize="20" Content="Start AMA" HorizontalAlignment="Left" Margin="44,108,0,0" VerticalAlignment="Top" Width="120" Name="amaButton" Height="52"/>
+		<Button FontSize="20" Content="Buy" HorizontalAlignment="Left" Margin="410,539,0,0" VerticalAlignment="Top" Width="107" Height="38" x:Name="BuyButton" Click="BuyButton_Click"/>
+        <Button FontSize="20" Content="Sell" HorizontalAlignment="Left" Margin="410,442,0,0" VerticalAlignment="Top" Width="107" x:Name="SellButton" Click="SellButton_Click" Height="39"/>
         <Label Foreground="Wheat" Content="Welcome Back User!" HorizontalAlignment="Left" Margin="292,21,0,0" VerticalAlignment="Top" Name="labelTextView" FontSize="24"/>
-        <Label x:Name="UserDataLabel" Content="{Binding UserData}" HorizontalAlignment="Left" Margin="44,211,0,0" VerticalAlignment="Top" Background="#FFDFCBCB" RenderTransformOrigin="14.35,9.15"/>
+        <Label x:Name="UserDataLabel" Content="{Binding UserData}" HorizontalAlignment="Left" Margin="571,498,0,0" VerticalAlignment="Top" Background="#FFDFCBCB" RenderTransformOrigin="14.35,9.15"/>
         <DataGrid x:Name="AskBidDataGrid" Height="345" Margin="704,63,10,0" VerticalAlignment="Top"/>
         <DataGrid x:Name="ActiveRequest" Height="345" Margin="528,63,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="171"/>
         <DataGrid x:Name="HistoryDataGrid" HorizontalAlignment="Left" Height="328" Margin="179,68,0,0" VerticalAlignment="Top" Width="337" ItemsSource="{Binding History}" IsReadOnly="True"/>
-        <Button Content="Start User AMA" HorizontalAlignment="Left" Margin="410,497,0,0" VerticalAlignment="Top" Width="156" Height="38" FontSize="20" Name="UserAMAButton" Click="UserAMAButton_Click"/>
         <Grid.Background>
             <ImageBrush ImageSource="Images/bg.png" Stretch="UniformToFill"/>
         </Grid.Background>

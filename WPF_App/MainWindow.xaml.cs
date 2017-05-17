@@ -27,7 +27,6 @@ namespace WPF_App
 				rec.IsExecuted=!UserData.Requests.Contains(rec.RequestId);
 		}
 
-
 		private static void OnTimedEvent(Object source, ElapsedEventArgs e)
 		{
 			Updater();
@@ -65,12 +64,9 @@ namespace WPF_App
                     //market.SendCancelBuySellRequest(marketBuySell.Id);
                     //String output = Price+","+Commodity+","+Amount+","+"buy" ;
                     HistoryLogger.WriteHistory(marketBuySell.Id, "Buy", Commodity, Price, Amount);
-
                 }
                 else
-                {
-                    MessageBox.Show(marketBuySell.ToString());
-                }
+					MessageBox.Show(marketBuySell.ToString());
             }
             else
             {
@@ -100,19 +96,10 @@ namespace WPF_App
 
                 }
                 else
-                {
-                    MessageBox.Show(marketBuySell.ToString());
-                }
+					MessageBox.Show(marketBuySell.ToString());
             }
             else
-            {
-                MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
-
-        private void HisrtoryButton_Click(object sender, RoutedEventArgs e)
-        {
-           
+				MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void amaButton_Click(object sender, RoutedEventArgs e)
