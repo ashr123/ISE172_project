@@ -44,13 +44,17 @@ namespace LogicTier
         {
             if (!FLAG_isRunning)                     //for not creating lot of AMA functions running in parallel
             {
-                //ama buy
                 Random rnd = new Random();
                 int num = rnd.Next(0, 10);
-                AMA_Buy(num, 10, 5);
+                int buyORsell = rnd.Next(0, 2);
+
+                if (buyORsell == 1) //ama buy
+                    AMA_Buy(num, 15, 4);
+
+                else                    //ama sell
+                    AMA_Sell(num, 23, -1);                             //-1 means all
 
 
-                //ama sell
             }
 
 
@@ -101,8 +105,8 @@ namespace LogicTier
 
                     if (userData.Funds >= item.Info.Ask * amount)
                     {
-                        client.SendBuyRequest(item.Info.Ask + 1, commodity, amount);
-                        HistoryLogger.WriteHistory(item.Info.Ask + "," + commodity + "," + amount + "," + "new Buy Request");
+                        int ID = client.SendBuyRequest(item.Info.Ask + 1, commodity, amount).Id;
+                        HistoryLogger.WriteHistory("Buy," + commodity + "," + (item.Info.Ask + 1) + "," + amount + "," + ID);
                         counter++;
                     }
 
@@ -110,9 +114,55 @@ namespace LogicTier
 
             FLAG_isRunning = false;
             return;
-        }//AMA
+        }//AMAbuy
+
+
+
+        public static void AMA_Sell(int commodity, int desiredPrice, int amount)
+        {
+            FLAG_isRunning = true;
+
+            if (counter >= 16)                   //have to waste time, not overload the server
+            {
+                Thread.Sleep(10000);
+                counter = 0;
+            }
+
+            
+            MarketClientClass client = new MarketClientClass();
+            AllMarketRequest all = client.QueryAllMarketRequest();
+            counter++;
+
+            MarketUserData userData = client.SendQueryUserRequest();
+            counter++;
+
+            foreach (Dictionary<string, int> cmdty in userData.Commodities) {    //check if we own that commodity
+                if (cmdty.Tsring == commodity & cmdty.Tkey > 0)
+                {
+                    //passing on commodities list, until arriving the wished one
+                    foreach (ItemAskBid item in all.MarketInfo)
+                        if (item.Id == commodity && item.Info.Ask >= desiredPrice)
+                        {                        //if item is the right commodity & right price
+
+                            if (amount > cmdty.Tkey | amount ==-1)                //we cant sell more than we have OR -1 is our sign to sell ALL
+                                amount = cmdty.Tkey;
+
+
+                            int ID = client.SendSellRequest(item.Info.Bid - 1, commodity, amount).Id;
+                            HistoryLogger.WriteHistory("Sell," + commodity + "," + (item.Info.Bid - 1) + "," + amount + "," + ID);
+                            counter++;
+                        }
+                }
+            }
+
+            FLAG_isRunning = false;
+            return;
+        }//AMAsell
+
     }
-}
+    }
+
+
 
 
 
