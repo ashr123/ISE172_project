@@ -27,7 +27,7 @@ namespace DataTier.DataEntries
 				if (i!=Commodities.Keys.Last())
 					output+=", ";
 				else
-					output+="], Funds: "+Funds+", Requests: [";
+					output+="]\nFunds: "+Funds+"\nRequests: [";
 			}
 			foreach (int i in Requests)
 			{
