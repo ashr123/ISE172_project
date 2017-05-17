@@ -70,7 +70,7 @@ namespace WPF_App
             }
             else
             {
-                MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
+				MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
