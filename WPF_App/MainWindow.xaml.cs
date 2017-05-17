@@ -6,6 +6,7 @@ using DataTier.DataEntries;
 using System.Timers;
 using DataTier.Loggers;
 using System.Collections.Generic;
+using LogicTier;
 
 namespace WPF_App
 {
@@ -112,6 +113,16 @@ namespace WPF_App
         private void HisrtoryButton_Click(object sender, RoutedEventArgs e)
         {
            
+        }
+
+        private void amaButton_Click(object sender, RoutedEventArgs e)
+        {
+                Program.TimerOfAMA(true);
+        }
+
+        private void UserAMAButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

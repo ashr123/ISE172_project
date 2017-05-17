@@ -44,7 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="test2.cs" />
+    <Compile Include="UserAsksLink.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MarketClient\DataTier.csproj">
