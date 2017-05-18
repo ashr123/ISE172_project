@@ -32,7 +32,7 @@ namespace DataTier.Utils
             using (var txtreader = new StringReader(privateKey))
             {
                 var keyPair = (AsymmetricCipherKeyPair)new PemReader(txtreader).ReadObject();
-                RsaPrivateCrtKeyParameters rsaPrivKey = (RsaPrivateCrtKeyParameters)keyPair.Private;
+                RsaPrivateCrtKeyParameters rsaPrivKey=(RsaPrivateCrtKeyParameters)keyPair.Private;
                 RSAParameters rsaKeyInfo = Org.BouncyCastle.Security.DotNetUtilities.ToRSAParameters(rsaPrivKey);
                 return rsaKeyInfo;
             }

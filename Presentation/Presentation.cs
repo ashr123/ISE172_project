@@ -23,7 +23,6 @@ namespace PresentationTier
                     Console.WriteLine("1.To open a new request (buy/sell)\n2.To cancel an exist request\n3.To ask a query \n4.Exit");
                     input = Console.ReadLine();
                     enteredToDefault = false;
-
                 }
                 switch (input) //there are 3 cases: buy/sell request, cancel request, ask a query
                 {
@@ -34,13 +33,11 @@ namespace PresentationTier
                         CollectingInfoBUYSELL(input1);
 						enteredToDefault=false;
 						break;
-
                     case "2":
                         Console.WriteLine("You chose to cancel a request.\n");
                         CollectInfoCancelRequst();
 						enteredToDefault=false;
 						break;
-
                     case "3":
                         Console.WriteLine("You chose to ask a query.\n1.To buy/sellQuery\n2.To userQuery\n3.To marketQuery");
                         string input3 = Console.ReadLine();
@@ -48,19 +45,13 @@ namespace PresentationTier
                         CollectInfoQueryRequst(input3);
 						enteredToDefault=false;
 						break;
-
                     case "4":
                         return;
-
                     default:    //if the user pressed unknown key
-
                         input=IsLegalCombinedLoop(input, 4);
                         enteredToDefault = true;
                         break;
                 }//switch
-
-
-
             }
         }//main
 
@@ -80,7 +71,6 @@ namespace PresentationTier
         //only helping IsLegalCombinedLoop function
         private static bool CheckLegality(String s, int options)
         {
-
             if (s.Length != 1)
                 return false;
             for (int i = 1; i <= options; i++)
@@ -97,13 +87,11 @@ namespace PresentationTier
             return;
         }
 
-
         //this function activate - buy/sell request. it collect info from user - send it to Logic layer and prints an answer
         private static void CollectingInfoBUYSELL(string a)
         {
             //write more legallity checks
             int Commodity, Amount, Price;
-
             do
             {
                 Console.WriteLine("Please enter Commodity");
@@ -114,8 +102,7 @@ namespace PresentationTier
                 Price = Myconvert(Console.ReadLine());
             } while (Commodity == -1 | Amount == -1 | Price == -1);
 
-
-            MarketBuySell IDbuysell;
+			MarketBuySell IDbuysell;
             if (a.Equals("1")) //'1' means buy
             {
                 IDbuysell = client.SendBuyRequest(Price, Commodity, Amount);  //call to Logic layer func
@@ -130,7 +117,6 @@ namespace PresentationTier
             return;
         }//collect info buy-sell request
 
-
         //this function activate - cancel request. it collect info from user - send it to Logic layer and prints an answer
         private static void CollectInfoCancelRequst()
         {
@@ -142,21 +128,15 @@ namespace PresentationTier
                 (id == -1);
 
             bool ans = client.SendCancelBuySellRequest(id);  //call to Logic layer func
-
             if (ans == true)
                 Console.WriteLine("Cancellation succeed.\n");
             else
-                Console.WriteLine("Cancellation failed.\n");
-
-
-            //print answer
-
+                Console.WriteLine("Cancellation failed.\n"); //print answer
             return;
         }//collect info cancel request
 
         private static void CollectInfoQueryRequst(string a)
         {
-
             switch (a)
             {
                 case "1":    //buysellquery
@@ -168,14 +148,11 @@ namespace PresentationTier
 
                     MarketItemQuery data1 = client.SendQueryBuySellRequest(id);  //call to Logic layer func
                     Console.WriteLine(data1.ToString());  //print data on a certain deal
-
                     break;
-
                 case "2":   //user query
                     MarketUserData data2 = client.SendQueryUserRequest();
                     Console.WriteLine(data2.ToString());
                     break;
-
                 case "3":   //market query
                     int commodity;
                     Console.WriteLine("Please enter the Commodity\n");
@@ -185,9 +162,7 @@ namespace PresentationTier
 
                     MarketCommodityOffer data3 = client.SendQueryMarketRequest(commodity);   //call to Logic layer func
                     Console.WriteLine(data3.ToString());
-
                     break;
-
             }//switch
             return;
         }//collect info query

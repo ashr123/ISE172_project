@@ -32,7 +32,7 @@
 			</DataGrid.Columns>
 		</DataGrid>
 		<DataGrid x:Name="AskBidDataGrid" Height="328" Margin="546,63,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ItemsSource="{Binding MarketData1}" IsReadOnly="True"/>
-		<DataGrid x:Name="HistoryDataGrid" Height="328" Margin="722,63,0,0" VerticalAlignment="Top" ItemsSource="{Binding History}" IsReadOnly="True" HorizontalAlignment="Left" Sorting="HistoryDataGrid_Sorting"/>
+		<DataGrid x:Name="HistoryDataGrid" Height="328" Margin="722,63,0,0" VerticalAlignment="Top" ItemsSource="{Binding History}" IsReadOnly="True" HorizontalAlignment="Left"/>
 		<Button x:Name="ManualAMAButton" Content="Start manual AMA" HorizontalAlignment="Left" Margin="528,507,0,0" VerticalAlignment="Top" FontSize="20"/>
 		<TextBox x:Name="AMACommodityField" HorizontalAlignment="Left" Height="36" Margin="166,507,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.85,0.693" />
 		<TextBox x:Name="AMAAmountField" HorizontalAlignment="Left" Height="36" Margin="285,507,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>

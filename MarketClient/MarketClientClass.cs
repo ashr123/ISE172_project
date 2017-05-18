@@ -36,7 +36,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 		{
 			try
 			{
-				return new AllMarketRequest()
+				return new AllMarketRequest
 				{
 					MarketInfo=SimpleHTTPClient.SendPostRequest<QueryAllMarketRequest, List<ItemAskBid>>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new QueryAllMarketRequest())
 				};
@@ -52,7 +52,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 		{
 			try
 			{
-				return new MarketUserRequests()
+				return new MarketUserRequests
 				{
 					Requests=SimpleHTTPClient.SendPostRequest<QueryUserRequests, List<AllDataRequest>>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new QueryUserRequests())
 				};
@@ -69,7 +69,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 			//Console.WriteLine(ans);
 			try
 			{
-				return new MarketBuySell()
+				return new MarketBuySell
 				{
 					Id=Int32.Parse(SimpleHTTPClient.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new BuyRequest(commodity, amount, price)))
 				};

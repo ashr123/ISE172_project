@@ -37,7 +37,7 @@ namespace WPF_App
 			MarketData1=new ObservableCollection<MarketData>();
 			MarketRequests1=new ObservableCollection<MarketRequests>();
 			foreach (AllDataRequest item in MarketDataTemp.Requests)
-				MarketRequests1.Add(new MarketRequests()
+				MarketRequests1.Add(new MarketRequests
 				{
 					Id=item.Id,
 					Type=item.Request.Type,
@@ -46,7 +46,7 @@ namespace WPF_App
 					Price=item.Request.Price
 				});
 			foreach (ItemAskBid item in MarketRequestsTemp.MarketInfo)
-				MarketData1.Add(new MarketData()
+				MarketData1.Add(new MarketData
 				{
 					Id=item.Id,
 					Ask=item.Info.Ask,
@@ -135,10 +135,10 @@ namespace WPF_App
 
         private void AmaButton_Click(object sender, RoutedEventArgs e)
         {
-			//if (ManualAMAButton.IsEnabled)
-				//AMA.TimerOfAMA(true);
-			//else
-				//AMA.TimerOfAMA(false);
+			if (ManualAMAButton.IsEnabled)
+				AMA.TimerOfAMA(true);
+			else
+				AMA.TimerOfAMA(false);
 			ManualAMAButton.IsEnabled=!ManualAMAButton.IsEnabled;
 			BuyButton.IsEnabled=!BuyButton.IsEnabled;
 			SellButton.IsEnabled=!SellButton.IsEnabled;
@@ -203,11 +203,6 @@ namespace WPF_App
 				}
 			Updater();
 			Trace.WriteLine(int.Parse(((Button)sender).CommandParameter.ToString()));
-		}
-
-		private void HistoryDataGrid_Sorting(object sender, DataGridSortingEventArgs e)
-		{
-			
 		}
 	}
 }
