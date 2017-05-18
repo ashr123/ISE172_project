@@ -11,7 +11,7 @@ using System.Threading;
 
 namespace LogicTier
 {
-    public class Program
+    public class AMA
     {
         //Note: tell Saar turn on both timers while gui is running
         private static System.Timers.Timer amaAutoTimer;

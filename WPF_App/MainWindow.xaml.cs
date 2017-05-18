@@ -129,7 +129,7 @@ namespace WPF_App
 
         private void AmaButton_Click(object sender, RoutedEventArgs e)
         {
-                Program.TimerOfAMA(true);
+                AMA.TimerOfAMA(true);
         }
 
 		public class MarketData
