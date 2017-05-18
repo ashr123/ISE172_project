@@ -7,6 +7,7 @@ using System.Timers;
 using DataTier.Loggers;
 using System.Collections.Generic;
 using LogicTier;
+using System.Diagnostics;
 
 namespace WPF_App
 {
@@ -18,10 +19,22 @@ namespace WPF_App
 		private static readonly IMarketClient market = new MarketClientClass();
 		public static MarketUserData UserData { get; set; }
 		public static List<Record> History { get; set; }
+		public static List<MarketRequest> MarketRequests { get; set; }
 
 		private static void Updater()
 		{
-			UserData=market.SendQueryUserRequest();
+			AllMarketRequest MarketRequestsTemp = market.QueryAllMarketRequest();
+			UserData =market.SendQueryUserRequest();
+			MarketRequests=new List<MarketRequest>();
+			foreach (ItemAskBid item in MarketRequestsTemp.MarketInfo)
+			{
+				MarketRequests.Add(new MarketRequest()
+				{
+					Id=item.Id,
+					Ask=item.Info.Ask,
+					Bid=item.Info.Bid,
+				});
+			}
 			History=HistoryLogger.ReadHistory();
 			foreach (Record rec in History)
 				rec.IsExecuted=!UserData.Requests.Contains(rec.RequestId);
@@ -106,5 +119,17 @@ namespace WPF_App
         {
                 Program.TimerOfAMA(true);
         }
+
+		public class MarketRequest
+		{
+			public int Id { get; set; }
+			public int Ask { get; set; }
+			public int Bid { get; set; }
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			Trace.WriteLine(int.Parse(((Button)sender).CommandParameter.ToString()));
+		}
 	}
 }
