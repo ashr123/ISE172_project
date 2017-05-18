@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.IO;
 using log4net;
 using System.Collections.ObjectModel;
-using System.Globalization;
 
 namespace DataTier.Loggers
 {
@@ -30,7 +29,6 @@ namespace DataTier.Loggers
 				string[] temp = line.Split(',');
 				output.Add(new Record()
 				{
-					//Time=Convert.ToDateTime(temp[0]),
 					Time=Convert.ToDateTime(temp[0]).ToString(),
 					RequestId=Int32.Parse(temp[1]),
 					//IsExecuted=!UserActiveRequests.Contains(Int32.Parse(temp[1])),
