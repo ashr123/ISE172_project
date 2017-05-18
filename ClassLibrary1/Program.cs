@@ -34,7 +34,7 @@ namespace LogicTier
             if (amaAutoTimer == null)     //creates only one instance
             {
                 amaAutoTimer = new System.Timers.Timer(2000);
-                amaAutoTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+                amaAutoTimer.Elapsed += new ElapsedEventHandler(OnAMAEvent);
                 amaAutoTimer.AutoReset = true;
             }
 
@@ -50,7 +50,7 @@ namespace LogicTier
         }
 
 
-        private static void OnTimedEvent(object sender, EventArgs e)
+        private static void OnAMAEvent(object sender, EventArgs e)
         {
             if (!FLAG_isRunning)                     //for not creating lot of AMA functions running in parallel
             {
@@ -72,7 +72,7 @@ namespace LogicTier
 
         }
 
-        public static void TimerOfUserAsks(List<UserAsksLink> userListCommands)
+        public static void TimerOfAutoUser(List<UserAsksLink> userListCommands)
         {
             TimerOfAMA(false);
 
@@ -225,8 +225,8 @@ namespace LogicTier
 
 
 
-    }
-    }
+    }//class
+    }//namespace
 
 
 
