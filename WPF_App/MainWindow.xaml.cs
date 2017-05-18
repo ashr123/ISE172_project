@@ -19,22 +19,34 @@ namespace WPF_App
 		private static readonly IMarketClient market = new MarketClientClass();
 		public static MarketUserData UserData { get; set; }
 		public static List<Record> History { get; set; }
-		public static List<MarketRequest> MarketRequests { get; set; }
+		public static List<MarketData> MarketData1 { get; set; }
+		public static List<MarketRequests> MarketRequests1 { get; set; }
 
 		private static void Updater()
 		{
 			AllMarketRequest MarketRequestsTemp = market.QueryAllMarketRequest();
-			UserData =market.SendQueryUserRequest();
-			MarketRequests=new List<MarketRequest>();
-			foreach (ItemAskBid item in MarketRequestsTemp.MarketInfo)
+			UserData=market.SendQueryUserRequest();
+			MarketUserRequests MarketDataTemp=market.QueryUserRequests();
+			MarketData1 =new List<MarketData>();
+			MarketRequests1=new List<MarketRequests>();
+			foreach (AllDataRequest item in MarketDataTemp.Requests)
 			{
-				MarketRequests.Add(new MarketRequest()
+				MarketRequests1.Add(new MarketRequests()
+				{
+					Id=item.Id,
+					Type=item.Request.Type,
+					Commodity=item.Request.Commodity,
+					Amount=item.Request.Amount,
+					Price=item.Request.Price
+				});
+			}
+			foreach (ItemAskBid item in MarketRequestsTemp.MarketInfo)
+				MarketData1.Add(new MarketData()
 				{
 					Id=item.Id,
 					Ask=item.Info.Ask,
 					Bid=item.Info.Bid,
 				});
-			}
 			History=HistoryLogger.ReadHistory();
 			foreach (Record rec in History)
 				rec.IsExecuted=!UserData.Requests.Contains(rec.RequestId);
@@ -120,11 +132,19 @@ namespace WPF_App
                 Program.TimerOfAMA(true);
         }
 
-		public class MarketRequest
+		public class MarketData
 		{
 			public int Id { get; set; }
 			public int Ask { get; set; }
 			public int Bid { get; set; }
+		}
+		public class MarketRequests
+		{
+			public int Id { get; set; }
+			public string Type { get; set; }
+			public int Commodity { get; set; }
+			public int Amount { get; set; }
+			public int Price { get; set; }
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)

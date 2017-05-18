@@ -18,7 +18,7 @@ namespace DataTier
 			Timer a = new Timer(3000);
 			IMarketClient market = new MarketClientClass();
 			a.Elapsed+=new ElapsedEventHandler(OnTimedEvent);
-			Console.WriteLine(market.SendCancelBuySellRequest(5772569));
+			Console.WriteLine(market.SendBuyRequest(3, 9, 2));
 			Console.WriteLine(market.SendQueryUserRequest());
 			Console.WriteLine(market.QueryUserRequests());
 			Console.WriteLine(market.QueryAllMarketRequest());

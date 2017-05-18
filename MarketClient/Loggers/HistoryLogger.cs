@@ -44,8 +44,8 @@ namespace DataTier.Loggers
 	public class Record
 	{
 		public bool IsExecuted { get; set; }
-		public int RequestId { get; set; }
 		public DateTime Time { get; set; }
+		public int RequestId { get; set; }
 		public string Action { get; set; }
 		public int Commodity { get; set; }
 		public int Price { get; set; }
