@@ -27,7 +27,7 @@ namespace DataTier.Loggers
 			foreach (string line in history)
 			{
 				string[] temp = line.Split(',');
-				output.Add(new Record()
+				output.Add(new Record
 				{
 					Time=Convert.ToDateTime(temp[0]).ToString(),
 					RequestId=Int32.Parse(temp[1]),
