@@ -22,6 +22,11 @@ namespace WPF_App
 		public ObservableCollection<Record>  History { get; set; }
 		public static ObservableCollection<MarketData> MarketData1 { get; set; }
 		public static ObservableCollection<MarketRequests> MarketRequests1 { get; set; }
+		private static DispatcherTimer timer = new DispatcherTimer()
+		{
+			Interval=TimeSpan.FromSeconds(10),
+			IsEnabled=true
+		};
 
 		public void Updater()
 		{
@@ -59,7 +64,7 @@ namespace WPF_App
 			HistoryDataGrid.ItemsSource=History;
 			ActiveRequest.ItemsSource=MarketRequests1;
 			AskBidDataGrid.ItemsSource=MarketData1;
-			UserDataLabel.Content=market.SendQueryUserRequest();
+			UserDataLabel.Content=UserData;
 		}
 
 		public void OnTimedEvent(Object source, EventArgs e)
@@ -73,23 +78,18 @@ namespace WPF_App
 			InitializeComponent();
 			DataContext=this;
 			Updater();
-			DispatcherTimer timer=new DispatcherTimer()
-			{
-				Interval=TimeSpan.FromSeconds(10),
-				IsEnabled=true
-			};
 			timer.Tick+=OnTimedEvent;
         }
 
         private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!(Int32.TryParse(BuyCommodityField.Text, out int Commodity)))
-                MessageBox.Show("Invalid Commodity", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-            if (!(Int32.TryParse(BuyPriceField.Text, out int Price)))
-                MessageBox.Show("Invalid Price", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-            if (!(Int32.TryParse(BuyAmountField.Text, out int Amount)))
-                MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-            if (Commodity > 0 || Price > 0 || Amount > 0)
+			if (!(Int32.TryParse(SellCommodityField.Text, out int Commodity)))
+				MessageBox.Show("Invalid Commodity", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+			if (!(Int32.TryParse(SellPriceField.Text, out int Price)))
+				MessageBox.Show("Invalid Price", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+			if (!(Int32.TryParse(SellAmountField.Text, out int Amount)))
+				MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+			if (Commodity > 0 || Price > 0 || Amount > 0)
             {
                 //BuySellObject myObject = new BuySellObject(Operation.Buy, Commodity, Price, Amount);
                 IMarketClient market = new MarketClientClass();
@@ -100,6 +100,7 @@ namespace WPF_App
                     //market.SendCancelBuySellRequest(marketBuySell.Id);
                     //String output = Price+","+Commodity+","+Amount+","+"buy" ;
                     HistoryLogger.WriteHistory(marketBuySell.Id, "Buy", Commodity, Price, Amount);
+					Updater();
                 }
                 else
 					MessageBox.Show(marketBuySell.ToString());
@@ -129,7 +130,7 @@ namespace WPF_App
                     //market.SendCancelBuySellRequest(marketBuySell.Id);
                     //String output = Price+","+Commodity+","+Amount+","+"buy" ;
                     HistoryLogger.WriteHistory(marketBuySell.Id, "Sell", Commodity, Price, Amount);
-
+					Updater();
                 }
                 else
 					MessageBox.Show(marketBuySell.ToString());
@@ -140,8 +141,35 @@ namespace WPF_App
 
         private void AmaButton_Click(object sender, RoutedEventArgs e)
         {
-                AMA.TimerOfAMA(true);
-        }
+			if (ManualAMAButton.IsEnabled)
+			{
+				AMA.TimerOfAMA(true);
+				ManualAMAButton.IsEnabled=false;
+				BuyButton.IsEnabled=false;
+				SellButton.IsEnabled=false;
+				AMAPriceField.IsEnabled=false;
+				AMAAmountField.IsEnabled=false;
+				AMACommodityField.IsEnabled=false;
+				AMAbuyORsellField.IsEnabled=false;
+				SellPriceField.IsEnabled=false;
+				SellAmountField.IsEnabled=false;
+				SellCommodityField.IsEnabled=false;
+			}
+			else
+			{
+				AMA.TimerOfAMA(false);
+				ManualAMAButton.IsEnabled=true;
+				BuyButton.IsEnabled=true;
+				SellButton.IsEnabled=true;
+				AMAPriceField.IsEnabled=true;
+				AMAAmountField.IsEnabled=true;
+				AMACommodityField.IsEnabled=true;
+				AMAbuyORsellField.IsEnabled=true;
+				SellPriceField.IsEnabled=true;
+				SellAmountField.IsEnabled=true;
+				SellCommodityField.IsEnabled=true;
+			}
+		}
 
 		public class MarketData
 		{
