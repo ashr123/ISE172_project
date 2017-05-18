@@ -75,7 +75,7 @@ namespace LogicTier
         {
             TimerOfAMA(false);
 
-            userCommands = userListCommands;         //refreshing the user commands 
+            userCommands = userListCommands;         //refreshing the user commands field
 
             //Note: tell saar to always keep old list as a field
 
@@ -143,10 +143,12 @@ namespace LogicTier
 
                                 MarketItemQuery request = client.SendQueryBuySellRequest(l[i]);
                                 counter++;
-                            if (request.Type.Equals("buy"))    //Note: check with roey
-                            {
 
-                                client.SendCancelBuySellRequest(reqID);
+                            //wish to cancel only buy requests. only this kind of canceling request give back money
+                            //func SendCancelBuySellRequest returns bool - of the action passed successfuly
+                            if (request.Type.Equals("buy") && client.SendCancelBuySellRequest(reqID))    
+                            {
+                                
 								HistoryLogger.WriteHistory(reqID, "Cancel", request.Commodity, request.Price, request.Amount);
 								counter++;
 
@@ -157,10 +159,16 @@ namespace LogicTier
 
             if (userData.Funds >= item.Info.Ask * amount)
             {
-                int ID = client.SendBuyRequest(item.Info.Ask + 1, commodity, amount).Id;
-                //HistoryLogger.WriteHistory("Buy," + commodity + "," + (item.Info.Ask + 1) + "," + amount + "," + ID);
-						HistoryLogger.WriteHistory(ID, "Buy", commodity, item.Info.Ask+1, amount);
-						counter++;
+                        MarketBuySell buyreq = client.SendBuyRequest(item.Info.Ask + 1, commodity, amount);
+                        counter++;
+
+                        if (buyreq.Error == null)          //the buy req is successfuly passed to the server
+                        {
+                            int ID = buyreq.Id;
+                            HistoryLogger.WriteHistory(ID, "Buy", commodity, item.Info.Ask + 1, amount);
+
+                        }
+                
             }
 
         }//bigIf
@@ -196,13 +204,15 @@ namespace LogicTier
                             if (amount > userData.Commodities[cmdty] || amount ==-1)                //we cant sell more than we have OR -1 is our sign to sell ALL
                                 amount = userData.Commodities[cmdty];
 
-                            //Note: ask roey about error
-                            int ID = client.SendSellRequest(item.Info.Bid - 1, commodity, amount).Id;
-                            //HistoryLogger.WriteHistory("Sell," + commodity + "," + (item.Info.Bid - 1) + "," + amount + "," + ID);
-							HistoryLogger.WriteHistory(ID, "Sell", commodity, item.Info.Bid-1, amount);
+                            MarketBuySell sellreq= client.SendSellRequest(item.Info.Bid - 1, commodity, amount);
+                            counter++;
 
+                            if (sellreq.Error == null)        //the sell req is successfuly passed to the server
+                            {
+                                int ID = sellreq.Id;
+                                HistoryLogger.WriteHistory(ID, "Sell", commodity, item.Info.Bid - 1, amount);
+                            }
 
-							counter++;
                         }
                 }
             }
