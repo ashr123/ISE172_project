@@ -186,16 +186,16 @@ namespace LogicTier
             MarketUserData userData = client.SendQueryUserRequest();
             counter++;
 
-            foreach (int cmdty in userData.Commodities.Keys) {    //check if we own that commodity
-                if (cmdty == commodity & cmdty.Tkey > 0)
-                {
-                    //passing on commodities list, until arriving the wished one
+            foreach (int cmdty in userData.Commodities.Keys) {         //check if we own that commodity
+                if (cmdty == commodity & userData.Commodities[cmdty] > 0)
+                {                                   //passing on commodities list, until arriving the wished one
+
                     foreach (ItemAskBid item in all.MarketInfo)
                         if (item.Id == commodity && item.Info.Bid >= desiredPrice)
                         {                        //if item is the right commodity & right price
 
-                            if (amount > cmdty.Tkey | amount ==-1)                //we cant sell more than we have OR -1 is our sign to sell ALL
-                                amount = cmdty.Tkey;
+                            if (amount > userData.Commodities[cmdty] | amount ==-1)                //we cant sell more than we have OR -1 is our sign to sell ALL
+                                amount = userData.Commodities[cmdty];
 
                             //Note: ask roey about error
                             int ID = client.SendSellRequest(item.Info.Bid - 1, commodity, amount).Id;
