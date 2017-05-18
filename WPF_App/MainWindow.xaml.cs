@@ -9,6 +9,7 @@ using LogicTier;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Windows.Threading;
+using System.Linq;
 
 namespace WPF_App
 {
@@ -22,7 +23,7 @@ namespace WPF_App
 		public static ObservableCollection<Record>  History { get; set; }
 		public static ObservableCollection<MarketData> MarketData1 { get; set; }
 		public static ObservableCollection<MarketRequests> MarketRequests1 { get; set; }
-		private static DispatcherTimer timer = new DispatcherTimer()
+		private static DispatcherTimer timer=new DispatcherTimer()
 		{
 			Interval=TimeSpan.FromSeconds(10),
 			IsEnabled=true
@@ -30,13 +31,12 @@ namespace WPF_App
 
 		public void Updater()
 		{
-			AllMarketRequest MarketRequestsTemp = market.QueryAllMarketRequest();
+			AllMarketRequest MarketRequestsTemp=market.QueryAllMarketRequest();
 			UserData=market.SendQueryUserRequest();
 			MarketUserRequests MarketDataTemp=market.QueryUserRequests();
 			MarketData1=new ObservableCollection<MarketData>();
 			MarketRequests1=new ObservableCollection<MarketRequests>();
 			foreach (AllDataRequest item in MarketDataTemp.Requests)
-			{
 				MarketRequests1.Add(new MarketRequests()
 				{
 					Id=item.Id,
@@ -45,7 +45,6 @@ namespace WPF_App
 					Amount=item.Request.Amount,
 					Price=item.Request.Price
 				});
-			}
 			foreach (ItemAskBid item in MarketRequestsTemp.MarketInfo)
 				MarketData1.Add(new MarketData()
 				{
@@ -56,6 +55,7 @@ namespace WPF_App
 			History=HistoryLogger.ReadHistory();
 			foreach (Record rec in History)
 				rec.IsExecuted=!UserData.Requests.Contains(rec.RequestId);
+			History=new ObservableCollection<Record>(History.OrderByDescending(a => a.Time));
 			UpdateItemSources();
 		}
 
@@ -135,10 +135,10 @@ namespace WPF_App
 
         private void AmaButton_Click(object sender, RoutedEventArgs e)
         {
-			if (ManualAMAButton.IsEnabled)
-				AMA.TimerOfAMA(true);
-			else
-				AMA.TimerOfAMA(false);
+			//if (ManualAMAButton.IsEnabled)
+				//AMA.TimerOfAMA(true);
+			//else
+				//AMA.TimerOfAMA(false);
 			ManualAMAButton.IsEnabled=!ManualAMAButton.IsEnabled;
 			BuyButton.IsEnabled=!BuyButton.IsEnabled;
 			SellButton.IsEnabled=!SellButton.IsEnabled;
@@ -166,20 +166,6 @@ namespace WPF_App
 			public int Price { get; set; }
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
-		{
-			market.SendCancelBuySellRequest(int.Parse(((Button)sender).CommandParameter.ToString()));
-			//MessageBox.Show(market.SendCancelBuySellRequest(int.Parse(((Button)sender).CommandParameter.ToString())).ToString(), "Approval", MessageBoxButton.OK, MessageBoxImage.Information);
-			foreach (MarketRequests item in MarketRequests1)
-				if (item.Id==int.Parse(((Button)sender).CommandParameter.ToString()))
-				{
-					HistoryLogger.WriteHistory(item.Id, "Delete", item.Commodity, item.Price, item.Amount);
-					break;
-				}
-			Updater();
-			Trace.WriteLine(int.Parse(((Button)sender).CommandParameter.ToString()));
-		}
-
 		private void BuyButton_Click_1(object sender, RoutedEventArgs e)
 		{
 			if (!(Int32.TryParse(SellCommodityField.Text, out int Commodity)))
@@ -203,6 +189,25 @@ namespace WPF_App
 			}
 			else
 				MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
+		}
+
+		private void CancelRequestButton_Click(object sender, RoutedEventArgs e)
+		{
+			market.SendCancelBuySellRequest(int.Parse(((Button)sender).CommandParameter.ToString()));
+			//MessageBox.Show(market.SendCancelBuySellRequest(int.Parse(((Button)sender).CommandParameter.ToString())).ToString(), "Approval", MessageBoxButton.OK, MessageBoxImage.Information);
+			foreach (MarketRequests item in MarketRequests1)
+				if (item.Id==int.Parse(((Button)sender).CommandParameter.ToString()))
+				{
+					HistoryLogger.WriteHistory(item.Id, "Delete", item.Commodity, item.Price, item.Amount);
+					break;
+				}
+			Updater();
+			Trace.WriteLine(int.Parse(((Button)sender).CommandParameter.ToString()));
+		}
+
+		private void HistoryDataGrid_Sorting(object sender, DataGridSortingEventArgs e)
+		{
+			
 		}
 	}
 }
