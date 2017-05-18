@@ -136,33 +136,19 @@ namespace WPF_App
         private void AmaButton_Click(object sender, RoutedEventArgs e)
         {
 			if (ManualAMAButton.IsEnabled)
-			{
 				AMA.TimerOfAMA(true);
-				ManualAMAButton.IsEnabled=false;
-				BuyButton.IsEnabled=false;
-				SellButton.IsEnabled=false;
-				AMAPriceField.IsEnabled=false;
-				AMAAmountField.IsEnabled=false;
-				AMACommodityField.IsEnabled=false;
-				AMAbuyORsellField.IsEnabled=false;
-				SellPriceField.IsEnabled=false;
-				SellAmountField.IsEnabled=false;
-				SellCommodityField.IsEnabled=false;
-			}
 			else
-			{
 				AMA.TimerOfAMA(false);
-				ManualAMAButton.IsEnabled=true;
-				BuyButton.IsEnabled=true;
-				SellButton.IsEnabled=true;
-				AMAPriceField.IsEnabled=true;
-				AMAAmountField.IsEnabled=true;
-				AMACommodityField.IsEnabled=true;
-				AMAbuyORsellField.IsEnabled=true;
-				SellPriceField.IsEnabled=true;
-				SellAmountField.IsEnabled=true;
-				SellCommodityField.IsEnabled=true;
-			}
+			ManualAMAButton.IsEnabled=!ManualAMAButton.IsEnabled;
+			BuyButton.IsEnabled=!BuyButton.IsEnabled;
+			SellButton.IsEnabled=!SellButton.IsEnabled;
+			AMAPriceField.IsEnabled=!AMAPriceField.IsEnabled;
+			AMAAmountField.IsEnabled=!AMAAmountField.IsEnabled;
+			AMACommodityField.IsEnabled=!AMACommodityField.IsEnabled;
+			AMAbuyORsellField.IsEnabled=!AMAbuyORsellField.IsEnabled;
+			SellPriceField.IsEnabled=!SellPriceField.IsEnabled;
+			SellAmountField.IsEnabled=!SellAmountField.IsEnabled;
+			SellCommodityField.IsEnabled=!SellCommodityField.IsEnabled;
 		}
 
 		public class MarketData
