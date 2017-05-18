@@ -26,7 +26,7 @@
 		<Button FontSize="20" Content="Sell" HorizontalAlignment="Left" Margin="410,602,0,0" VerticalAlignment="Top" Width="107" x:Name="SellButton" Click="SellButton_Click" Height="39"/>
 		<Label Foreground="Wheat" Content="Welcome Back User!" HorizontalAlignment="Left" Margin="292,21,0,0" VerticalAlignment="Top" Name="labelTextView" FontSize="24"/>
 		<Label x:Name="UserDataLabel" Content="{Binding UserData}" HorizontalAlignment="Left" Margin="593,602,0,0" VerticalAlignment="Top" Background="#FFDFCBCB" RenderTransformOrigin="14.35,9.15"/>
-		<DataGrid x:Name="ActiveRequest" Height="328" Margin="167,63,757,0" VerticalAlignment="Top" IsReadOnly="True" ItemsSource="{Binding MarketRequests1}">
+		<DataGrid x:Name="ActiveRequest" Height="328" Margin="167,63,0,0" VerticalAlignment="Top" IsReadOnly="True" ItemsSource="{Binding MarketRequests1}" HorizontalAlignment="Left">
 			<DataGrid.Columns>
 				<DataGridTemplateColumn Header="Cancel Request">
 					<DataGridTemplateColumn.CellTemplate>
@@ -37,8 +37,8 @@
 				</DataGridTemplateColumn>
 			</DataGrid.Columns>
 		</DataGrid>
-		<DataGrid x:Name="AskBidDataGrid" Height="328" Margin="546,63,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="171" ItemsSource="{Binding MarketData1}" IsReadOnly="True"/>
-		<DataGrid x:Name="HistoryDataGrid" HorizontalAlignment="Left" Height="328" Margin="722,63,-139,0" VerticalAlignment="Top" Width="500" ItemsSource="{Binding History}" IsReadOnly="True"/>
+		<DataGrid x:Name="AskBidDataGrid" Height="328" Margin="546,63,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ItemsSource="{Binding MarketData1}" IsReadOnly="True"/>
+		<DataGrid x:Name="HistoryDataGrid" Height="328" Margin="722,63,0,0" VerticalAlignment="Top" ItemsSource="{Binding History}" IsReadOnly="True" HorizontalAlignment="Left"/>
 		<Button Content="Start manual AMA" HorizontalAlignment="Left" Margin="528,507,0,0" VerticalAlignment="Top" Width="189" Height="36" FontSize="20"/>
 		<TextBox x:Name="AMACommodityField" HorizontalAlignment="Left" Height="36" Margin="166,507,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.85,0.693" />
 		<TextBox x:Name="AMAAmountField" HorizontalAlignment="Left" Height="36" Margin="285,507,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>

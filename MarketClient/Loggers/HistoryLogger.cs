@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using log4net;
+using System.Collections.ObjectModel;
 
 namespace DataTier.Loggers
 {
@@ -18,11 +19,11 @@ namespace DataTier.Loggers
 			myLogger.Info(requestId+","+action+','+commodity+','+price+','+amount);
 		}
 
-		public static List<Record> ReadHistory()
+		public static ObservableCollection<Record> ReadHistory()
 		{
 			//List<int> UserActiveRequests=new MarketClientClass().SendQueryUserRequest().Requests;
 			string[] history = File.ReadAllLines(@"..\..\..\Log\history.txt");
-			List<Record> output = new List<Record>();
+			ObservableCollection<Record> output = new ObservableCollection<Record>();
 			foreach (string line in history)
 			{
 				string[] temp = line.Split(',');

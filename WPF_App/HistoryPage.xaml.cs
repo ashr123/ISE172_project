@@ -28,7 +28,7 @@ namespace WPF_App
 		public HistoryPage()
         {
 			InitializeComponent();
-			History=HistoryLogger.ReadHistory();
+			//History=HistoryLogger.ReadHistory();
 			//UserActiveRequests=new MarketClientClass().SendQueryUserRequest().Requests;
 			DataContext =this;
         }

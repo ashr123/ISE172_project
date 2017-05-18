@@ -3,11 +3,12 @@ using System.Windows;
 using System.Windows.Controls;
 using DataTier;
 using DataTier.DataEntries;
-using System.Timers;
 using DataTier.Loggers;
 using System.Collections.Generic;
 using LogicTier;
 using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.Windows.Threading;
 
 namespace WPF_App
 {
@@ -18,17 +19,17 @@ namespace WPF_App
     {
 		private static readonly IMarketClient market = new MarketClientClass();
 		public static MarketUserData UserData { get; set; }
-		public static List<Record> History { get; set; }
-		public static List<MarketData> MarketData1 { get; set; }
-		public static List<MarketRequests> MarketRequests1 { get; set; }
+		public ObservableCollection<Record>  History { get; set; }
+		public static ObservableCollection<MarketData> MarketData1 { get; set; }
+		public static ObservableCollection<MarketRequests> MarketRequests1 { get; set; }
 
-		private static void Updater()
+		public void Updater()
 		{
 			AllMarketRequest MarketRequestsTemp = market.QueryAllMarketRequest();
 			UserData=market.SendQueryUserRequest();
 			MarketUserRequests MarketDataTemp=market.QueryUserRequests();
-			MarketData1 =new List<MarketData>();
-			MarketRequests1=new List<MarketRequests>();
+			MarketData1=new ObservableCollection<MarketData>();
+			MarketRequests1=new ObservableCollection<MarketRequests>();
 			foreach (AllDataRequest item in MarketDataTemp.Requests)
 			{
 				MarketRequests1.Add(new MarketRequests()
@@ -50,11 +51,21 @@ namespace WPF_App
 			History=HistoryLogger.ReadHistory();
 			foreach (Record rec in History)
 				rec.IsExecuted=!UserData.Requests.Contains(rec.RequestId);
+			UpdateItemSources();
 		}
 
-		private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+		private void UpdateItemSources()
+		{
+			HistoryDataGrid.ItemsSource=History;
+			ActiveRequest.ItemsSource=MarketRequests1;
+			AskBidDataGrid.ItemsSource=MarketData1;
+			UserDataLabel.Content=market.SendQueryUserRequest();
+		}
+
+		public void OnTimedEvent(Object source, EventArgs e)
 		{
 			Updater();
+			Trace.WriteLine("TTTTTTIIIIIIMMMMMMEEEEEERRRRRR");
 		}
 
 		public MainWindow()
@@ -62,12 +73,12 @@ namespace WPF_App
 			InitializeComponent();
 			DataContext=this;
 			Updater();
-			Timer UserDataUpdater = new Timer(10000)
+			DispatcherTimer timer=new DispatcherTimer()
 			{
-				AutoReset=true,
-				Enabled=true
+				Interval=TimeSpan.FromSeconds(10),
+				IsEnabled=true
 			};
-			UserDataUpdater.Elapsed+=OnTimedEvent;
+			timer.Tick+=OnTimedEvent;
         }
 
         private void BuyButton_Click(object sender, RoutedEventArgs e)
@@ -149,6 +160,15 @@ namespace WPF_App
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
+			market.SendCancelBuySellRequest(int.Parse(((Button)sender).CommandParameter.ToString()));
+			//MessageBox.Show(market.SendCancelBuySellRequest(int.Parse(((Button)sender).CommandParameter.ToString())).ToString(), "Approval", MessageBoxButton.OK, MessageBoxImage.Information);
+			foreach (MarketRequests item in MarketRequests1)
+				if (item.Id==int.Parse(((Button)sender).CommandParameter.ToString()))
+				{
+					HistoryLogger.WriteHistory(item.Id, "Delete", item.Commodity, item.Price, item.Amount);
+					break;
+				}
+			Updater();
 			Trace.WriteLine(int.Parse(((Button)sender).CommandParameter.ToString()));
 		}
 	}

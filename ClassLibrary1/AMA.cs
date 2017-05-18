@@ -97,12 +97,12 @@ namespace LogicTier
             {
                 foreach (UserAsksLink ask in userCommands)
                 {
-                    if (ask.buyORsell == true)   //user wants to buy
-                        AMA_Buy(ask.commodity, ask.desiredPrice, ask.amount);
+                    if (ask.BuyORsell == true)   //user wants to buy
+                        AMA_Buy(ask.Commodity, ask.DesiredPrice, ask.Amount);
 
 
                     else             //user wants to sell
-                        AMA_Sell(ask.commodity, ask.desiredPrice, ask.amount);
+                        AMA_Sell(ask.Commodity, ask.DesiredPrice, ask.Amount);
 
 
                     Thread.Sleep(500);      //so all commands will run in the list without prevent each other

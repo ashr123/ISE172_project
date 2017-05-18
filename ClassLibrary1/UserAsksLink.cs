@@ -8,12 +8,9 @@ namespace LogicTier
 {
     public class UserAsksLink
     {
-        public bool buyORsell { set; get; }    //buy=true . sell=false
-        public int commodity { set; get; }
-        public int desiredPrice { set; get; }
-        public int amount { set; get; }
-
-
-
+        public bool BuyORsell { set; get; }    //buy=true . sell=false
+        public int Commodity { set; get; }
+        public int DesiredPrice { set; get; }
+        public int Amount { set; get; }
     }
 }
