@@ -61,7 +61,6 @@
     <Compile Include="DataEntries\ItemAskBid.cs" />
     <Compile Include="DataEntries\MarketUserRequests.cs" />
     <Compile Include="DataEntries\MarketBuySell.cs" />
-    <Compile Include="Loggers\Debugger.cs" />
     <Compile Include="Loggers\HistoryLogger.cs" />
     <Compile Include="MarketClientClass.cs" />
     <Compile Include="MarketRequests\BuyRequest.cs" />
