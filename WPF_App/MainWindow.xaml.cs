@@ -151,12 +151,12 @@ namespace WPF_App
 				AmaButton.Content="Start automatic AMA";
 			}
 			EnableDisableControls();
+			ManualAMAButton.IsEnabled=!ManualAMAButton.IsEnabled;
 		}
 
 		private void EnableDisableControls()
 		{
 			ActiveRequest.IsEnabled=!ActiveRequest.IsEnabled;
-			ManualAMAButton.IsEnabled=!ManualAMAButton.IsEnabled;
 			BuyButton.IsEnabled=!BuyButton.IsEnabled;
 			SellButton.IsEnabled=!SellButton.IsEnabled;
 			AMAPriceField.IsEnabled=!AMAPriceField.IsEnabled;
@@ -167,7 +167,7 @@ namespace WPF_App
 			SellCommodityField.IsEnabled=!SellCommodityField.IsEnabled;
 			UserAsksDataGrid.IsEnabled=!UserAsksDataGrid.IsEnabled;
 			BuySell.IsEnabled=!BuySell.IsEnabled;
-			ManualAmaAdder.IsEnabled=ManualAmaAdder.IsEnabled;
+			ManualAmaAdder.IsEnabled=!ManualAmaAdder.IsEnabled;
 		}
 
 		public class MarketData
@@ -222,6 +222,7 @@ namespace WPF_App
 				ManualAMAButton.Content="Start manual AMA";
 			}
 			EnableDisableControls();
+			AmaButton.IsEnabled=!AmaButton.IsEnabled;
 		}
 
 		private void ManualAmaAdder_Click(object sender, RoutedEventArgs e)
