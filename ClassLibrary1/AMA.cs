@@ -78,10 +78,10 @@ namespace LogicTier
                 //choose alternately buy or sell. and choose randomly commodity
 
                 if (FLAG_buyOrSell)      //ama buy
-                    AMA_Buy(rndCommodity, commodityInfo.Ask + 1, amountToBuy);
+                    AMA_Buy(rndCommodity, commodityInfo.Ask, amountToBuy);
 
                 else                     //ama sell
-                    AMA_Sell(rndCommodity, commodityInfo.Bid +15, amountToSell);
+                    AMA_Sell(rndCommodity, commodityInfo.Bid, amountToSell);
 
                 FLAG_buyOrSell = !FLAG_buyOrSell;
 
