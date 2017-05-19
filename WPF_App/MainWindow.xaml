@@ -15,7 +15,7 @@
 		<TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="44,556,0,0" TextWrapping="Wrap" Text="Commodity" FontSize="20" VerticalAlignment="Top"  TextDecorations="Underline" FontWeight="Bold"/>
 		<TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="178,556,0,0" TextWrapping="Wrap" Text="Amount" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
 		<TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="292,556,0,0" TextWrapping="Wrap" Text="Price" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="-0.178,0.48" TextDecorations="Underline" FontWeight="Bold"/>
-        <TextBox x:Name="SellCommodityField" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="44,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" TextChanged="SellCommodityField_TextChanged"/>
+        <TextBox x:Name="SellCommodityField" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="44,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
 		<TextBox x:Name="SellPriceField" HorizontalAlignment="Left" Margin="292,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
 		<TextBox x:Name="SellAmountField" HorizontalAlignment="Left" Margin="167,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.192,3.705"/>
 		<Button FontSize="20" Content="Start automatic AMA" HorizontalAlignment="Left" Margin="722,507,0,0" VerticalAlignment="Top" x:Name="AmaButton" Click="AmaButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
@@ -23,7 +23,7 @@
 		<Button FontSize="20" Content="Sell" HorizontalAlignment="Left" Margin="410,602,0,0" VerticalAlignment="Top" Width="107" x:Name="SellButton" Click="SellButton_Click"/>
 		<Label Foreground="Wheat" Content="Welcome Back User!" HorizontalAlignment="Center" Margin="443,16,427,0" VerticalAlignment="Top" x:Name="labelTextView" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 		<Label x:Name="UserDataLabel" Content="{Binding UserData}" HorizontalAlignment="Left" Margin="658,605,0,0" VerticalAlignment="Top" Background="#FFDFCBCB" RenderTransformOrigin="14.35,9.15"/>
-		<DataGrid x:Name="ActiveRequest" Height="328" Margin="374,63,0,0" VerticalAlignment="Top" IsReadOnly="True" ItemsSource="{Binding MarketRequests1}" HorizontalAlignment="Left">
+		<DataGrid x:Name="ActiveRequest" Height="328" Margin="370,63,0,0" VerticalAlignment="Top" IsReadOnly="True" ItemsSource="{Binding MarketRequests1}" HorizontalAlignment="Left">
 			<DataGrid.Columns>
 				<DataGridTemplateColumn Header="Cancel Request">
 					<DataGridTemplateColumn.CellTemplate>
@@ -34,7 +34,7 @@
 				</DataGridTemplateColumn>
 			</DataGrid.Columns>
 		</DataGrid>
-		<DataGrid x:Name="AskBidDataGrid" Height="328" Margin="702,63,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ItemsSource="{Binding MarketData1}" IsReadOnly="True"/>
+		<DataGrid x:Name="AskBidDataGrid" Height="328" Margin="686,63,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ItemsSource="{Binding MarketData1}" IsReadOnly="True"/>
 		<DataGrid x:Name="HistoryDataGrid" Height="328" Margin="0,63,10,0" VerticalAlignment="Top" ItemsSource="{Binding History}" IsReadOnly="True" HorizontalAlignment="Right"/>
 		<Button x:Name="ManualAMAButton" Content="Start manual AMA" HorizontalAlignment="Left" Margin="722,542,0,0" VerticalAlignment="Top" FontSize="20" Click="ManualAMAButton_Click"/>
 		<TextBox x:Name="AMACommodityField" HorizontalAlignment="Left" Margin="166,507,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.85,0.693" />

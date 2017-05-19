@@ -245,7 +245,8 @@ namespace WPF_App
 			else
 				MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+
+		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
