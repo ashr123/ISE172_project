@@ -15,7 +15,7 @@
 		<TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="44,556,0,0" TextWrapping="Wrap" Text="Commodity" FontSize="20" VerticalAlignment="Top"  TextDecorations="Underline" FontWeight="Bold"/>
 		<TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="178,556,0,0" TextWrapping="Wrap" Text="Amount" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
 		<TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="292,556,0,0" TextWrapping="Wrap" Text="Price" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="-0.178,0.48" TextDecorations="Underline" FontWeight="Bold"/>
-        <TextBox x:Name="SellCommodityField" HorizontalAlignment="Left" Margin="44,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" TextChanged="SellCommodityField_TextChanged"/>
+        <TextBox x:Name="SellCommodityField" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="44,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" TextChanged="SellCommodityField_TextChanged"/>
 		<TextBox x:Name="SellPriceField" HorizontalAlignment="Left" Margin="292,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
 		<TextBox x:Name="SellAmountField" HorizontalAlignment="Left" Margin="167,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.192,3.705"/>
 		<Button FontSize="20" Content="Start automatic AMA" HorizontalAlignment="Left" Margin="722,507,0,0" VerticalAlignment="Top" x:Name="AmaButton" Click="AmaButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
