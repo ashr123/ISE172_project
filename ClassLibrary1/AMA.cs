@@ -21,7 +21,7 @@ namespace LogicTier
         private static bool FLAG_buyOrSell = false;               //Alternately buy-sell
 
 
-        public static void resetBothTimers()           //will create only one instance of timers & stop them both- to prevent running parallel
+        public static void ResetBothTimers()           //will create only one instance of timers & stop them both- to prevent running parallel
         {
             if (userAutoTimer == null)         //one instance
             {
@@ -43,7 +43,7 @@ namespace LogicTier
         public static void TimerOfAMA(bool b)
         {
 
-            resetBothTimers();              //not possible AMA auto & user requests
+            ResetBothTimers();              //not possible AMA auto & user requests
 
             if (b)
                 amaAutoTimer.Start();
@@ -86,7 +86,7 @@ namespace LogicTier
 
         public static void TimerOfAutoUser(List<UserAsksLink> userListCommands)
         {
-            resetBothTimers();
+            ResetBothTimers();
 
 
             userCommands = userListCommands;         //refreshing the user commands field
