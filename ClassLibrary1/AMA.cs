@@ -19,7 +19,7 @@ namespace LogicTier
         private static bool FLAG_isRunning = false;               //prevent creating lots of AMA running parallel
         private static List<UserAsksLink> userCommands;           //holds the user wanted actions
         private static bool FLAG_buyOrSell = false;               //Alternately buy-sell
-         
+
 
         public static void resetBothTimers()           //will create only one instance of timers & stop them both- to prevent running parallel
         {
@@ -29,7 +29,7 @@ namespace LogicTier
                 userAutoTimer.Elapsed += new ElapsedEventHandler(OnUSEREvent);
                 userAutoTimer.AutoReset = true;
             }
-                userAutoTimer.Stop();     
+            userAutoTimer.Stop();
 
             if (amaAutoTimer == null)     //creates only one instance
             {
@@ -47,7 +47,7 @@ namespace LogicTier
 
             if (b)
                 amaAutoTimer.Start();
-            
+
 
         }
 
@@ -57,11 +57,13 @@ namespace LogicTier
             if (!FLAG_isRunning)                     //for not creating lot of AMA functions running in parallel
             {
                 Random rnd = new Random();
-                
+
                 int rndCommodity = rnd.Next(0, 10);
-                int amountToBuy = rnd.Next(0, 8);
+                int amountToBuy = rnd.Next(1, 8);
                 int amountToSell = rnd.Next(-1, 8);           //-1 means all
 
+                if (amountToSell == 0)
+                    amountToSell = -1;
 
                 //want to get INFO for the commodity ASK-BID
                 MarketClientClass client = new MarketClientClass();
@@ -71,10 +73,10 @@ namespace LogicTier
                 //choose alternately buy or sell. and choose randomly commodity
 
                 if (FLAG_buyOrSell)      //ama buy
-                    AMA_Buy(rndCommodity, commodityInfo.Ask+1, amountToBuy);
+                    AMA_Buy(rndCommodity, commodityInfo.Ask + 1, amountToBuy);
 
                 else                     //ama sell
-                    AMA_Sell(rndCommodity, commodityInfo.Bid-1, amountToSell);
+                    AMA_Sell(rndCommodity, commodityInfo.Bid - 1, amountToSell);
 
                 FLAG_buyOrSell = !FLAG_buyOrSell;
 
@@ -90,7 +92,7 @@ namespace LogicTier
             userCommands = userListCommands;         //refreshing the user commands field
 
             //Note: tell saar to always keep old list as a field
-            
+
             userAutoTimer.Start();
 
         }
@@ -154,26 +156,26 @@ namespace LogicTier
                 FLAG_isRunning = false;
                 return;
             }
-   
-                for (int i = l.Count-1 ; i >= 0 && userData.Funds < (desiredPrice* amount); i--)   //going from end so in delete won't change index of l
-                {
-                   
-                    int reqID = l[i];    //saving the ID just for simplicity
 
-                    MarketItemQuery request = client.SendQueryBuySellRequest(reqID);
-                    NotOverLoadServer();
+            for (int i = l.Count - 1; i >= 0 && userData.Funds < (desiredPrice * amount); i--)   //going from end so in delete won't change index of l
+            {
 
-                    //wish to cancel only buy requests. only this kind of canceling request give back money
-                    //func SendCancelBuySellRequest returns bool - of the action passed successfuly
+                int reqID = l[i];    //saving the ID just for simplicity
 
-                    if (request.Type.Equals("buy") && client.SendCancelBuySellRequest(reqID))
-                         HistoryLogger.WriteHistory(reqID, "Cancel", request.Commodity, request.Price, request.Amount);
+                MarketItemQuery request = client.SendQueryBuySellRequest(reqID);
+                NotOverLoadServer();
 
-                    NotOverLoadServer();
-                }
-                
-                   userData = client.SendQueryUserRequest();   //refresh data
-                    NotOverLoadServer();
+                //wish to cancel only buy requests. only this kind of canceling request give back money
+                //func SendCancelBuySellRequest returns bool - of the action passed successfuly
+
+                if (request.Type.Equals("buy") && client.SendCancelBuySellRequest(reqID))
+                    HistoryLogger.WriteHistory(reqID, "Cancel", request.Commodity, request.Price, request.Amount);
+
+                NotOverLoadServer();
+            }
+
+            userData = client.SendQueryUserRequest();   //refresh data
+            NotOverLoadServer();
 
 
             if (userData.Funds >= desiredPrice * amount)    //if NOW we have enough money-  buy 
@@ -187,13 +189,13 @@ namespace LogicTier
                     HistoryLogger.WriteHistory(ID, "Buy", commodity, desiredPrice, amount);
 
                 }
-             
+
             }
 
 
             FLAG_isRunning = false;
             return;
-        
+
         }//AMAbuy
 
 
@@ -203,28 +205,29 @@ namespace LogicTier
         {
             FLAG_isRunning = true;
             NotOverLoadServer();
-            
+
             MarketClientClass client = new MarketClientClass();
             MarketUserData userData = client.SendQueryUserRequest();
             NotOverLoadServer();
 
-            foreach (int cmdty in userData.Commodities.Keys) {         //check if we own that commodity
+            foreach (int cmdty in userData.Commodities.Keys)
+            {         //check if we own that commodity
                 if (cmdty == commodity && userData.Commodities[cmdty] > 0)
-                {               
+                {
                     //if item is the right commodity & we own it
 
-                            if (amount > userData.Commodities[cmdty] || amount ==-1)                //we cant sell more than we have OR -1 is our sign to sell ALL
-                                amount = userData.Commodities[cmdty];
+                    if (amount > userData.Commodities[cmdty] || amount == -1)                //we cant sell more than we have OR -1 is our sign to sell ALL
+                        amount = userData.Commodities[cmdty];
 
-                            MarketBuySell sellreq= client.SendSellRequest(desiredPrice, commodity, amount);
-                            NotOverLoadServer();
+                    MarketBuySell sellreq = client.SendSellRequest(desiredPrice, commodity, amount);
+                    NotOverLoadServer();
 
-                            if (sellreq.Error == null)        //the sell req is successfuly passed to the server
-                            {
-                                int ID = sellreq.Id;
-                                HistoryLogger.WriteHistory(ID, "Sell", commodity, desiredPrice, amount);
-                            }
-  
+                    if (sellreq.Error == null)        //the sell req is successfuly passed to the server
+                    {
+                        int ID = sellreq.Id;
+                        HistoryLogger.WriteHistory(ID, "Sell", commodity, desiredPrice, amount);
+                    }
+
                 }
             }
 
@@ -248,7 +251,7 @@ namespace LogicTier
 
 
     }//class
-    }//namespace
+}//namespace
 
 
 
