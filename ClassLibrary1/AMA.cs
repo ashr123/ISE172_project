@@ -39,7 +39,8 @@ namespace LogicTier
 
             if (b)
             {
-                userAutoTimer.Stop();            //not possible AMA auto & user requests
+                if (userAutoTimer != null )
+                    userAutoTimer.Stop();            //not possible AMA auto & user requests
                 amaAutoTimer.Start();
             }
 
