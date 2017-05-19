@@ -134,9 +134,16 @@ namespace WPF_App
         private void AmaButton_Click(object sender, RoutedEventArgs e)
         {
 			if (ManualAMAButton.IsEnabled)
+			{
 				AMA.TimerOfAMA(true);
+				AmaButton.Content="Stop automatic AMA";
+			}
 			else
+			{
 				AMA.TimerOfAMA(false);
+				AmaButton.Content="Start automatic AMA";
+			}
+			ActiveRequest.IsEnabled=!ActiveRequest.IsEnabled;
 			ManualAMAButton.IsEnabled=!ManualAMAButton.IsEnabled;
 			BuyButton.IsEnabled=!BuyButton.IsEnabled;
 			SellButton.IsEnabled=!SellButton.IsEnabled;

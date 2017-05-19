@@ -44,5 +44,11 @@ namespace DataTierTest
         {
             public string Ip { get; set; }
         }
-    }
+
+		[TestMethod]
+		public void TestQueryAllMarketRequest()
+		{
+			Assert.IsNull(new MarketClientClass().QueryUserRequests().Error);
+		}
+	}
 }

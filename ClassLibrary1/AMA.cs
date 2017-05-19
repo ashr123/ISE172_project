@@ -25,7 +25,7 @@ namespace LogicTier
         {
             if (userAutoTimer == null)         //one instance
             {
-                userAutoTimer = new System.Timers.Timer(4000);
+                userAutoTimer = new System.Timers.Timer(6000);
                 userAutoTimer.Elapsed += new ElapsedEventHandler(OnUSEREvent);
                 userAutoTimer.AutoReset = true;
             }
@@ -33,7 +33,7 @@ namespace LogicTier
 
             if (amaAutoTimer == null)     //creates only one instance
             {
-                amaAutoTimer = new System.Timers.Timer(2000);
+                amaAutoTimer = new System.Timers.Timer(6000);
                 amaAutoTimer.Elapsed += new ElapsedEventHandler(OnAMAEvent);
                 amaAutoTimer.AutoReset = true;
             }
