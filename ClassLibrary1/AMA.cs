@@ -137,7 +137,7 @@ namespace LogicTier
                         if (l.Count != 0) {                //there are open requests in server
 
                         //if USER dont have enough money, we'll cancel his open buy requests- hoping after that he'll have enough
-                        for (int i = l.Count; i >= 0 & userData.Funds < (item.Info.Ask * amount); i--)   //going from end so in delete won't change index of l
+                        for (int i = l.Count-1; i >= 0 & userData.Funds < (item.Info.Ask * amount); i--)   //going from end so in delete won't change index of l
                             {
                                 NotOverLoadServer();
                                 
