@@ -121,7 +121,7 @@ namespace LogicTier
             MarketClientClass client = new MarketClientClass();
             AllMarketRequest all = client.QueryAllMarketRequest();
             counter++;
-
+            NotOverLoadServer();
 
             foreach (ItemAskBid item in all.MarketInfo)
                 if (item.Id == commodity && item.Info.Ask <= desiredPrice)
@@ -129,8 +129,9 @@ namespace LogicTier
 
                     MarketUserData userData = client.SendQueryUserRequest();
                     counter++;
-                    
-                        List<int> l = userData.Requests;
+                    NotOverLoadServer();
+
+                    List<int> l = userData.Requests;
 
                         if (l.Count != 0) {                //there are open requests in server
 
@@ -143,14 +144,15 @@ namespace LogicTier
 
                                 MarketItemQuery request = client.SendQueryBuySellRequest(l[i]);
                                 counter++;
+                                NotOverLoadServer();
 
                             //wish to cancel only buy requests. only this kind of canceling request give back money
                             //func SendCancelBuySellRequest returns bool - of the action passed successfuly
                             if (request.Type.Equals("buy") && client.SendCancelBuySellRequest(reqID))    
                             {
-                                
-								HistoryLogger.WriteHistory(reqID, "Cancel", request.Commodity, request.Price, request.Amount);
-								counter++;
+                                counter++;
+                                NotOverLoadServer();
+                                HistoryLogger.WriteHistory(reqID, "Cancel", request.Commodity, request.Price, request.Amount);
 
                             }
 
@@ -161,6 +163,7 @@ namespace LogicTier
             {
                         MarketBuySell buyreq = client.SendBuyRequest(item.Info.Ask + 1, commodity, amount);
                         counter++;
+                        NotOverLoadServer();
 
                         if (buyreq.Error == null)          //the buy req is successfuly passed to the server
                         {
@@ -189,9 +192,12 @@ namespace LogicTier
             MarketClientClass client = new MarketClientClass();
             AllMarketRequest all = client.QueryAllMarketRequest();
             counter++;
+            NotOverLoadServer();
+
 
             MarketUserData userData = client.SendQueryUserRequest();
             counter++;
+            NotOverLoadServer();
 
             foreach (int cmdty in userData.Commodities.Keys) {         //check if we own that commodity
                 if (cmdty == commodity && userData.Commodities[cmdty] > 0)
@@ -206,6 +212,7 @@ namespace LogicTier
 
                             MarketBuySell sellreq= client.SendSellRequest(item.Info.Bid - 1, commodity, amount);
                             counter++;
+                            NotOverLoadServer();
 
                             if (sellreq.Error == null)        //the sell req is successfuly passed to the server
                             {
