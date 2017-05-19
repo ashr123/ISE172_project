@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Windows.Threading;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace WPF_App
 {
@@ -243,5 +244,15 @@ namespace WPF_App
 			else
 				MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
-	}
+
+        private void SellCommodityField_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            e.Handled = !IsTextAllowed(e.ToString());
+        }
+        private static bool IsTextAllowed(string text)
+        {
+            Regex regex = new Regex("[^0-9]+"); //regex that matches disallowed text
+            return !regex.IsMatch(text);
+        }
+    }
 }
