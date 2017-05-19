@@ -70,13 +70,18 @@ namespace LogicTier
                 MarketCommodityOffer commodityInfo = client.SendQueryMarketRequest(rndCommodity);
                 NotOverLoadServer();
 
+                if (commodityInfo.Error != null)
+                {
+                    return;
+                }
+
                 //choose alternately buy or sell. and choose randomly commodity
 
                 if (FLAG_buyOrSell)      //ama buy
                     AMA_Buy(rndCommodity, commodityInfo.Ask + 1, amountToBuy);
 
                 else                     //ama sell
-                    AMA_Sell(rndCommodity, commodityInfo.Bid - 1, amountToSell);
+                    AMA_Sell(rndCommodity, commodityInfo.Bid +15, amountToSell);
 
                 FLAG_buyOrSell = !FLAG_buyOrSell;
 
@@ -130,7 +135,13 @@ namespace LogicTier
             MarketUserData userData = client.SendQueryUserRequest();
             NotOverLoadServer();
 
-            if (userData.Funds >= (desiredPrice) * amount)    //if we have enough money- just buy and finish running.
+            if (userData.Error != null)
+            {
+                FLAG_isRunning = false;
+                return;
+            }
+
+            if (userData.Funds >= desiredPrice * amount)    //if we have enough money- just buy and finish running.
             {
                 MarketBuySell buyreq = client.SendBuyRequest(desiredPrice, commodity, amount);
                 NotOverLoadServer();
@@ -165,6 +176,12 @@ namespace LogicTier
                 MarketItemQuery request = client.SendQueryBuySellRequest(reqID);
                 NotOverLoadServer();
 
+                if (request.Error != null)
+                {
+                    FLAG_isRunning = false;
+                    return;
+                }
+
                 //wish to cancel only buy requests. only this kind of canceling request give back money
                 //func SendCancelBuySellRequest returns bool - of the action passed successfuly
 
@@ -176,6 +193,12 @@ namespace LogicTier
 
             userData = client.SendQueryUserRequest();   //refresh data
             NotOverLoadServer();
+
+            if (userData.Error != null)
+            {
+                FLAG_isRunning = false;
+                return;
+            }
 
 
             if (userData.Funds >= desiredPrice * amount)    //if NOW we have enough money-  buy 
@@ -210,9 +233,15 @@ namespace LogicTier
             MarketUserData userData = client.SendQueryUserRequest();
             NotOverLoadServer();
 
-            foreach (int cmdty in userData.Commodities.Keys)
-            {         //check if we own that commodity
-                if (cmdty == commodity && userData.Commodities[cmdty] > 0)
+            if (userData.Error != null)
+            {
+                FLAG_isRunning = false;
+                return;
+            }
+
+            foreach (int cmdty in userData.Commodities.Keys)    //passing on all commodities
+            {         
+                if (cmdty == commodity && userData.Commodities[cmdty] > 0)           //check if we own that commodity
                 {
                     //if item is the right commodity & we own it
 
