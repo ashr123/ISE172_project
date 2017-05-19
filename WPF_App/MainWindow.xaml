@@ -23,7 +23,7 @@
 		<Button FontSize="20" Content="Sell" HorizontalAlignment="Left" Margin="410,602,0,0" VerticalAlignment="Top" Width="107" x:Name="SellButton" Click="SellButton_Click"/>
 		<Label Foreground="Wheat" Content="Welcome Back User!" HorizontalAlignment="Center" Margin="443,16,427,0" VerticalAlignment="Top" x:Name="labelTextView" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 		<Label x:Name="UserDataLabel" Content="{Binding UserData}" HorizontalAlignment="Left" Margin="658,605,0,0" VerticalAlignment="Top" Background="#FFDFCBCB" RenderTransformOrigin="14.35,9.15"/>
-		<DataGrid x:Name="ActiveRequest" Height="328" Margin="370,63,0,0" VerticalAlignment="Top" IsReadOnly="True" ItemsSource="{Binding MarketRequests1}" HorizontalAlignment="Left">
+		<DataGrid x:Name="ActiveRequest" Height="328" Margin="371,63,0,0" VerticalAlignment="Top" IsReadOnly="True" ItemsSource="{Binding MarketRequests1}" HorizontalAlignment="Left">
 			<DataGrid.Columns>
 				<DataGridTemplateColumn Header="Cancel Request">
 					<DataGridTemplateColumn.CellTemplate>
@@ -55,7 +55,10 @@
 				</DataGridTemplateColumn>
 			</DataGrid.Columns>
 		</DataGrid>
-		<ComboBox x:Name="BuySell" HorizontalAlignment="Left" Margin="30,507,0,0" VerticalAlignment="Top" Width="104"/>
+		<ComboBox x:Name="BuySell" HorizontalAlignment="Left" Margin="30,507,0,0" VerticalAlignment="Top" Width="104">
+			<ComboBoxItem IsSelected="True">Buy</ComboBoxItem>
+			<ComboBoxItem>Sell</ComboBoxItem>
+		</ComboBox>
 		<Button x:Name="ManualAmaAdder" Content="Add to manual AMA" HorizontalAlignment="Left" Height="36" Margin="514,507,0,0" VerticalAlignment="Top" Width="115" Click="ManualAmaAdder_Click"/>
 	</Grid>
 </Window>

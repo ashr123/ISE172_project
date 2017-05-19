@@ -20,7 +20,7 @@ namespace WPF_App
     /// </summary>
     public partial class MainWindow : Window
     {
-		private static readonly IMarketClient market = new MarketClientClass();
+		private static readonly IMarketClient market=new MarketClientClass();
 		public static MarketUserData UserData { get; set; }
 		public static ObservableCollection<Record>  History { get; set; }
 		public static ObservableCollection<MarketData> MarketData1 { get; set; }
@@ -84,8 +84,6 @@ namespace WPF_App
 			timer.Tick+=OnTimedEvent;
 			UserAsks=new ObservableCollection<UserAsksLink>();
 			UserAsksDataGrid.ItemsSource=UserAsks;
-			BuySell.Items.Add("Buy");
-			BuySell.Items.Add("Sell");
 		}
 
         private void BuyButton_Click(object sender, RoutedEventArgs e)
@@ -96,11 +94,10 @@ namespace WPF_App
 				MessageBox.Show("Invalid Price", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
 			if (!(Int32.TryParse(SellAmountField.Text, out int Amount)))
 				MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-			if (Commodity > 0 || Price > 0 || Amount > 0)
+			if (Commodity>0 || Price>0 || Amount>0)
             {
-                IMarketClient market = new MarketClientClass();
-                MarketBuySell marketBuySell = market.SendBuyRequest(Price, Commodity, Amount);
-                if (marketBuySell.Error == null)
+                MarketBuySell marketBuySell=market.SendBuyRequest(Price, Commodity, Amount);
+                if (marketBuySell.Error==null)
                 {
                     MessageBox.Show("Sucsess!! Your Buy request has been placed. your id is: " + marketBuySell.Id);
                     HistoryLogger.WriteHistory(marketBuySell.Id, "Buy", Commodity, Price, Amount);
@@ -121,10 +118,9 @@ namespace WPF_App
 				MessageBox.Show("Invalid Price", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
 			if (!(Int32.TryParse(SellAmountField.Text, out int Amount)))
 				MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-			if (Commodity>0||Price>0||Amount>0)
+			if (Commodity>0 || Price>0 || Amount>0)
 			{
-				IMarketClient market = new MarketClientClass();
-				MarketBuySell marketBuySell = market.SendBuyRequest(Price, Commodity, Amount);
+				MarketBuySell marketBuySell=market.SendBuyRequest(Price, Commodity, Amount);
 				if (marketBuySell.Error==null)
 				{
 					MessageBox.Show("Sucsess!! Your Buy request has been placed. your id is: "+marketBuySell.Id);
@@ -188,7 +184,6 @@ namespace WPF_App
 		private void CancelRequestButton_Click(object sender, RoutedEventArgs e)
 		{
 			market.SendCancelBuySellRequest(int.Parse(((Button)sender).CommandParameter.ToString()));
-			//MessageBox.Show(market.SendCancelBuySellRequest(int.Parse(((Button)sender).CommandParameter.ToString())).ToString(), "Approval", MessageBoxButton.OK, MessageBoxImage.Information);
 			foreach (MarketRequests item in MarketRequests1)
 				if (item.Id==int.Parse(((Button)sender).CommandParameter.ToString()))
 				{
@@ -249,8 +244,8 @@ namespace WPF_App
 
 		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            Regex regex=new Regex("[^0-9]+");
+            e.Handled=regex.IsMatch(e.Text);
         }
     }
 }
