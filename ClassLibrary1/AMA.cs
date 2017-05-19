@@ -160,7 +160,13 @@ namespace LogicTier
                         }
                 }
 
-            if (userData.Funds >= item.Info.Ask * amount)
+
+                   userData = client.SendQueryUserRequest();
+                    counter++;
+                    NotOverLoadServer();
+
+
+                    if (userData.Funds >= (item.Info.Ask+1) * amount)
             {
                         MarketBuySell buyreq = client.SendBuyRequest(item.Info.Ask + 1, commodity, amount);
                         counter++;
