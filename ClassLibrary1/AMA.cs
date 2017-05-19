@@ -35,7 +35,7 @@ namespace LogicTier
             {
                 amaAutoTimer = new System.Timers.Timer(6000);
                 amaAutoTimer.Elapsed += new ElapsedEventHandler(OnAMAEvent);
-                amaAutoTimer.AutoReset = true;
+                amaAutoTimer.AutoReset = false;
             }
             amaAutoTimer.Stop();
         }
@@ -117,7 +117,7 @@ namespace LogicTier
                         AMA_Sell(ask.Commodity, ask.DesiredPrice, ask.Amount);
 
 
-                    Thread.Sleep(1000);      //so all commands will run in the list without prevent each other
+                    Thread.Sleep(6000);      //so all commands will run in the list without prevent each other
 
                 }
 
