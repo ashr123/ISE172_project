@@ -66,7 +66,6 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 
 		public MarketBuySell SendBuyRequest(int price, int commodity, int amount)
 		{
-			//Console.WriteLine(ans);
 			try
 			{
 				return new MarketBuySell
@@ -83,7 +82,7 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 
 		public bool SendCancelBuySellRequest(int id)
 		{
-			string ans = "";
+			string ans="";
 			try
 			{
 				ans=SimpleHTTPClient.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new CancelBuySellRequest(id));
@@ -93,7 +92,6 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 				myLogger.Error("Exeption: "+e.Message+error+", ID: "+id);
 				return false;
 			}
-			//Console.WriteLine(ans);
 			if (ans.Equals("Ok"))
 				return true;
 			myLogger.Debug("Exeption: "+ans+", ID: "+id);
@@ -102,7 +100,6 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 
 		public MarketItemQuery SendQueryBuySellRequest(int id)
 		{
-			//Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
 			try
 			{
 				return SimpleHTTPClient.SendPostRequest<QueryBuySellRequest, MarketItemQuery>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new QueryBuySellRequest(id));
@@ -116,7 +113,6 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 
 		public MarketCommodityOffer SendQueryMarketRequest(int commodity)
 		{
-			//Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
 			try
 			{
 				return SimpleHTTPClient.SendPostRequest<QueryMarketRequest, MarketCommodityOffer>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new QueryMarketRequest(commodity));
@@ -130,7 +126,6 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 
 		public MarketUserData SendQueryUserRequest()
 		{
-			//Console.WriteLine(client.SendPostRequest(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), request));
 			try
 			{
 				return SimpleHTTPClient.SendPostRequest<QueryUserRequest, MarketUserData>(Url, User, SimpleCtyptoLibrary.CreateToken(User, PrivateKey), new QueryUserRequest());
