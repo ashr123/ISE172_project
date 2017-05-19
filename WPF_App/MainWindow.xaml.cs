@@ -23,6 +23,7 @@ namespace WPF_App
 		public static ObservableCollection<Record>  History { get; set; }
 		public static ObservableCollection<MarketData> MarketData1 { get; set; }
 		public static ObservableCollection<MarketRequests> MarketRequests1 { get; set; }
+		public static ObservableCollection<UserAsksLink> UserAsks { get; set; }
 		private static DispatcherTimer timer=new DispatcherTimer
 		{
 			Interval=TimeSpan.FromSeconds(10),
@@ -79,7 +80,11 @@ namespace WPF_App
 			DataContext=this;
 			Updater();
 			timer.Tick+=OnTimedEvent;
-        }
+			UserAsks=new ObservableCollection<UserAsksLink>();
+			UserAsksDataGrid.ItemsSource=UserAsks;
+			BuySell.Items.Add("Buy");
+			BuySell.Items.Add("Sell");
+		}
 
         private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
@@ -132,7 +137,7 @@ namespace WPF_App
 		}
 
         private void AmaButton_Click(object sender, RoutedEventArgs e)
-        {
+		{
 			if (ManualAMAButton.IsEnabled)
 			{
 				AMA.TimerOfAMA(true);
@@ -143,6 +148,11 @@ namespace WPF_App
 				AMA.TimerOfAMA(false);
 				AmaButton.Content="Start automatic AMA";
 			}
+			EnableDisableControls();
+		}
+
+		private void EnableDisableControls()
+		{
 			ActiveRequest.IsEnabled=!ActiveRequest.IsEnabled;
 			ManualAMAButton.IsEnabled=!ManualAMAButton.IsEnabled;
 			BuyButton.IsEnabled=!BuyButton.IsEnabled;
@@ -150,10 +160,12 @@ namespace WPF_App
 			AMAPriceField.IsEnabled=!AMAPriceField.IsEnabled;
 			AMAAmountField.IsEnabled=!AMAAmountField.IsEnabled;
 			AMACommodityField.IsEnabled=!AMACommodityField.IsEnabled;
-			AMAbuyORsellField.IsEnabled=!AMAbuyORsellField.IsEnabled;
 			SellPriceField.IsEnabled=!SellPriceField.IsEnabled;
 			SellAmountField.IsEnabled=!SellAmountField.IsEnabled;
 			SellCommodityField.IsEnabled=!SellCommodityField.IsEnabled;
+			UserAsksDataGrid.IsEnabled=!UserAsksDataGrid.IsEnabled;
+			BuySell.IsEnabled=!BuySell.IsEnabled;
+			ManualAmaAdder.IsEnabled=ManualAmaAdder.IsEnabled;
 		}
 
 		public class MarketData
@@ -183,6 +195,53 @@ namespace WPF_App
 				}
 			Updater();
 			Trace.WriteLine(int.Parse(((Button)sender).CommandParameter.ToString()));
+		}
+
+		private void CancelRequestButton_Click_1(object sender, RoutedEventArgs e)
+		{
+			foreach (UserAsksLink item in UserAsks)
+				if (item.Commodity==int.Parse(((Button)sender).CommandParameter.ToString()))
+				{
+					UserAsks.Remove(item);
+					return;
+				}
+		}
+
+		private void ManualAMAButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (ManualAMAButton.IsEnabled)
+			{
+				AMA.TimerOfAutoUser(new List<UserAsksLink>( UserAsks));
+				ManualAMAButton.Content="Stop manual AMA";
+			}
+			else
+			{
+				AMA.ResetBothTimers();
+				ManualAMAButton.Content="Start manual AMA";
+			}
+			EnableDisableControls();
+		}
+
+		private void ManualAmaAdder_Click(object sender, RoutedEventArgs e)
+		{
+			if (!(Int32.TryParse(AMACommodityField.Text, out int Commodity)))
+				MessageBox.Show("Invalid Commodity", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+			if (!(Int32.TryParse(AMAPriceField.Text, out int Price)))
+				MessageBox.Show("Invalid Price", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+			if (!(Int32.TryParse(AMAAmountField.Text, out int Amount)))
+				MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
+			if (Commodity>0||Price>0||Amount>0)
+			{
+				UserAsks.Add(new UserAsksLink
+				{
+					Commodity=Commodity,
+					DesiredPrice=Price,
+					Amount=Amount,
+					BuyORsell=BuySell.SelectionBoxItem.ToString().Equals("Buy") ? true : false
+				});
+			}
+			else
+				MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 	}
 }
