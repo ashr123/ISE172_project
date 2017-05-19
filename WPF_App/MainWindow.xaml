@@ -16,8 +16,8 @@
 		<TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="178,556,0,0" TextWrapping="Wrap" Text="Amount" FontSize="20" VerticalAlignment="Top" TextDecorations="Underline" FontWeight="Bold"/>
 		<TextBlock Foreground="Wheat" HorizontalAlignment="Left" Margin="292,556,0,0" TextWrapping="Wrap" Text="Price" FontSize="20" VerticalAlignment="Top" RenderTransformOrigin="-0.178,0.48" TextDecorations="Underline" FontWeight="Bold"/>
         <TextBox x:Name="SellCommodityField" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="44,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
-		<TextBox x:Name="SellPriceField" HorizontalAlignment="Left" Margin="292,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
-		<TextBox x:Name="SellAmountField" HorizontalAlignment="Left" Margin="167,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.192,3.705"/>
+        <TextBox x:Name="SellPriceField" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="292,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="SellAmountField" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="167,605,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.192,3.705"/>
 		<Button FontSize="20" Content="Start automatic AMA" HorizontalAlignment="Left" Margin="722,507,0,0" VerticalAlignment="Top" x:Name="AmaButton" Click="AmaButton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 		<Button FontSize="20" Content="Buy" HorizontalAlignment="Left" Margin="522,602,0,0" VerticalAlignment="Top" Width="107" x:Name="BuyButton" Click="BuyButton_Click"/>
 		<Button FontSize="20" Content="Sell" HorizontalAlignment="Left" Margin="410,602,0,0" VerticalAlignment="Top" Width="107" x:Name="SellButton" Click="SellButton_Click"/>
@@ -37,9 +37,9 @@
 		<DataGrid x:Name="AskBidDataGrid" Height="328" Margin="686,63,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ItemsSource="{Binding MarketData1}" IsReadOnly="True"/>
 		<DataGrid x:Name="HistoryDataGrid" Height="328" Margin="0,63,10,0" VerticalAlignment="Top" ItemsSource="{Binding History}" IsReadOnly="True" HorizontalAlignment="Right"/>
 		<Button x:Name="ManualAMAButton" Content="Start manual AMA" HorizontalAlignment="Left" Margin="722,542,0,0" VerticalAlignment="Top" FontSize="20" Click="ManualAMAButton_Click"/>
-		<TextBox x:Name="AMACommodityField" HorizontalAlignment="Left" Margin="166,507,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.85,0.693" />
-		<TextBox x:Name="AMAAmountField" HorizontalAlignment="Left" Margin="285,507,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
-		<TextBox x:Name="AMAPriceField" HorizontalAlignment="Left" Margin="410,507,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="AMACommodityField" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="166,507,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.85,0.693" />
+        <TextBox x:Name="AMAAmountField" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="285,507,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88"/>
+        <TextBox x:Name="AMAPriceField" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="410,507,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="88"/>
 		<TextBlock FontSize="20" Foreground="Coral" HorizontalAlignment="Left" Margin="145,468,0,0" TextWrapping="Wrap" Text="Commodity" TextDecorations="Underline" FontWeight="Bold" VerticalAlignment="Top"/>
 		<TextBlock FontSize="20" Foreground="Coral" HorizontalAlignment="Left" Margin="285,468,0,0" TextWrapping="Wrap" Text="Amount" TextDecorations="Underline" FontWeight="Bold" VerticalAlignment="Top"/>
 		<TextBlock FontSize="20" Foreground="Coral" HorizontalAlignment="Left" Margin="393,468,0,0" TextWrapping="Wrap" Text="Desired Price" TextDecorations="Underline" FontWeight="Bold" VerticalAlignment="Top"/>
