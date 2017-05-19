@@ -10,13 +10,13 @@ namespace DataTier
 {
 	public class MarketClientClass : IMarketClient
 	{
-		private static readonly ILog myLogger = LogManager.GetLogger("Debug");
-		//private const string Url = "http://localhost";
-		private const string Url = "http://ise172.ise.bgu.ac.il";
-		//private const string Url = "http://ise172.ise.bgu.ac.il:8008";
-		private const string User = "user54";
-		private const string error = ", Url: "+Url+", User: "+User;
-		private const string PrivateKey = @"-----BEGIN RSA PRIVATE KEY-----
+		private static readonly ILog myLogger=LogManager.GetLogger("Debug");
+		//private const string Url="http://localhost";
+		private const string Url="http://ise172.ise.bgu.ac.il";
+		//private const string Url="http://ise172.ise.bgu.ac.il:8008";
+		private const string User="user54";
+		private const string error=", Url: "+Url+", User: "+User;
+		private const string PrivateKey=@"-----BEGIN RSA PRIVATE KEY-----
 MIICXgIBAAKBgQC2VKy0OMXoFvuxGeP/n92VV3wIt2X/kIG2BhuY6WE+SrvUOuxR
 4hH5FT7fFWR0kVPBHJmUwwu8egJo+D7UyYF0d7A0UjVzFL1t02OsPcUnIXWs0PlO
 Nz+nbhDDB//IWyR5iJejwCrZt0fBpISPmlSxyjp+uThtdPX1JtSQVv7iHQIDAQAB
