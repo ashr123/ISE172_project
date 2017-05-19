@@ -107,7 +107,9 @@
       <Name>DataTier</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SellAmountField_TextChanged\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\bg.png" />
   </ItemGroup>
