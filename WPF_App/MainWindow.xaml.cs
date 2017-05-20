@@ -228,7 +228,7 @@ namespace WPF_App
 				MessageBox.Show("Invalid Price", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
 			if (!(Int32.TryParse(AMAAmountField.Text, out int Amount)) && Amount==0)
 				MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-			if (Commodity>0||Price>0||Amount>0)
+			if (Commodity>0 || Price>0 || Amount>0)
 			{
 				UserAsks.Add(new UserAsksLink
 				{

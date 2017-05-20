@@ -95,6 +95,7 @@ namespace LogicTier
 
         private static void OnUSEREvent(object sender, EventArgs e)
         {
+			Trace.WriteLine("UUUSSSEEERRR AAAMMMAAA");
             if (!FLAG_isRunning)                     //for not creating lot of AMA functions running in parallel
             {
                 foreach (UserAsksLink ask in userCommands)
