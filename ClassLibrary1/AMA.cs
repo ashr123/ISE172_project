@@ -99,9 +99,11 @@ namespace LogicTier
             {
                 foreach (UserAsksLink ask in userCommands)
                 {
-                    if (!(ask.Commodity < 0 | ask.Commodity > 9 | ask.Amount == 0))             //check valid input
+                    if (!(ask.Commodity < 0 | ask.Commodity > 9 | ask.Amount == 0 ))             //check valid input
                     {
 
+                        if (ask.Amount > 100)             //insure valid input
+                            ask.Amount = 100;
 
 
                         if (ask.BuyORsell == true)   //user wants to buy
