@@ -34,7 +34,7 @@
 				</DataGridTemplateColumn>
 			</DataGrid.Columns>
 		</DataGrid>
-		<DataGrid x:Name="AskBidDataGrid" Height="328" Margin="686,63,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ItemsSource="{Binding MarketData1}" IsReadOnly="True"/>
+		<DataGrid x:Name="AskBidDataGrid" Height="328" Margin="714,63,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" ItemsSource="{Binding MarketData1}" IsReadOnly="True"/>
 		<DataGrid x:Name="HistoryDataGrid" Height="328" Margin="0,63,10,0" VerticalAlignment="Top" ItemsSource="{Binding History}" IsReadOnly="True" HorizontalAlignment="Right"/>
 		<Button x:Name="ManualAMAButton" Content="Start manual AMA" HorizontalAlignment="Left" Margin="722,542,0,0" VerticalAlignment="Top" FontSize="20" Click="ManualAMAButton_Click"/>
         <TextBox x:Name="AMACommodityField" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="166,507,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="88" RenderTransformOrigin="1.85,0.693" />
