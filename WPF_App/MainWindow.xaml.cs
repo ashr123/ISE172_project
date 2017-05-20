@@ -112,11 +112,11 @@ namespace WPF_App
 
         private void SellButton_Click(object sender, RoutedEventArgs e)
         {
-			if (!(Int32.TryParse(SellCommodityField.Text, out int Commodity)))
+			if (!(Int32.TryParse(SellCommodityField.Text, out int Commodity)) && Commodity>9)
 				MessageBox.Show("Invalid Commodity", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
 			if (!(Int32.TryParse(SellPriceField.Text, out int Price)))
 				MessageBox.Show("Invalid Price", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-			if (!(Int32.TryParse(SellAmountField.Text, out int Amount)))
+			if (!(Int32.TryParse(SellAmountField.Text, out int Amount)) && Amount==0)
 				MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
 			if (Commodity>0 || Price>0 || Amount>0)
 			{
@@ -222,11 +222,11 @@ namespace WPF_App
 
 		private void ManualAmaAdder_Click(object sender, RoutedEventArgs e)
 		{
-			if (!(Int32.TryParse(AMACommodityField.Text, out int Commodity)))
+			if (!(Int32.TryParse(AMACommodityField.Text, out int Commodity)) && Commodity>9)
 				MessageBox.Show("Invalid Commodity", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
 			if (!(Int32.TryParse(AMAPriceField.Text, out int Price)))
 				MessageBox.Show("Invalid Price", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
-			if (!(Int32.TryParse(AMAAmountField.Text, out int Amount)))
+			if (!(Int32.TryParse(AMAAmountField.Text, out int Amount)) && Amount==0)
 				MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
 			if (Commodity>0||Price>0||Amount>0)
 			{
@@ -244,8 +244,7 @@ namespace WPF_App
 
 		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex=new Regex("[^0-9]+");
-            e.Handled=regex.IsMatch(e.Text);
+            e.Handled=new Regex("[^0-9]+").IsMatch(e.Text);
         }
     }
 }

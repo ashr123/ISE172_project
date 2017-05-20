@@ -12,7 +12,7 @@ namespace DataTier.Loggers
 	public class HistoryLogger
 	{
 		//static ILog myLogger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-		private static readonly ILog myLogger = LogManager.GetLogger("History");
+		private static readonly ILog myLogger=LogManager.GetLogger("History");
 		public static void WriteHistory(int requestId, string action, int commodity, int price, int amount)
 		{
 			//File.AppendAllText(@"..\..\..\Log\history.txt", DateTime.Now+","+contents+"\n");
@@ -22,11 +22,11 @@ namespace DataTier.Loggers
 		public static ObservableCollection<Record> ReadHistory()
 		{
 			//List<int> UserActiveRequests=new MarketClientClass().SendQueryUserRequest().Requests;
-			string[] history = File.ReadAllLines(@"..\..\..\Log\history.txt");
-			ObservableCollection<Record> output = new ObservableCollection<Record>();
+			string[] history=File.ReadAllLines(@"..\..\..\Log\history.txt");
+			ObservableCollection<Record> output=new ObservableCollection<Record>();
 			foreach (string line in history)
 			{
-				string[] temp = line.Split(',');
+				string[] temp=line.Split(',');
 				output.Add(new Record
 				{
 					Time=Convert.ToDateTime(temp[0]).ToString(),
