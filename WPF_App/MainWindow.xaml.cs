@@ -120,10 +120,10 @@ namespace WPF_App
 				MessageBox.Show("Invalid Amount", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Error);
 			if (Commodity>0 || Price>0 || Amount>0)
 			{
-				MarketBuySell marketBuySell=market.SendBuyRequest(Price, Commodity, Amount);
+				MarketBuySell marketBuySell=market.SendSellRequest(Price, Commodity, Amount);
 				if (marketBuySell.Error==null)
 				{
-					MessageBox.Show("Sucsess!! Your Buy request has been placed. your id is: "+marketBuySell.Id);
+					MessageBox.Show("Sucsess!! Your Sell request has been placed. your id is: "+marketBuySell.Id);
 					HistoryLogger.WriteHistory(marketBuySell.Id, "Sell", Commodity, Price, Amount);
 					Updater();
 				}
