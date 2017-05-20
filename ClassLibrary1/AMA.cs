@@ -99,14 +99,20 @@ namespace LogicTier
             {
                 foreach (UserAsksLink ask in userCommands)
                 {
-                    if (ask.BuyORsell == true)   //user wants to buy
-                        AMA_Buy(ask.Commodity, ask.DesiredPrice, ask.Amount);
+                    if (!(ask.Commodity < 0 | ask.Commodity > 9 | ask.Amount == 0))             //check valid input
+                    {
 
 
-                    else             //user wants to sell
-                        AMA_Sell(ask.Commodity, ask.DesiredPrice, ask.Amount);
 
-                    Thread.Sleep(6000);      //so all commands will run in the list without prevent each other
+                        if (ask.BuyORsell == true)   //user wants to buy
+                            AMA_Buy(ask.Commodity, ask.DesiredPrice, ask.Amount);
+
+
+                        else             //user wants to sell
+                            AMA_Sell(ask.Commodity, ask.DesiredPrice, ask.Amount);
+
+                        Thread.Sleep(6000);      //so all commands will run in the list without prevent each other
+                    }
                 }
             }// IF isRunning
         }
