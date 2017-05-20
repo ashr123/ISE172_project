@@ -208,7 +208,7 @@ namespace WPF_App
 		{
 			if (ManualAMAButton.IsEnabled)
 			{
-				AMA.TimerOfAutoUser(new List<UserAsksLink>( UserAsks));
+				AMA.TimerOfAutoUser(new List<UserAsksLink>(UserAsks));
 				ManualAMAButton.Content="Stop manual AMA";
 			}
 			else
