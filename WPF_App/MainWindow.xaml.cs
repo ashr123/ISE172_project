@@ -32,6 +32,10 @@ namespace WPF_App
 			IsEnabled=true
 		};
 
+
+        /// <summary>
+        /// Updates the main window tables
+        /// </summary>
 		public void Updater()
 		{
 			AllMarketRequest MarketRequestsTemp=market.QueryAllMarketRequest();
@@ -62,6 +66,9 @@ namespace WPF_App
 			UpdateItemSources();
 		}
 
+        /// <summary>
+        /// updates the tables
+        /// </summary>
 		private void UpdateItemSources()
 		{
 			HistoryDataGrid.ItemsSource=History;
@@ -86,6 +93,11 @@ namespace WPF_App
 			UserAsksDataGrid.ItemsSource=UserAsks;
 		}
 
+        /// <summary>
+        /// checks if the input is valid and if so intilazing a buy request with the gven parameters.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void BuyButton_Click(object sender, RoutedEventArgs e)
         {
 			if (!(Int32.TryParse(SellCommodityField.Text, out int Commodity)))
@@ -110,6 +122,11 @@ namespace WPF_App
 				MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /// <summary>
+        /// checks if the input is valid and if so intilazing a sell request with the gven parameters.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SellButton_Click(object sender, RoutedEventArgs e)
         {
 			if (!(Int32.TryParse(SellCommodityField.Text, out int Commodity)) && Commodity>9)
@@ -134,6 +151,11 @@ namespace WPF_App
 				MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
+        /// <summary>
+        /// sends a request to start the AMA
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AmaButton_Click(object sender, RoutedEventArgs e)
 		{
 			if (ManualAMAButton.IsEnabled)
@@ -150,6 +172,9 @@ namespace WPF_App
 			ManualAMAButton.IsEnabled=!ManualAMAButton.IsEnabled;
 		}
 
+        /// <summary>
+        /// if the button are enable the function disable them and vice verca
+        /// </summary>
 		private void EnableDisableControls()
 		{
 			ActiveRequest.IsEnabled=!ActiveRequest.IsEnabled;
@@ -181,6 +206,11 @@ namespace WPF_App
 			public int Price { get; set; }
 		}
 
+        /// <summary>
+        /// does this when the cancel request button is pressed.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 		private void CancelRequestButton_Click(object sender, RoutedEventArgs e)
 		{
 			market.SendCancelBuySellRequest(int.Parse(((Button)sender).CommandParameter.ToString()));
@@ -194,6 +224,11 @@ namespace WPF_App
 			Trace.WriteLine(int.Parse(((Button)sender).CommandParameter.ToString()));
 		}
 
+        /// <summary>
+        /// cancels a request
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 		private void CancelRequestButton_Click_1(object sender, RoutedEventArgs e)
 		{
 			foreach (UserAsksLink item in UserAsks)
@@ -204,6 +239,11 @@ namespace WPF_App
 				}
 		}
 
+        /// <summary>
+        /// starts the manual AMA with a given parameters.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 		private void ManualAMAButton_Click(object sender, RoutedEventArgs e)
 		{
 			if (ManualAMAButton.IsEnabled)
@@ -220,6 +260,11 @@ namespace WPF_App
 			AmaButton.IsEnabled=!AmaButton.IsEnabled;
 		}
 
+        /// <summary>
+        /// checks if the input for the manual AMA is valid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 		private void ManualAmaAdder_Click(object sender, RoutedEventArgs e)
 		{
 			if (!(Int32.TryParse(AMACommodityField.Text, out int Commodity)) && Commodity>9)
@@ -242,6 +287,11 @@ namespace WPF_App
 				MessageBox.Show("Invalid Input", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
+        /// <summary>
+        /// checks if the user's input is numeric.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 		private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             e.Handled=new Regex("[^0-9]+").IsMatch(e.Text);
