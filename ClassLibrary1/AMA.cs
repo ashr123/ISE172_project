@@ -27,7 +27,7 @@ namespace LogicTier
             {
                 userAutoTimer = new System.Timers.Timer(6000);
                 userAutoTimer.Elapsed += new ElapsedEventHandler(OnUSEREvent);
-                userAutoTimer.AutoReset = true;
+                userAutoTimer.AutoReset = false;
             }
             userAutoTimer.Stop();
 
@@ -35,7 +35,7 @@ namespace LogicTier
             {
                 amaAutoTimer = new System.Timers.Timer(6000);
                 amaAutoTimer.Elapsed += new ElapsedEventHandler(OnAMAEvent);
-                amaAutoTimer.AutoReset = false;
+                amaAutoTimer.AutoReset = true;
             }
             amaAutoTimer.Stop();
         }
@@ -75,8 +75,17 @@ namespace LogicTier
                 if (FLAG_buyOrSell)      //ama buy
                     AMA_Buy(rndCommodity, commodityInfo.Ask, amountToBuy);
 
-                else                     //ama sell
+                else
+                {                    //ama sell
+                    /*Dictionary<int,int> dic = client.SendQueryUserRequest().Commodities;
+                    NotOverLoadServer();
+                    foreach (int i in dic.Keys)
+                    {
+                        if (dic[i] == 0)
+                            dic.Remove(i);
+                    }*/
                     AMA_Sell(rndCommodity, commodityInfo.Bid, amountToSell);
+                }
 
                 FLAG_buyOrSell = !FLAG_buyOrSell;
             }
