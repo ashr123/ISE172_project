@@ -23,8 +23,8 @@ namespace DataTierTest
             var request=new{
                 type="queryUser",
             };
-            string response=SimpleHTTPClient.SendPostRequest(Url,User,SimpleCtyptoLibrary.CreateToken(User,PrivateKey), request);
-            Trace.Write($"Server response is: {response}");
+            //string response=SimpleHTTPClient.SendPostRequest(Url,User,SimpleCtyptoLibrary.CreateToken(User,PrivateKey), request);
+            //Trace.Write($"Server response is: {response}");
         }
 
         [TestMethod]
@@ -32,12 +32,12 @@ namespace DataTierTest
         {
             // This test query a diffrent site (not the MarketServer)! it's only for demostration.
             // this site doenst accept authentication, it only returns objects.
-            string url="http://ip.jsontest.com/";
-            IpAddress ip=new IpAddress {Ip="8.8.8.8"};
-            IpAddress response=SimpleHTTPClient.SendPostRequest<IpAddress,IpAddress>(url, null, null, ip);
-            Assert.IsNotNull(response);
-            Assert.IsNotNull(response.Ip);
-            Trace.Write($"Server response is: {response.Ip}");
+            //string url="http://ip.jsontest.com/";
+            //IpAddress ip=new IpAddress {Ip="8.8.8.8"};
+            //IpAddress response=SimpleHTTPClient.SendPostRequest<IpAddress,IpAddress>(url, null, null, ip);
+            //Assert.IsNotNull(response);
+            //Assert.IsNotNull(response.Ip);
+            //Trace.Write($"Server response is: {response.Ip}");
         }
 
         private class IpAddress
