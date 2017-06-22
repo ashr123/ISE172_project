@@ -32,7 +32,7 @@ namespace WPF_App
 		public static ObservableCollection<MarketData> MarketData1 { get; set; }
 		public static ObservableCollection<MarketRequests> MarketRequests1 { get; set; }
 		public static ObservableCollection<UserAsksLink> UserAsks { get; set; }
-		private static DispatcherTimer timer=new DispatcherTimer
+		private static DispatcherTimer timer = new DispatcherTimer
 		{
 			Interval=TimeSpan.FromSeconds(10),
 			IsEnabled=true
@@ -44,12 +44,18 @@ namespace WPF_App
         /// </summary>
 		public void Updater()
 		{
-			using (SqlConnection myConnection=new SqlConnection(ConfigurationManager.ConnectionStrings["historyConnectionString"].ConnectionString))
+			using (SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["historyConnectionString"].ConnectionString))
 			{
-
+				myConnection.Open();
+				SqlCommand myCommand = new SqlCommand("select * from items where buyer='54' or seller='54'", myConnection);
+				SqlDataReader myDataReader = myCommand.ExecuteReader();
+				Trace.WriteLine(myDataReader.HasRows);
+				if (myDataReader.HasRows)
+					while (myDataReader.Read())
+						Trace.WriteLine(myDataReader["price"]);
 			}
 
-				AllMarketRequest MarketRequestsTemp = market.QueryAllMarketRequest();
+			AllMarketRequest MarketRequestsTemp = market.QueryAllMarketRequest();
 			UserData=market.SendQueryUserRequest();
 			MarketUserRequests MarketDataTemp=market.QueryUserRequests();
 			MarketData1=new ObservableCollection<MarketData>();
@@ -322,7 +328,9 @@ namespace WPF_App
             doc.Open();
 
             //Add the content of Text File to PDF File
-            doc.Add(new Paragraph(rdr.ReadToEnd()));
+			foreach (Record rec in History)
+				doc.Add(new Paragraph("Is executed: "+rec.IsExecuted+", Time: "+rec.Time+", Request ID: "+rec.RequestId+", Action: "+rec.Action+", Commodity: "+rec.Commodity+", Price: "+rec.Price+", Amount: "+rec.Amount));
+			//doc.Add(new Paragraph(rdr.ReadToEnd()));
 
             //Close the Document
             doc.Close();
