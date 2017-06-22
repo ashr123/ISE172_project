@@ -12,7 +12,7 @@ namespace DataTier
 		//private const string Url="http://localhost";
 		private const string Url = "http://ise172.ise.bgu.ac.il";
 		//private const string Url="http://ise172.ise.bgu.ac.il:8008";
-		private static string User = "user54";
+		private const string User = "user54";
 
 		/// <summary>
 		/// Send an object of type T1, @item, parsed as json string embedded with the 
@@ -49,7 +49,7 @@ namespace DataTier
         {
 			string responseContent="";
 			int nonce = new Random().Next(Int32.MinValue, Int32.MaxValue);
-			string token = SimpleCtyptoLibrary.CreateToken(nonce);
+			string token = SimpleCtyptoLibrary.CreateToken(User, nonce);
 			//Trace.WriteLine("user==User: "+(user==User)+"\nuser.equals(User): "+(user.Equals(User)));
 			var auth = new { user, token, nonce };
 			JObject jsonItem = JObject.FromObject(item);

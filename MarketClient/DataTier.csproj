@@ -61,6 +61,11 @@
     <Compile Include="DataEntries\ItemAskBid.cs" />
     <Compile Include="DataEntries\MarketUserRequests.cs" />
     <Compile Include="DataEntries\MarketBuySell.cs" />
+    <Compile Include="historyDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>historyDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Loggers\HistoryLogger.cs" />
     <Compile Include="MarketClientClass.cs" />
     <Compile Include="MarketRequests\BuyRequest.cs" />
@@ -71,6 +76,11 @@
     <Compile Include="MarketRequests\QueryUserRequest.cs" />
     <Compile Include="MarketRequests\QueryUserRequests.cs" />
     <Compile Include="MarketRequests\SellRequest.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SimpleHTTPClient.cs" />
     <Compile Include="Utils\MarketException.cs" />
     <Compile Include="DataEntries\MarketCommodityOffer.cs" />
@@ -89,7 +99,22 @@
       <Link>App.config</Link>
       <SubType>Designer</SubType>
     </None>
+    <None Include="historyDataSet.xsc">
+      <DependentUpon>historyDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="historyDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>historyDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="historyDataSet.xss">
+      <DependentUpon>historyDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

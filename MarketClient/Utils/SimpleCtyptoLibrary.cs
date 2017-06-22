@@ -35,9 +35,9 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 		/// <param name="username"></param>
 		/// <param name="privateKey"></param>
 		/// <returns>authentication token</returns>
-		public static string CreateToken(int nonce)
+		public static string CreateToken(string user, int nonce)
         {
-            return RSASignWithSHA256(User+"_"+nonce, PrivateKey);
+            return RSASignWithSHA256(user+"_"+nonce, PrivateKey);
         }
 
 
@@ -72,11 +72,11 @@ UP/YNWmFltAqKDGBZBaSSQJAJI7KrB9m/C874oxqv54izkfKwjCpoD/OvZ0h61Yl
 
 		public static string Decrypt(string message)
 		{
+			Trace.WriteLine(message);
 			RSACryptoServiceProvider rsaAlgo = new RSACryptoServiceProvider();
 			rsaAlgo.ImportParameters(ExtractRSAPrivateKey(PrivateKey));
 			byte[] encrypted = Convert.FromBase64String(message);
 			StringBuilder decrypted = new StringBuilder();
-			Trace.WriteLine(message);
 			for (int i = 0; i<encrypted.Length; i+=128)
 			{
 				byte[] block = new byte[128];
