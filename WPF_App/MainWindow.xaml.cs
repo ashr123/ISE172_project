@@ -16,6 +16,7 @@ using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using System.Configuration;
 
 namespace WPF_App
 {
@@ -42,6 +43,7 @@ namespace WPF_App
         /// </summary>
 		public void Updater()
 		{
+			string connectionString= ConfigurationManager.ConnectionStrings ["historyConnectionString"].ConnectionString;
 			AllMarketRequest MarketRequestsTemp=market.QueryAllMarketRequest();
 			UserData=market.SendQueryUserRequest();
 			MarketUserRequests MarketDataTemp=market.QueryUserRequests();
@@ -319,7 +321,7 @@ namespace WPF_App
 
             //Close the Document
             doc.Close();
-
+			rdr.Close();
             //Open the Converted PDF File
             System.Diagnostics.Process.Start(@"..\..\..\Log\history.pdf");
         }
