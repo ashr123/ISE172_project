@@ -12,7 +12,7 @@ using System.Windows.Threading;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
-using iTextSharp;
+//using iTextSharp;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
@@ -316,12 +316,10 @@ namespace WPF_App
 
         private void GeneratePDF_Click(object sender, RoutedEventArgs e)
         {
-            //Read the Data from Input File
-            StreamReader rdr = new StreamReader(@"..\..\..\Log\history.txt");
-
-            //Create a New instance on Document Class
+			//Create a New instance on Document Class
             Document doc = new Document();
-            //Create a New instance of PDFWriter Class for Output File
+            
+			//Create a New instance of PDFWriter Class for Output File
             PdfWriter.GetInstance(doc, new FileStream(@"..\..\..\Log\history.pdf", FileMode.Create));
 
             //Open the Document
@@ -330,12 +328,11 @@ namespace WPF_App
             //Add the content of Text File to PDF File
 			foreach (Record rec in History)
 				doc.Add(new Paragraph("Is executed: "+rec.IsExecuted+", Time: "+rec.Time+", Request ID: "+rec.RequestId+", Action: "+rec.Action+", Commodity: "+rec.Commodity+", Price: "+rec.Price+", Amount: "+rec.Amount));
-			//doc.Add(new Paragraph(rdr.ReadToEnd()));
 
             //Close the Document
             doc.Close();
-			rdr.Close();
-            //Open the Converted PDF File
+            
+			//Open the Converted PDF File
             System.Diagnostics.Process.Start(@"..\..\..\Log\history.pdf");
         }
     }
