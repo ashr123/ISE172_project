@@ -17,6 +17,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
 using System.Configuration;
+using System.Data.SqlClient;
 
 namespace WPF_App
 {
@@ -43,8 +44,12 @@ namespace WPF_App
         /// </summary>
 		public void Updater()
 		{
-			string connectionString= ConfigurationManager.ConnectionStrings ["historyConnectionString"].ConnectionString;
-			AllMarketRequest MarketRequestsTemp=market.QueryAllMarketRequest();
+			using (SqlConnection myConnection=new SqlConnection(ConfigurationManager.ConnectionStrings["historyConnectionString"].ConnectionString))
+			{
+
+			}
+
+				AllMarketRequest MarketRequestsTemp = market.QueryAllMarketRequest();
 			UserData=market.SendQueryUserRequest();
 			MarketUserRequests MarketDataTemp=market.QueryUserRequests();
 			MarketData1=new ObservableCollection<MarketData>();
