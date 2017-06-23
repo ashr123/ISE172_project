@@ -44,16 +44,16 @@ namespace WPF_App
         /// </summary>
 		public void Updater()
 		{
-			using (SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["historyConnectionString"].ConnectionString))
-			{
-				myConnection.Open();
-				SqlCommand myCommand = new SqlCommand("select * from items where buyer='54' or seller='54'", myConnection);
-				SqlDataReader myDataReader = myCommand.ExecuteReader();
-				Trace.WriteLine(myDataReader.HasRows);
-				if (myDataReader.HasRows)
-					while (myDataReader.Read())
-						Trace.WriteLine(myDataReader["price"]);
-			}
+			//using (SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["historyConnectionString"].ConnectionString))
+			//{
+				//myConnection.Open();
+				//SqlCommand myCommand = new SqlCommand("select * from items where buyer='54' or seller='54'", myConnection);
+				//SqlDataReader myDataReader = myCommand.ExecuteReader();
+				//Trace.WriteLine(myDataReader.HasRows);
+				//if (myDataReader.HasRows)
+					//while (myDataReader.Read())
+						//Trace.WriteLine(myDataReader["price"]);
+			//}
 
 			AllMarketRequest MarketRequestsTemp = market.QueryAllMarketRequest();
 			UserData=market.SendQueryUserRequest();
@@ -103,6 +103,7 @@ namespace WPF_App
 		public MainWindow()
         {
 			InitializeComponent();
+			new Window2().Show();
 			DataContext=this;
 			Updater();
 			timer.Tick+=OnTimedEvent;
@@ -335,5 +336,5 @@ namespace WPF_App
 			//Open the Converted PDF File
             System.Diagnostics.Process.Start(@"..\..\..\Log\history.pdf");
         }
-    }
+	}
 }
