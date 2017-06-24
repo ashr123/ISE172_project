@@ -23,8 +23,8 @@ namespace MarketClientTest
             MarketBuySell buyreq2 = client.SendBuyRequest(1, 10, 3);    //no such commodies : 10
             Assert.IsNotNull(buyreq2.Error);
 
-            MarketBuySell buyreq3 = client.SendSellRequest(7, 24, 3);   //no such commodies : 24 
-            Assert.IsNotNull(buyreq3.Error);
+            MarketBuySell sellreq3 = client.SendSellRequest(7, 24, 3);   //no such commodies : 24 
+            Assert.IsNotNull(sellreq3.Error);
 
             //Errors expected (not null)
         }
