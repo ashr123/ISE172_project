@@ -40,6 +40,25 @@ namespace LogicTier
             amaAutoTimer.Stop();
         }
 
+        public static bool checkAmaAutoTimerIsSet()      //for test8
+        {
+            if (amaAutoTimer == null)
+                return false;
+
+            else
+                return true;
+        }
+        
+        public static bool checkUserAmaTimerIsSet()       //for test8
+        {
+
+            if (userAutoTimer == null)
+                return false;
+
+            else
+                return true;
+        }
+
         public static void TimerOfAMA(bool b)
         {
             ResetBothTimers();              //not possible AMA auto & user requests
