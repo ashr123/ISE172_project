@@ -9,24 +9,26 @@ using LogicTier;
 namespace MarketClientTest
 {
     [TestClass]
-    public class UnitTest5
+    public class UnitTest6
     {
         [TestMethod]
-        public void TestFalseCommodity()
+        public void TestFalsePrice()
         {
-            
+
+
             MarketClientClass client = new MarketClientClass();
-            
-            MarketBuySell buyreq1 = client.SendBuyRequest(5, -2, 3);   //no such commodies : -2 
+
+            MarketBuySell buyreq1 = client.SendBuyRequest(-7, 1, 3);    //no such price : -7
             Assert.IsNotNull(buyreq1.Error);
 
-            MarketBuySell buyreq2 = client.SendBuyRequest(1, 10, 3);    //no such commodies : 10
+            MarketBuySell buyreq2 = client.SendBuyRequest(2000000, 1, 1);  //no such price : 2,000,000
             Assert.IsNotNull(buyreq2.Error);
 
-            MarketBuySell buyreq3 = client.SendSellRequest(7, 24, 3);   //no such commodies : 24 
+            MarketBuySell buyreq3 = client.SendSellRequest(-25, 5, 3);   //no such price : -25
             Assert.IsNotNull(buyreq3.Error);
 
             //Errors expected (not null)
+
         }
     }
 }
