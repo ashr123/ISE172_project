@@ -59,7 +59,7 @@ namespace DataTierTest
                 }
 
 
-                Assert.AreEqual<int>(EXPECTEDcommAmount + 1, ACTUALcommAmount);
+                Assert.AreEqual<int>(EXPECTEDcommAmount , ACTUALcommAmount);
             }
 
             

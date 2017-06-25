@@ -88,6 +88,11 @@ namespace LogicTier
                     int rndCommodity = rnd.Next(0, 10);
                     int amountToBuy = rnd.Next(1, 8);
                     int amountToSell = rnd.Next(-1, 8);           //-1 means all
+
+
+                    if (amountToSell == 0)
+                        amountToSell = -1;
+
                     myConnection.Open();
                     SqlCommand myCommand = new SqlCommand("select Avg(price) AS AveragePrice from items where commodity='" + rndCommodity + "' and timestamp>= DATEADD(mi, -30, GETUTCDATE())", myConnection);
                     SqlDataReader myDataReader = myCommand.ExecuteReader();
@@ -107,9 +112,6 @@ namespace LogicTier
                         {
                             return;
                         }
-                        if (amountToSell == 0)
-                            amountToSell = -1;
-
                         //want to get INFO for the commodity ASK-BID
                         MarketClientClass client = new MarketClientClass();
                         MarketCommodityOffer commodityInfo = client.SendQueryMarketRequest(rndCommodity);
