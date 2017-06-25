@@ -304,7 +304,7 @@ namespace LogicTier
 
 
 
-        public static int avgPrice(int cmd)
+        public static int AvgPrice(int cmd)
         {
             int avgPrice = -1;
 
@@ -336,7 +336,7 @@ namespace LogicTier
 
         }
 
-        public static int minPrice(int cmd)
+        public static int MinPrice(int cmd)
         {
             int minPrice = -1;
 
@@ -367,7 +367,7 @@ namespace LogicTier
             return minPrice;
         }
 
-        public static int maxPrice(int cmd)
+        public static int MaxPrice(int cmd)
         {
             int maxPrice = -1;
 
