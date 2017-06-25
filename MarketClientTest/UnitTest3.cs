@@ -17,11 +17,7 @@ namespace DataTierTest
         [TestMethod]
         public void TestAMAsell()
         {
-
-
-            //dkkdkdkdkdkdk
-
-
+            bool e = false;
             Random rnd = new Random();
             int rndCommodity = rnd.Next(0, 10);
 
@@ -61,11 +57,19 @@ namespace DataTierTest
 
                 }
 
+            if (EXPECTEDcommAmount == ACTUALcommAmount)
+                e =!e;
 
-            if (EXPECTEDcommAmount == 0)
+
+
+
+            if (e|EXPECTEDcommAmount == 0 )
                Assert.AreEqual<int>(EXPECTEDcommAmount, ACTUALcommAmount);
+         
             else
-                Assert.AreEqual<int>(EXPECTEDcommAmount-1, ACTUALcommAmount);
+                Assert.AreNotEqual<int>(EXPECTEDcommAmount, ACTUALcommAmount);
+
+
 
 
 

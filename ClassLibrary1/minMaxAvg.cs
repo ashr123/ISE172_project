@@ -27,7 +27,7 @@ namespace LogicTier
             {
                 myConnection.Open();
 
-                SqlCommand myCommand = new SqlCommand("select Avg(price) AS AveragePrice from items where commodity='" + cmd + "')", myConnection);
+                SqlCommand myCommand = new SqlCommand("select Avg(price) AS AveragePrice from items where commodity='" + cmd + "'and timestamp>= DATEADD(mi, -120, GETUTCDATE())", myConnection);
                 SqlDataReader myDataReader = myCommand.ExecuteReader();
                 if (myDataReader.HasRows)
                 {
@@ -58,7 +58,7 @@ namespace LogicTier
             {
                 myConnection.Open();
 
-                SqlCommand myCommand = new SqlCommand("select MIN(Price) AS SmallestPrice items where commodity='" + cmd + "')", myConnection);
+                SqlCommand myCommand = new SqlCommand("select MIN(Price) AS SmallestPrice items where commodity='" + cmd + "'and timestamp>= DATEADD(mi, -120, GETUTCDATE())", myConnection);
                 SqlDataReader myDataReader = myCommand.ExecuteReader();
                 if (myDataReader.HasRows)
                 {
@@ -88,7 +88,7 @@ namespace LogicTier
             {
                 myConnection.Open();
 
-                SqlCommand myCommand = new SqlCommand("select MAX(Price) AS LargestPrice from items where commodity='" + cmd + "')", myConnection);
+                SqlCommand myCommand = new SqlCommand("select MAX(Price) AS LargestPrice from items where commodity='" + cmd + "'and timestamp>= DATEADD(mi, -120, GETUTCDATE())", myConnection);
                 SqlDataReader myDataReader = myCommand.ExecuteReader();
                 if (myDataReader.HasRows)
                 {

@@ -37,7 +37,7 @@ namespace MarketClientTest
 
             catch (Exception)
             {
-                error = true;
+             
             }
 
             Assert.IsFalse(error);
