@@ -72,6 +72,7 @@ namespace LogicTier
         {
             if (!FLAG_isRunning)                     //for not creating lot of AMA functions running in parallel
             {
+
                 Trace.WriteLine("AAAAAAMMMMMMAAAAAA");
                 Random rnd = new Random();
 
