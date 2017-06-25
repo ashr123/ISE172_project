@@ -17,6 +17,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Configuration;
 using System.Collections.ObjectModel;
+using System.Windows.Threading;
 
 namespace WPF_App
 {
@@ -28,11 +29,16 @@ namespace WPF_App
 		public SeriesCollection SeriesCollection { get; set; }
 		public string[] Labels { get; set; }
 		public Func<double, string> YFormatter { get; set; }
-
-		public Window2()
+		private static DispatcherTimer timer = new DispatcherTimer
 		{
+			Interval=TimeSpan.FromSeconds(10),
+			IsEnabled=true
+		};
 
-			ObservableCollection<string> temp=new ObservableCollection<string>();
+		public void OnTimedEvent(Object source, EventArgs e)
+		{
+			Trace.WriteLine("CCCCCCHHHHHHAAAAAARRRRRRTTTTTT");
+			ObservableCollection<string> temp = new ObservableCollection<string>();
 			using (SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["historyConnectionString"].ConnectionString))
 			{
 				myConnection.Open();
@@ -43,8 +49,12 @@ namespace WPF_App
 					while (myDataReader.Read())
 						temp.Add(myDataReader.GetDateTime(0).ToString());
 			}
-			Labels=temp.ToArray<string>();
-			InitializeComponent();
+			Labels=new string[temp.Count];
+			int i = 0;
+			foreach (string s in temp)
+				Labels[i++]=s;
+			Chart.AxisX[0].Labels=Labels;
+
 			SeriesCollection=new SeriesCollection
 			{
 				new LineSeries
@@ -116,21 +126,6 @@ namespace WPF_App
 				},
 			};
 
-			
-			YFormatter=value => value.ToString("C");
-
-			//modifying the series collection will animate and update the chart
-			//SeriesCollection.Add(new LineSeries
-			//{
-			//Title="Series 4",
-			//Values=new ChartValues<double> { 5, 3, 2, 4 },
-			//LineSmoothness=0, //0: straight lines, 1: really smooth lines
-			//PointGeometry=Geometry.Parse("m 25 70.36218 20 -28 -20 22 -8 -6 z"),
-			//PointGeometrySize=50,
-			//PointForeground=Brushes.Gray
-			//});
-
-			//modifying any series values will also animate and update the chart
 			using (SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["historyConnectionString"].ConnectionString))
 			{
 				myConnection.Open();
@@ -140,13 +135,20 @@ namespace WPF_App
 				if (myDataReader.HasRows)
 					while (myDataReader.Read())
 					{
-						Trace.WriteLine("myDataReader.GetInt32(1): "+Int32.Parse(myDataReader[1].ToString())+", myDataReader.GetDouble(3): "+Double.Parse(myDataReader[3].ToString()));
+						//Trace.WriteLine("myDataReader.GetInt32(1): "+Int32.Parse(myDataReader[1].ToString())+", myDataReader.GetDouble(3): "+Double.Parse(myDataReader[3].ToString()));
 						SeriesCollection[Int32.Parse(myDataReader[1].ToString())].Values.Add(Double.Parse(myDataReader[3].ToString()));
 					}
 			}
-			//SeriesCollection[3].Values.Add(77.5);
+			Chart.Series=SeriesCollection;
+		}
 
+		public Window2()
+		{
+			timer.Tick+=OnTimedEvent;
+			YFormatter=value => value.ToString("C");
 			DataContext=this;
+			InitializeComponent();
+			OnTimedEvent(null, null);
 		}
 	}
 }

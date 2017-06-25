@@ -62,5 +62,6 @@
 		</ComboBox>
 		<Button x:Name="ManualAmaAdder" Content="Add to manual AMA" HorizontalAlignment="Left" Height="36" Margin="514,507,0,0" VerticalAlignment="Top" Width="115" Click="ManualAmaAdder_Click"/>
 		<Button  FontSize="18" Content="Generate PDF" HorizontalAlignment="Left" Margin="44,691,0,0" VerticalAlignment="Top" Width="125" Height="49" Click="GeneratePDF_Click"/>
+		<Button x:Name="ChartButton" Content="Show chart" HorizontalAlignment="Left" Height="49" Margin="178,691,0,0" VerticalAlignment="Top" Width="135" Click="ChartButton_Click" FontSize="18"/>
 	</Grid>
 </Window>
