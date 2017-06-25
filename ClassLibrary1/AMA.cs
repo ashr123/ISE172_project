@@ -9,6 +9,8 @@ using System.Timers;
 using DataTier.Loggers;
 using System.Threading;
 using System.Diagnostics;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace LogicTier
 {
@@ -20,6 +22,7 @@ namespace LogicTier
         private static bool FLAG_isRunning = false;             //prevent creating lots of AMA running parallel
         private static List<UserAsksLink> userCommands;           //holds the user wanted actions
         private static bool FLAG_buyOrSell = false;               //Alternately buy-sell
+        
 
         public static void ResetBothTimers()           //will create only one instance of timers & stop them both- to prevent running parallel
         {
@@ -72,41 +75,60 @@ namespace LogicTier
         {
             if (!FLAG_isRunning)                     //for not creating lot of AMA functions running in parallel
             {
+
                 Trace.WriteLine("AAAAAAMMMMMMAAAAAA");
-                Random rnd = new Random();
+                
+                using (SqlConnection myConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["historyConnectionString"].ConnectionString))
+                {
+                    Random rnd = new Random();
+                    int avgPrice=0;
+                    int rndCommodity = rnd.Next(0, 10);
+                    int amountToBuy = rnd.Next(1, 8);
+                    int amountToSell = rnd.Next(-1, 8);           //-1 means all
+                    myConnection.Open();
+                    SqlCommand myCommand = new SqlCommand("select Avg(price) AS AveragePrice from items where commodity='" + rndCommodity + "' and timestamp>= DATEADD(mi, -30, GETUTCDATE())", myConnection);
+                    SqlDataReader myDataReader = myCommand.ExecuteReader();
+                    if (myDataReader.HasRows)
 
-                int rndCommodity = rnd.Next(0, 10);
-                int amountToBuy = rnd.Next(1, 8);
-                int amountToSell = rnd.Next(-1, 8);           //-1 means all
-
-                if (amountToSell == 0)
-                    amountToSell = -1;
-
-                //want to get INFO for the commodity ASK-BID
-                MarketClientClass client = new MarketClientClass();
-                MarketCommodityOffer commodityInfo = client.SendQueryMarketRequest(rndCommodity);
-                NotOverLoadServer();
-
-                if (commodityInfo.Error != null)
-                    return;
-
-                //choose alternately buy or sell. and choose randomly commodity
-                if (FLAG_buyOrSell)      //ama buy
-                    AMA_Buy(rndCommodity, commodityInfo.Ask, amountToBuy);
-
-                else
-                {                    //ama sell
-                    /*Dictionary<int,int> dic = client.SendQueryUserRequest().Commodities;
-                    NotOverLoadServer();
-                    foreach (int i in dic.Keys)
                     {
-                        if (dic[i] == 0)
-                            dic.Remove(i);
-                    }*/
-                    AMA_Sell(rndCommodity, commodityInfo.Bid, amountToSell);
-                }
+                        myDataReader.Read();
+                        NotOverLoadServer();
+                        Trace.WriteLine(Double.Parse(myDataReader[0].ToString()));
+                        Double avgPriceDouble = Double.Parse(myDataReader[0].ToString());
+                        avgPrice = Convert.ToInt32(avgPriceDouble);
+                        if (amountToSell == 0)
+                            amountToSell = -1;
 
-                FLAG_buyOrSell = !FLAG_buyOrSell;
+                        //want to get INFO for the commodity ASK-BID
+                        MarketClientClass client = new MarketClientClass();
+                        MarketCommodityOffer commodityInfo = client.SendQueryMarketRequest(rndCommodity);
+                        NotOverLoadServer();
+
+                        if (commodityInfo.Error != null)
+                            return;
+
+                        //choose alternately buy or sell. and choose randomly commodity
+                        if (FLAG_buyOrSell)
+                        {    //ama buy
+                            if (avgPrice - 15 < 0)
+                            {
+                                avgPrice = rnd.Next(1, 8);
+                                AMA_Buy(rndCommodity, avgPrice, amountToBuy);
+                            }
+                            else
+                            {
+                                avgPrice -= 15;
+                                AMA_Buy(rndCommodity, avgPrice, amountToBuy);
+                            }
+                        }
+                        else
+                        {     //ama sell  
+                            avgPrice += 15;
+                            AMA_Sell(rndCommodity, avgPrice , amountToSell);
+                        }
+                        FLAG_buyOrSell = !FLAG_buyOrSell;
+                    }
+                }
             }
         }
 
