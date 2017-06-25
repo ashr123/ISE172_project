@@ -93,9 +93,17 @@ namespace LogicTier
                     {
                         myDataReader.Read();
                         NotOverLoadServer();
-                        Trace.WriteLine(Double.Parse(myDataReader[0].ToString()));
-                        Double avgPriceDouble = Double.Parse(myDataReader[0].ToString());
-                        avgPrice = Convert.ToInt32(avgPriceDouble);
+                        try
+                        {
+                            Trace.WriteLine(myDataReader[0].ToString());
+                            Trace.WriteLine(Double.Parse(myDataReader[0].ToString()));
+                            Double avgPriceDouble = Double.Parse(myDataReader[0].ToString());
+                            avgPrice = Convert.ToInt32(avgPriceDouble);
+                        }
+                        catch
+                        {
+                            return;
+                        }
                         if (amountToSell == 0)
                             amountToSell = -1;
 

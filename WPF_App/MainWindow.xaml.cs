@@ -50,9 +50,9 @@ namespace WPF_App
 				SqlCommand myCommand = new SqlCommand("select * from items where buyer='54' or seller='54'", myConnection);
 				SqlDataReader myDataReader = myCommand.ExecuteReader();
 				Trace.WriteLine(myDataReader.HasRows);
-				if (myDataReader.HasRows)
-					while (myDataReader.Read())
-						Trace.WriteLine(myDataReader["price"]);
+				//if (myDataReader.HasRows)
+					//while (myDataReader.Read())
+						//Trace.WriteLine(myDataReader["price"]);
 			}
 
 			AllMarketRequest MarketRequestsTemp = market.QueryAllMarketRequest();
