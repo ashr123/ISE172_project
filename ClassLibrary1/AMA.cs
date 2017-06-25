@@ -43,7 +43,7 @@ namespace LogicTier
             amaAutoTimer.Stop();
         }
 
-        public static bool CheckAmaAutoTimerIsSet()      //for test8
+        public static bool checkAmaAutoTimerIsSet()      //for test8
         {
             if (amaAutoTimer == null)
                 return false;
@@ -52,7 +52,7 @@ namespace LogicTier
                 return true;
         }
         
-        public static bool CheckUserAmaTimerIsSet()       //for test8
+        public static bool checkUserAmaTimerIsSet()       //for test8
         {
 
             if (userAutoTimer == null)

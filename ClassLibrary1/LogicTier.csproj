@@ -50,6 +50,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="minMaxAvg.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserAsksLink.cs" />
   </ItemGroup>

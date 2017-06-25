@@ -14,7 +14,7 @@ namespace MarketClientTest
         [TestMethod]
         public void TestMinMaxSQL()
         {
-
+            
             int avg, min, max;
             bool error = false;
 
