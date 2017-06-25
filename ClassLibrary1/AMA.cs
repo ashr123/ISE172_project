@@ -134,7 +134,7 @@ namespace LogicTier
                         }
                         else
                         {     //ama sell  
-                            avgPrice += 15;
+                            avgPrice += 8;
                             AMA_Sell(rndCommodity, avgPrice , amountToSell);
                         }
                         FLAG_buyOrSell = !FLAG_buyOrSell;
