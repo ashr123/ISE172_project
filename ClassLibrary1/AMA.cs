@@ -85,8 +85,8 @@ namespace LogicTier
                 {
                     Random rnd = new Random();
                     int avgPrice=0;
-                    int rndCommodity = rnd.Next(0, 10);
-                    int amountToBuy = rnd.Next(1, 8);
+                    int rndCommodity = rnd.Next(1, 10);
+                    int amountToBuy = rnd.Next(4, 10);
                     int amountToSell = rnd.Next(-1, 8);           //-1 means all
 
 
@@ -125,7 +125,7 @@ namespace LogicTier
                         {    //ama buy
                             if (avgPrice - 15 < 0)
                             {
-                                avgPrice = rnd.Next(1, 8);
+                                avgPrice = rnd.Next(4, 9);
                                 AMA_Buy(rndCommodity, avgPrice, amountToBuy);
                             }
                             else
@@ -136,7 +136,7 @@ namespace LogicTier
                         }
                         else
                         {     //ama sell  
-                            avgPrice += 8;
+                            avgPrice += 4;
                             AMA_Sell(rndCommodity, avgPrice , amountToSell);
                         }
                         FLAG_buyOrSell = !FLAG_buyOrSell;
